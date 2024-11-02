@@ -9,19 +9,19 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-      fontFamily: {
-        'OpenRunde-Bold': ['OpenRunde-Bold'],
-        'OpenRunde-SemiBold': ['OpenRunde-SemiBold'],
-        'OpenRunde-Medium': ['OpenRunde-Medium'],
-        'OpenRunde-Regular': ['OpenRunde-Regular']
-      },
+  		fontFamily: {
+  			'OpenRunde-Bold': ['OpenRunde-Bold'],
+  			'OpenRunde-SemiBold': ['OpenRunde-SemiBold'],
+  			'OpenRunde-Medium': ['OpenRunde-Medium'],
+  			'OpenRunde-Regular': ['OpenRunde-Regular']
+  		},
   		colors: {
-        bodyTextColor: '#667085',
-        headerTextColor: '#101828',
-        primaryColor: '#3170F3',
-        mainBackgroundColor: '#FFFFFF',
-        secondaryBackgroundColor: '#EAECF0',
-        borderColor: '#EAECF0',
+  			bodyTextColor: '#667085',
+  			headerTextColor: '#101828',
+  			primaryColor: '#3170F3',
+  			mainBackgroundColor: '#FFFFFF',
+  			secondaryBackgroundColor: '#EAECF0',
+  			borderColor: '#EAECF0',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -61,6 +61,16 @@ export default {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
+  			},
+  			sidebar: {
+  				DEFAULT: 'hsl(var(--sidebar-background))',
+  				foreground: 'hsl(var(--sidebar-foreground))',
+  				primary: 'hsl(var(--sidebar-primary))',
+  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+  				accent: 'hsl(var(--sidebar-accent))',
+  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+  				border: 'hsl(var(--sidebar-border))',
+  				ring: 'hsl(var(--sidebar-ring))'
   			}
   		}
   	}

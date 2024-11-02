@@ -14,6 +14,20 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as HomeImport } from './routes/home'
+import { Route as DashboardImport } from './routes/dashboard'
+import { Route as DashboardIndexImport } from './routes/dashboard/index'
+import { Route as DashboardWalletImport } from './routes/dashboard/wallet'
+import { Route as DashboardUsersImport } from './routes/dashboard/users'
+import { Route as DashboardSettingsImport } from './routes/dashboard/settings'
+import { Route as DashboardReportsImport } from './routes/dashboard/reports'
+import { Route as DashboardMaterialsImport } from './routes/dashboard/materials'
+import { Route as DashboardHomeImport } from './routes/dashboard/home'
+import { Route as DashboardConstructionImport } from './routes/dashboard/construction'
+import { Route as AuthLoginImport } from './routes/auth/login'
+import { Route as DashboardPropertyScheduleImport } from './routes/dashboard/property/schedule'
+import { Route as DashboardPropertySalesImport } from './routes/dashboard/property/sales'
+import { Route as DashboardPropertyListingsImport } from './routes/dashboard/property/listings'
+import { Route as DashboardPropertyInvestmentsImport } from './routes/dashboard/property/investments'
 
 // Create Virtual Routes
 
@@ -34,11 +48,96 @@ const HomeRoute = HomeImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const DashboardRoute = DashboardImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexLazyRoute = IndexLazyImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const DashboardIndexRoute = DashboardIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
+const DashboardWalletRoute = DashboardWalletImport.update({
+  id: '/wallet',
+  path: '/wallet',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
+const DashboardUsersRoute = DashboardUsersImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
+const DashboardSettingsRoute = DashboardSettingsImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
+const DashboardReportsRoute = DashboardReportsImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
+const DashboardMaterialsRoute = DashboardMaterialsImport.update({
+  id: '/materials',
+  path: '/materials',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
+const DashboardHomeRoute = DashboardHomeImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
+const DashboardConstructionRoute = DashboardConstructionImport.update({
+  id: '/construction',
+  path: '/construction',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
+const AuthLoginRoute = AuthLoginImport.update({
+  id: '/auth/login',
+  path: '/auth/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardPropertyScheduleRoute = DashboardPropertyScheduleImport.update({
+  id: '/property/schedule',
+  path: '/property/schedule',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
+const DashboardPropertySalesRoute = DashboardPropertySalesImport.update({
+  id: '/property/sales',
+  path: '/property/sales',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
+const DashboardPropertyListingsRoute = DashboardPropertyListingsImport.update({
+  id: '/property/listings',
+  path: '/property/listings',
+  getParentRoute: () => DashboardRoute,
+} as any)
+
+const DashboardPropertyInvestmentsRoute =
+  DashboardPropertyInvestmentsImport.update({
+    id: '/property/investments',
+    path: '/property/investments',
+    getParentRoute: () => DashboardRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -49,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardImport
       parentRoute: typeof rootRoute
     }
     '/home': {
@@ -65,49 +171,270 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutLazyImport
       parentRoute: typeof rootRoute
     }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginImport
+      parentRoute: typeof rootRoute
+    }
+    '/dashboard/construction': {
+      id: '/dashboard/construction'
+      path: '/construction'
+      fullPath: '/dashboard/construction'
+      preLoaderRoute: typeof DashboardConstructionImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/home': {
+      id: '/dashboard/home'
+      path: '/home'
+      fullPath: '/dashboard/home'
+      preLoaderRoute: typeof DashboardHomeImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/materials': {
+      id: '/dashboard/materials'
+      path: '/materials'
+      fullPath: '/dashboard/materials'
+      preLoaderRoute: typeof DashboardMaterialsImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/reports': {
+      id: '/dashboard/reports'
+      path: '/reports'
+      fullPath: '/dashboard/reports'
+      preLoaderRoute: typeof DashboardReportsImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/users': {
+      id: '/dashboard/users'
+      path: '/users'
+      fullPath: '/dashboard/users'
+      preLoaderRoute: typeof DashboardUsersImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/wallet': {
+      id: '/dashboard/wallet'
+      path: '/wallet'
+      fullPath: '/dashboard/wallet'
+      preLoaderRoute: typeof DashboardWalletImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/property/investments': {
+      id: '/dashboard/property/investments'
+      path: '/property/investments'
+      fullPath: '/dashboard/property/investments'
+      preLoaderRoute: typeof DashboardPropertyInvestmentsImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/property/listings': {
+      id: '/dashboard/property/listings'
+      path: '/property/listings'
+      fullPath: '/dashboard/property/listings'
+      preLoaderRoute: typeof DashboardPropertyListingsImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/property/sales': {
+      id: '/dashboard/property/sales'
+      path: '/property/sales'
+      fullPath: '/dashboard/property/sales'
+      preLoaderRoute: typeof DashboardPropertySalesImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/property/schedule': {
+      id: '/dashboard/property/schedule'
+      path: '/property/schedule'
+      fullPath: '/dashboard/property/schedule'
+      preLoaderRoute: typeof DashboardPropertyScheduleImport
+      parentRoute: typeof DashboardImport
+    }
   }
 }
 
 // Create and export the route tree
 
+interface DashboardRouteChildren {
+  DashboardConstructionRoute: typeof DashboardConstructionRoute
+  DashboardHomeRoute: typeof DashboardHomeRoute
+  DashboardMaterialsRoute: typeof DashboardMaterialsRoute
+  DashboardReportsRoute: typeof DashboardReportsRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardUsersRoute: typeof DashboardUsersRoute
+  DashboardWalletRoute: typeof DashboardWalletRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardPropertyInvestmentsRoute: typeof DashboardPropertyInvestmentsRoute
+  DashboardPropertyListingsRoute: typeof DashboardPropertyListingsRoute
+  DashboardPropertySalesRoute: typeof DashboardPropertySalesRoute
+  DashboardPropertyScheduleRoute: typeof DashboardPropertyScheduleRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardConstructionRoute: DashboardConstructionRoute,
+  DashboardHomeRoute: DashboardHomeRoute,
+  DashboardMaterialsRoute: DashboardMaterialsRoute,
+  DashboardReportsRoute: DashboardReportsRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardUsersRoute: DashboardUsersRoute,
+  DashboardWalletRoute: DashboardWalletRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+  DashboardPropertyInvestmentsRoute: DashboardPropertyInvestmentsRoute,
+  DashboardPropertyListingsRoute: DashboardPropertyListingsRoute,
+  DashboardPropertySalesRoute: DashboardPropertySalesRoute,
+  DashboardPropertyScheduleRoute: DashboardPropertyScheduleRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/home': typeof HomeRoute
   '/about': typeof AboutLazyRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/dashboard/construction': typeof DashboardConstructionRoute
+  '/dashboard/home': typeof DashboardHomeRoute
+  '/dashboard/materials': typeof DashboardMaterialsRoute
+  '/dashboard/reports': typeof DashboardReportsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/users': typeof DashboardUsersRoute
+  '/dashboard/wallet': typeof DashboardWalletRoute
+  '/dashboard/': typeof DashboardIndexRoute
+  '/dashboard/property/investments': typeof DashboardPropertyInvestmentsRoute
+  '/dashboard/property/listings': typeof DashboardPropertyListingsRoute
+  '/dashboard/property/sales': typeof DashboardPropertySalesRoute
+  '/dashboard/property/schedule': typeof DashboardPropertyScheduleRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/home': typeof HomeRoute
   '/about': typeof AboutLazyRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/dashboard/construction': typeof DashboardConstructionRoute
+  '/dashboard/home': typeof DashboardHomeRoute
+  '/dashboard/materials': typeof DashboardMaterialsRoute
+  '/dashboard/reports': typeof DashboardReportsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/users': typeof DashboardUsersRoute
+  '/dashboard/wallet': typeof DashboardWalletRoute
+  '/dashboard': typeof DashboardIndexRoute
+  '/dashboard/property/investments': typeof DashboardPropertyInvestmentsRoute
+  '/dashboard/property/listings': typeof DashboardPropertyListingsRoute
+  '/dashboard/property/sales': typeof DashboardPropertySalesRoute
+  '/dashboard/property/schedule': typeof DashboardPropertyScheduleRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/home': typeof HomeRoute
   '/about': typeof AboutLazyRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/dashboard/construction': typeof DashboardConstructionRoute
+  '/dashboard/home': typeof DashboardHomeRoute
+  '/dashboard/materials': typeof DashboardMaterialsRoute
+  '/dashboard/reports': typeof DashboardReportsRoute
+  '/dashboard/settings': typeof DashboardSettingsRoute
+  '/dashboard/users': typeof DashboardUsersRoute
+  '/dashboard/wallet': typeof DashboardWalletRoute
+  '/dashboard/': typeof DashboardIndexRoute
+  '/dashboard/property/investments': typeof DashboardPropertyInvestmentsRoute
+  '/dashboard/property/listings': typeof DashboardPropertyListingsRoute
+  '/dashboard/property/sales': typeof DashboardPropertySalesRoute
+  '/dashboard/property/schedule': typeof DashboardPropertyScheduleRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/home' | '/about'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/home'
+    | '/about'
+    | '/auth/login'
+    | '/dashboard/construction'
+    | '/dashboard/home'
+    | '/dashboard/materials'
+    | '/dashboard/reports'
+    | '/dashboard/settings'
+    | '/dashboard/users'
+    | '/dashboard/wallet'
+    | '/dashboard/'
+    | '/dashboard/property/investments'
+    | '/dashboard/property/listings'
+    | '/dashboard/property/sales'
+    | '/dashboard/property/schedule'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/home' | '/about'
-  id: '__root__' | '/' | '/home' | '/about'
+  to:
+    | '/'
+    | '/home'
+    | '/about'
+    | '/auth/login'
+    | '/dashboard/construction'
+    | '/dashboard/home'
+    | '/dashboard/materials'
+    | '/dashboard/reports'
+    | '/dashboard/settings'
+    | '/dashboard/users'
+    | '/dashboard/wallet'
+    | '/dashboard'
+    | '/dashboard/property/investments'
+    | '/dashboard/property/listings'
+    | '/dashboard/property/sales'
+    | '/dashboard/property/schedule'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/home'
+    | '/about'
+    | '/auth/login'
+    | '/dashboard/construction'
+    | '/dashboard/home'
+    | '/dashboard/materials'
+    | '/dashboard/reports'
+    | '/dashboard/settings'
+    | '/dashboard/users'
+    | '/dashboard/wallet'
+    | '/dashboard/'
+    | '/dashboard/property/investments'
+    | '/dashboard/property/listings'
+    | '/dashboard/property/sales'
+    | '/dashboard/property/schedule'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
   HomeRoute: typeof HomeRoute
   AboutLazyRoute: typeof AboutLazyRoute
+  AuthLoginRoute: typeof AuthLoginRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
+  DashboardRoute: DashboardRouteWithChildren,
   HomeRoute: HomeRoute,
   AboutLazyRoute: AboutLazyRoute,
+  AuthLoginRoute: AuthLoginRoute,
 }
 
 export const routeTree = rootRoute
@@ -123,18 +450,88 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/dashboard",
         "/home",
-        "/about"
+        "/about",
+        "/auth/login"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
+    },
+    "/dashboard": {
+      "filePath": "dashboard.tsx",
+      "children": [
+        "/dashboard/construction",
+        "/dashboard/home",
+        "/dashboard/materials",
+        "/dashboard/reports",
+        "/dashboard/settings",
+        "/dashboard/users",
+        "/dashboard/wallet",
+        "/dashboard/",
+        "/dashboard/property/investments",
+        "/dashboard/property/listings",
+        "/dashboard/property/sales",
+        "/dashboard/property/schedule"
+      ]
     },
     "/home": {
       "filePath": "home.tsx"
     },
     "/about": {
       "filePath": "about.lazy.tsx"
+    },
+    "/auth/login": {
+      "filePath": "auth/login.tsx"
+    },
+    "/dashboard/construction": {
+      "filePath": "dashboard/construction.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/home": {
+      "filePath": "dashboard/home.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/materials": {
+      "filePath": "dashboard/materials.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/reports": {
+      "filePath": "dashboard/reports.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/settings": {
+      "filePath": "dashboard/settings.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/users": {
+      "filePath": "dashboard/users.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/wallet": {
+      "filePath": "dashboard/wallet.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/": {
+      "filePath": "dashboard/index.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/property/investments": {
+      "filePath": "dashboard/property/investments.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/property/listings": {
+      "filePath": "dashboard/property/listings.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/property/sales": {
+      "filePath": "dashboard/property/sales.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/property/schedule": {
+      "filePath": "dashboard/property/schedule.tsx",
+      "parent": "/dashboard"
     }
   }
 }
