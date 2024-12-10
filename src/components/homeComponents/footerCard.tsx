@@ -6,7 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from ".
 export default function FooterCard() {
 
 
-    const invoices = [
+    const data = [
         {
             buildingname: "Luxury Duplex Construction",
             address: "12 Greenfield Avenue, Lekki, Lagos",
@@ -49,7 +49,7 @@ export default function FooterCard() {
                         <TabsTrigger className=" h-[36px] " value="proposals">Proposals</TabsTrigger>
                         <TabsTrigger className=" h-[36px] " value="ongoing">Ongoing</TabsTrigger>
                     </TabsList>
-                    <TabsContent className=" w-full pt-3 max-h-[200px] overflow-y-auto " value="proposals">
+                    <TabsContent className=" w-full pt-3 max-h-[245px] overflow-y-auto " value="proposals">
                         <Table>
                             <TableHeader>
                                 <TableRow>
@@ -60,7 +60,7 @@ export default function FooterCard() {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {invoices.map((item, index) => { 
+                                {data.map((item, index) => { 
                                         return (
                                             <TableRow className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-[#f2f4f7]" : ""} `} key={index}>
                                                 <TableCell className="">

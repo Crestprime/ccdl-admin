@@ -1,11 +1,11 @@
 "use client"
 
 import * as React from "react"
-import {  
-  Command, 
+import {
+  Command,
 } from "lucide-react"
 
-import { NavMain } from "./nav-main" 
+import { NavMain } from "./nav-main"
 import { NavUser } from "./nav-user"
 import {
   Sidebar,
@@ -15,8 +15,8 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar" 
-import { RiAccountCircleFill, RiBuilding2Fill, RiFolderOpenFill, RiHome4Fill, RiInboxArchiveFill, RiLayout2Fill, RiPieChartFill, RiSettings3Fill, RiWalletFill } from "@remixicon/react"
+} from "@/components/ui/sidebar"
+import { RiAccountCircleFill, RiBuilding2Fill, RiFolderOpenFill, RiHome4Fill, RiInboxArchiveFill, RiLayout2Fill, RiPieChartFill, RiSettings3Fill, RiWalletFill } from "@remixicon/react" 
 
 const data: any = {
   user: {
@@ -30,33 +30,35 @@ const data: any = {
       url: "/dashboard/home",
       icon: RiHome4Fill,
       isActive: false,
+      items: []
     },
     {
       title: "Inbox",
-      url: "#",
+      url: "/dashboard/inbox",
       icon: RiInboxArchiveFill,
       isActive: true,
+      items: []
     },
     {
       title: "Property",
-      url: "#",
+      url: "",
       icon: RiBuilding2Fill,
       items: [
         {
           title: "Listings",
-          url: "#",
+          url: "/dashboard/property/listings",
         },
         {
           title: "Investments",
-          url: "#",
+          url: "/dashboard/investments",
         },
         {
           title: "Sales & Reservations",
-          url: "#",
+          url: "/dashboard/saleandreservation",
         },
         {
           title: "Schedule",
-          url: "#",
+          url: "/dashboard/schedule",
         },
       ],
     },
@@ -133,21 +135,25 @@ const data: any = {
       title: "Wallet",
       url: "#",
       icon: RiWalletFill,
+      items: []
     },
     {
       title: "Reports & Analytics",
       url: "#",
       icon: RiPieChartFill,
+      items: []
     },
     {
       title: "Settings",
       url: "#",
       icon: RiSettings3Fill,
+      items: []
     },
-  ], 
+  ],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -168,7 +174,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data?.navMain} /> 
+        <NavMain items={data?.navMain} />
       </SidebarContent>
       <SidebarFooter className="mt-auto" >
         <NavUser user={data.user} />
