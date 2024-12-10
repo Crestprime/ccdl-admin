@@ -1,5 +1,14 @@
 
 export { default as HomePage } from './homePage';
-export { default as ListingPage } from './listingPage';
-export { default as ListingDetailsPage } from './listingDetails';
-export { default as CreateListing } from './createListing';
+
+// listing Pages
+export { default as ListingPage } from './listingPages/listingPage';
+export { default as ListingDetailsPage } from './listingPages/listingDetails';
+export { default as CreateListing } from './listingPages/createListing';
+export { default as ListingTransaction } from './listingPages/listingTransaction';
+
+// Sales and Reservetion Page
+export { default as SaleAndReservation } from './salesPages/saleAndReservation';
+
+// Sales and Reservetion Page
+export { default as InvestmentPage } from './investmentPages/investment';

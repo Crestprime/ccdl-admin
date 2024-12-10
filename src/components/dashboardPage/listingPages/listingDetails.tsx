@@ -1,7 +1,7 @@
 import { Label } from "@radix-ui/react-dropdown-menu";
-import { Switch } from "../ui/switch";
+import { Switch } from "../../ui/switch";
 import { RiBarChartLine, RiDeleteBin2Line, RiFileCopyLine, RiFireFill, RiFlashlightLine, RiHome2Line, RiLink, RiPencilLine, RiVipCrown2Line } from "@remixicon/react";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table";
 import { BedIcon } from "lucide-react";
 
 

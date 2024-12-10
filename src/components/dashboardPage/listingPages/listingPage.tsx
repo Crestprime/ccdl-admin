@@ -1,7 +1,7 @@
 import { useNavigate } from "@tanstack/react-router";
-import { PropertyListing } from "../listingComponents";
-import { Button } from "../ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { PropertyListing } from "../../listingComponents";
+import { Button } from "../../ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
 
 
 export default function ListingPage() {

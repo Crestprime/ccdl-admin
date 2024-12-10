@@ -50,15 +50,15 @@ const data: any = {
         },
         {
           title: "Investments",
-          url: "/dashboard/investments",
+          url: "/dashboard/property/investments",
         },
         {
           title: "Sales & Reservations",
-          url: "/dashboard/saleandreservation",
+          url: "/dashboard/property/sales",
         },
         {
           title: "Schedule",
-          url: "/dashboard/schedule",
+          url: "/dashboard/property/schedule",
         },
       ],
     },

@@ -26,9 +26,11 @@ import { Route as DashboardConstructionImport } from './routes/dashboard/constru
 import { Route as AuthVerifyImport } from './routes/auth/verify'
 import { Route as AuthLoginImport } from './routes/auth/login'
 import { Route as DashboardPropertyScheduleImport } from './routes/dashboard/property/schedule'
-import { Route as DashboardPropertySalesImport } from './routes/dashboard/property/sales'
-import { Route as DashboardPropertyInvestmentsImport } from './routes/dashboard/property/investments'
+import { Route as DashboardPropertySalesIndexImport } from './routes/dashboard/property/sales/index'
 import { Route as DashboardPropertyListingsIndexImport } from './routes/dashboard/property/listings/index'
+import { Route as DashboardPropertyInvestmentsIndexImport } from './routes/dashboard/property/investments/index'
+import { Route as DashboardPropertySalesDetailsImport } from './routes/dashboard/property/sales/details'
+import { Route as DashboardPropertyListingsTransactionImport } from './routes/dashboard/property/listings/transaction'
 import { Route as DashboardPropertyListingsDetailsImport } from './routes/dashboard/property/listings/details'
 import { Route as DashboardPropertyListingsCreateImport } from './routes/dashboard/property/listings/create'
 
@@ -129,16 +131,10 @@ const DashboardPropertyScheduleRoute = DashboardPropertyScheduleImport.update({
   getParentRoute: () => DashboardRoute,
 } as any)
 
-const DashboardPropertySalesRoute = DashboardPropertySalesImport.update({
-  id: '/property/sales',
-  path: '/property/sales',
-  getParentRoute: () => DashboardRoute,
-} as any)
-
-const DashboardPropertyInvestmentsRoute =
-  DashboardPropertyInvestmentsImport.update({
-    id: '/property/investments',
-    path: '/property/investments',
+const DashboardPropertySalesIndexRoute =
+  DashboardPropertySalesIndexImport.update({
+    id: '/property/sales/',
+    path: '/property/sales/',
     getParentRoute: () => DashboardRoute,
   } as any)
 
@@ -146,6 +142,27 @@ const DashboardPropertyListingsIndexRoute =
   DashboardPropertyListingsIndexImport.update({
     id: '/property/listings/',
     path: '/property/listings/',
+    getParentRoute: () => DashboardRoute,
+  } as any)
+
+const DashboardPropertyInvestmentsIndexRoute =
+  DashboardPropertyInvestmentsIndexImport.update({
+    id: '/property/investments/',
+    path: '/property/investments/',
+    getParentRoute: () => DashboardRoute,
+  } as any)
+
+const DashboardPropertySalesDetailsRoute =
+  DashboardPropertySalesDetailsImport.update({
+    id: '/property/sales/details',
+    path: '/property/sales/details',
+    getParentRoute: () => DashboardRoute,
+  } as any)
+
+const DashboardPropertyListingsTransactionRoute =
+  DashboardPropertyListingsTransactionImport.update({
+    id: '/property/listings/transaction',
+    path: '/property/listings/transaction',
     getParentRoute: () => DashboardRoute,
   } as any)
 
@@ -265,20 +282,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexImport
       parentRoute: typeof DashboardImport
     }
-    '/dashboard/property/investments': {
-      id: '/dashboard/property/investments'
-      path: '/property/investments'
-      fullPath: '/dashboard/property/investments'
-      preLoaderRoute: typeof DashboardPropertyInvestmentsImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/property/sales': {
-      id: '/dashboard/property/sales'
-      path: '/property/sales'
-      fullPath: '/dashboard/property/sales'
-      preLoaderRoute: typeof DashboardPropertySalesImport
-      parentRoute: typeof DashboardImport
-    }
     '/dashboard/property/schedule': {
       id: '/dashboard/property/schedule'
       path: '/property/schedule'
@@ -300,11 +303,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardPropertyListingsDetailsImport
       parentRoute: typeof DashboardImport
     }
+    '/dashboard/property/listings/transaction': {
+      id: '/dashboard/property/listings/transaction'
+      path: '/property/listings/transaction'
+      fullPath: '/dashboard/property/listings/transaction'
+      preLoaderRoute: typeof DashboardPropertyListingsTransactionImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/property/sales/details': {
+      id: '/dashboard/property/sales/details'
+      path: '/property/sales/details'
+      fullPath: '/dashboard/property/sales/details'
+      preLoaderRoute: typeof DashboardPropertySalesDetailsImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/property/investments/': {
+      id: '/dashboard/property/investments/'
+      path: '/property/investments'
+      fullPath: '/dashboard/property/investments'
+      preLoaderRoute: typeof DashboardPropertyInvestmentsIndexImport
+      parentRoute: typeof DashboardImport
+    }
     '/dashboard/property/listings/': {
       id: '/dashboard/property/listings/'
       path: '/property/listings'
       fullPath: '/dashboard/property/listings'
       preLoaderRoute: typeof DashboardPropertyListingsIndexImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/property/sales/': {
+      id: '/dashboard/property/sales/'
+      path: '/property/sales'
+      fullPath: '/dashboard/property/sales'
+      preLoaderRoute: typeof DashboardPropertySalesIndexImport
       parentRoute: typeof DashboardImport
     }
   }
@@ -321,12 +352,14 @@ interface DashboardRouteChildren {
   DashboardUsersRoute: typeof DashboardUsersRoute
   DashboardWalletRoute: typeof DashboardWalletRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
-  DashboardPropertyInvestmentsRoute: typeof DashboardPropertyInvestmentsRoute
-  DashboardPropertySalesRoute: typeof DashboardPropertySalesRoute
   DashboardPropertyScheduleRoute: typeof DashboardPropertyScheduleRoute
   DashboardPropertyListingsCreateRoute: typeof DashboardPropertyListingsCreateRoute
   DashboardPropertyListingsDetailsRoute: typeof DashboardPropertyListingsDetailsRoute
+  DashboardPropertyListingsTransactionRoute: typeof DashboardPropertyListingsTransactionRoute
+  DashboardPropertySalesDetailsRoute: typeof DashboardPropertySalesDetailsRoute
+  DashboardPropertyInvestmentsIndexRoute: typeof DashboardPropertyInvestmentsIndexRoute
   DashboardPropertyListingsIndexRoute: typeof DashboardPropertyListingsIndexRoute
+  DashboardPropertySalesIndexRoute: typeof DashboardPropertySalesIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
@@ -338,12 +371,16 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardUsersRoute: DashboardUsersRoute,
   DashboardWalletRoute: DashboardWalletRoute,
   DashboardIndexRoute: DashboardIndexRoute,
-  DashboardPropertyInvestmentsRoute: DashboardPropertyInvestmentsRoute,
-  DashboardPropertySalesRoute: DashboardPropertySalesRoute,
   DashboardPropertyScheduleRoute: DashboardPropertyScheduleRoute,
   DashboardPropertyListingsCreateRoute: DashboardPropertyListingsCreateRoute,
   DashboardPropertyListingsDetailsRoute: DashboardPropertyListingsDetailsRoute,
+  DashboardPropertyListingsTransactionRoute:
+    DashboardPropertyListingsTransactionRoute,
+  DashboardPropertySalesDetailsRoute: DashboardPropertySalesDetailsRoute,
+  DashboardPropertyInvestmentsIndexRoute:
+    DashboardPropertyInvestmentsIndexRoute,
   DashboardPropertyListingsIndexRoute: DashboardPropertyListingsIndexRoute,
+  DashboardPropertySalesIndexRoute: DashboardPropertySalesIndexRoute,
 }
 
 const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
@@ -365,12 +402,14 @@ export interface FileRoutesByFullPath {
   '/dashboard/users': typeof DashboardUsersRoute
   '/dashboard/wallet': typeof DashboardWalletRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/dashboard/property/investments': typeof DashboardPropertyInvestmentsRoute
-  '/dashboard/property/sales': typeof DashboardPropertySalesRoute
   '/dashboard/property/schedule': typeof DashboardPropertyScheduleRoute
   '/dashboard/property/listings/create': typeof DashboardPropertyListingsCreateRoute
   '/dashboard/property/listings/details': typeof DashboardPropertyListingsDetailsRoute
+  '/dashboard/property/listings/transaction': typeof DashboardPropertyListingsTransactionRoute
+  '/dashboard/property/sales/details': typeof DashboardPropertySalesDetailsRoute
+  '/dashboard/property/investments': typeof DashboardPropertyInvestmentsIndexRoute
   '/dashboard/property/listings': typeof DashboardPropertyListingsIndexRoute
+  '/dashboard/property/sales': typeof DashboardPropertySalesIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -387,12 +426,14 @@ export interface FileRoutesByTo {
   '/dashboard/users': typeof DashboardUsersRoute
   '/dashboard/wallet': typeof DashboardWalletRoute
   '/dashboard': typeof DashboardIndexRoute
-  '/dashboard/property/investments': typeof DashboardPropertyInvestmentsRoute
-  '/dashboard/property/sales': typeof DashboardPropertySalesRoute
   '/dashboard/property/schedule': typeof DashboardPropertyScheduleRoute
   '/dashboard/property/listings/create': typeof DashboardPropertyListingsCreateRoute
   '/dashboard/property/listings/details': typeof DashboardPropertyListingsDetailsRoute
+  '/dashboard/property/listings/transaction': typeof DashboardPropertyListingsTransactionRoute
+  '/dashboard/property/sales/details': typeof DashboardPropertySalesDetailsRoute
+  '/dashboard/property/investments': typeof DashboardPropertyInvestmentsIndexRoute
   '/dashboard/property/listings': typeof DashboardPropertyListingsIndexRoute
+  '/dashboard/property/sales': typeof DashboardPropertySalesIndexRoute
 }
 
 export interface FileRoutesById {
@@ -411,12 +452,14 @@ export interface FileRoutesById {
   '/dashboard/users': typeof DashboardUsersRoute
   '/dashboard/wallet': typeof DashboardWalletRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/dashboard/property/investments': typeof DashboardPropertyInvestmentsRoute
-  '/dashboard/property/sales': typeof DashboardPropertySalesRoute
   '/dashboard/property/schedule': typeof DashboardPropertyScheduleRoute
   '/dashboard/property/listings/create': typeof DashboardPropertyListingsCreateRoute
   '/dashboard/property/listings/details': typeof DashboardPropertyListingsDetailsRoute
+  '/dashboard/property/listings/transaction': typeof DashboardPropertyListingsTransactionRoute
+  '/dashboard/property/sales/details': typeof DashboardPropertySalesDetailsRoute
+  '/dashboard/property/investments/': typeof DashboardPropertyInvestmentsIndexRoute
   '/dashboard/property/listings/': typeof DashboardPropertyListingsIndexRoute
+  '/dashboard/property/sales/': typeof DashboardPropertySalesIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -436,12 +479,14 @@ export interface FileRouteTypes {
     | '/dashboard/users'
     | '/dashboard/wallet'
     | '/dashboard/'
-    | '/dashboard/property/investments'
-    | '/dashboard/property/sales'
     | '/dashboard/property/schedule'
     | '/dashboard/property/listings/create'
     | '/dashboard/property/listings/details'
+    | '/dashboard/property/listings/transaction'
+    | '/dashboard/property/sales/details'
+    | '/dashboard/property/investments'
     | '/dashboard/property/listings'
+    | '/dashboard/property/sales'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -457,12 +502,14 @@ export interface FileRouteTypes {
     | '/dashboard/users'
     | '/dashboard/wallet'
     | '/dashboard'
-    | '/dashboard/property/investments'
-    | '/dashboard/property/sales'
     | '/dashboard/property/schedule'
     | '/dashboard/property/listings/create'
     | '/dashboard/property/listings/details'
+    | '/dashboard/property/listings/transaction'
+    | '/dashboard/property/sales/details'
+    | '/dashboard/property/investments'
     | '/dashboard/property/listings'
+    | '/dashboard/property/sales'
   id:
     | '__root__'
     | '/'
@@ -479,12 +526,14 @@ export interface FileRouteTypes {
     | '/dashboard/users'
     | '/dashboard/wallet'
     | '/dashboard/'
-    | '/dashboard/property/investments'
-    | '/dashboard/property/sales'
     | '/dashboard/property/schedule'
     | '/dashboard/property/listings/create'
     | '/dashboard/property/listings/details'
+    | '/dashboard/property/listings/transaction'
+    | '/dashboard/property/sales/details'
+    | '/dashboard/property/investments/'
     | '/dashboard/property/listings/'
+    | '/dashboard/property/sales/'
   fileRoutesById: FileRoutesById
 }
 
@@ -538,12 +587,14 @@ export const routeTree = rootRoute
         "/dashboard/users",
         "/dashboard/wallet",
         "/dashboard/",
-        "/dashboard/property/investments",
-        "/dashboard/property/sales",
         "/dashboard/property/schedule",
         "/dashboard/property/listings/create",
         "/dashboard/property/listings/details",
-        "/dashboard/property/listings/"
+        "/dashboard/property/listings/transaction",
+        "/dashboard/property/sales/details",
+        "/dashboard/property/investments/",
+        "/dashboard/property/listings/",
+        "/dashboard/property/sales/"
       ]
     },
     "/home": {
@@ -590,14 +641,6 @@ export const routeTree = rootRoute
       "filePath": "dashboard/index.tsx",
       "parent": "/dashboard"
     },
-    "/dashboard/property/investments": {
-      "filePath": "dashboard/property/investments.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/property/sales": {
-      "filePath": "dashboard/property/sales.tsx",
-      "parent": "/dashboard"
-    },
     "/dashboard/property/schedule": {
       "filePath": "dashboard/property/schedule.tsx",
       "parent": "/dashboard"
@@ -610,8 +653,24 @@ export const routeTree = rootRoute
       "filePath": "dashboard/property/listings/details.tsx",
       "parent": "/dashboard"
     },
+    "/dashboard/property/listings/transaction": {
+      "filePath": "dashboard/property/listings/transaction.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/property/sales/details": {
+      "filePath": "dashboard/property/sales/details.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/property/investments/": {
+      "filePath": "dashboard/property/investments/index.tsx",
+      "parent": "/dashboard"
+    },
     "/dashboard/property/listings/": {
       "filePath": "dashboard/property/listings/index.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/property/sales/": {
+      "filePath": "dashboard/property/sales/index.tsx",
       "parent": "/dashboard"
     }
   }
