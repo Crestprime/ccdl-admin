@@ -14,3 +14,6 @@ export { default as SaleDetails } from './salesPages/salesDetails';
 // Sales and Reservetion Page
 export { default as InvestmentPage } from './investmentPages/investment';
 export { default as InvestmentDetailPage } from './investmentPages/investmentDetails';
+
+// Schedule Page
+export { default as SchedulePage } from './schedule/schedulePage';
