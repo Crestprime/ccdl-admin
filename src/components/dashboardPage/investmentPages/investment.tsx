@@ -152,7 +152,7 @@ export default function Investment() {
                             {data.map((item, index) => {
                                 return (
                                     <TableRow role="button" onClick={() => navigate({
-                                        to: "/dashboard/property/sales/details"
+                                        to: "/dashboard/property/investments/details"
                                     })} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
                                         <TableCell className="">{item?.name}</TableCell>
                                         <TableCell className="">{item?.client}</TableCell>
@@ -189,7 +189,7 @@ export default function Investment() {
                             {dataplans.map((item, index) => {
                                 return (
                                     <TableRow role="button" onClick={() => navigate({
-                                        to: "/dashboard/property/sales/details"
+                                        to: "/dashboard/property/investments/details"
                                     })} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
                                         <TableCell className="">{item?.name}</TableCell>
                                         <TableCell className="">{item?.plan}</TableCell>

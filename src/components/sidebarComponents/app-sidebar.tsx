@@ -27,7 +27,7 @@ const data: any = {
   navMain: [
     {
       title: "Home",
-      url: "/dashboard/home",
+      url: "/dashboard",
       icon: RiHome4Fill,
       isActive: false,
       items: []
@@ -155,7 +155,7 @@ const data: any = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
-    <Sidebar variant="inset" {...props}>
+    <Sidebar className=" !bg-[#f2f4f7] " variant="inset" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>

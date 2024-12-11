@@ -1,4 +1,4 @@
-import { ListingTransaction } from '@/components/dashboardPage'
+import { SaleDetails } from '@/components/dashboardPage'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/dashboard/property/sales/details')({
@@ -6,5 +6,5 @@ export const Route = createFileRoute('/dashboard/property/sales/details')({
 })
 
 function RouteComponent() {
-  return <ListingTransaction />
+  return <SaleDetails />
 }

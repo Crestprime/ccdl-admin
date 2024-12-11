@@ -17,7 +17,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar" 
 
 export function NavMain({
   items,
@@ -32,22 +32,25 @@ export function NavMain({
       url: string
     }[]
   }[]
-}) {
+}) {  
+   
+const pathname: string = new URL(window.location.href).pathname; 
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
-          <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
+          <Collapsible key={item.title} asChild  defaultOpen={pathname?.includes(item?.url) ? true : false}>
             <SidebarMenuItem>
               <SidebarMenuButton asChild tooltip={item.title}>
                 {item?.items?.length > 0 ? (
-                  <CollapsibleTrigger >
+                  <CollapsibleTrigger className={pathname === item?.url ? " text-gray700 " : " text-gray500 "}  >
                     <item.icon />
-                    <span>{item.title}</span>
+                    <span >{item.title}</span>
                   </CollapsibleTrigger>
                 ) : (
-                  <a href={item.url}>
+                  <a href={item.url} className={pathname === item?.url ? " bg-white shadow-lg text-gray700 " : " text-gray500 "} >
                     <item.icon />
                     <span>{item.title}</span>
                   </a>
@@ -61,12 +64,12 @@ export function NavMain({
                       <span className="sr-only">Toggle</span>
                     </SidebarMenuAction>
                   </CollapsibleTrigger>
-                  <CollapsibleContent>
+                  <CollapsibleContent  >
                     <SidebarMenuSub>
                       {item.items?.map((subItem) => (
                         <SidebarMenuSubItem key={subItem.title}>
                           <SidebarMenuSubButton asChild>
-                            <a href={subItem.url}>
+                            <a href={subItem.url} className={pathname?.includes(subItem?.url) ? " bg-white shadow-lg text-gray700 " : " text-gray500 "}>
                               <span>{subItem.title}</span>
                             </a>
                           </SidebarMenuSubButton>
