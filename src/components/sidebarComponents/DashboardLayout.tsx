@@ -17,9 +17,9 @@ import {
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <SidebarProvider className=" !bg-[#f2f4f7] " >
+    <SidebarProvider className=" w-screen overflow-x-hidden !bg-[#f2f4f7] " >
       <AppSidebar />
-      <SidebarInset>
+      <SidebarInset className=" w-[75vw] " >
         <header className="flex h-16 shrink-0 items-center gap-2">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
@@ -39,7 +39,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </Breadcrumb> */}
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+        <div className="flex w-full overflow-x-hidden flex-col gap-4 p-4 pt-0">
           {children}
         </div>
       </SidebarInset>

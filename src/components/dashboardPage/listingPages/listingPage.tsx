@@ -1,5 +1,5 @@
 import { useNavigate } from "@tanstack/react-router";
-import { PropertyListing } from "../../listingComponents";
+import { PropertyListing } from "../../propertyComponents";
 import { Button } from "../../ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
 

@@ -17,3 +17,15 @@ export { default as InvestmentDetailPage } from './investmentPages/investmentDet
 
 // Schedule Page
 export { default as SchedulePage } from './schedule/schedulePage';
+
+// User Page
+export { default as ClientPage } from './usersPage/clientPage';
+export { default as ClientDetailsPage } from './usersPage/clientDetails';
+
+// Client Page
+export { default as ProposalPage } from './constructionPages/proposalPage';
+export { default as ProposalDetailsPage } from './constructionPages/proposalDetailsPage';
+export { default as ProposalListingDetailPage } from './constructionPages/proposalListingDetailPage';
+
+// Wallet Page
+export { default as AllTransaction } from './walletPages/alltransaction';
