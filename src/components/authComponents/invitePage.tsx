@@ -14,9 +14,7 @@ export default function InvitePage({ inviteId }: { inviteId: string }) {
 
     const submit = (event: any) => {
         event.preventDefault();
-        Cookies.set("email", data?.email+"") 
-        console.log("working");
-        
+        Cookies.set("email", data?.email+"")  
         acceptInvite({
             id: inviteId
         })

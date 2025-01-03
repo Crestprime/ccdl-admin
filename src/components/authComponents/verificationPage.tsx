@@ -17,10 +17,7 @@ export default function LoginPage() {
         verifyEmail({
             token: pin
         })
-    }
-
-    console.log(pin);
-    
+    } 
 
     return (
         <form onSubmit={submit} className=" w-full h-screen flex flex-col items-center justify-center " >
