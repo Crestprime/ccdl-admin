@@ -2,6 +2,7 @@ import { Input } from "../ui/input";
 import useAuth from "@/hooks/useAuth";
 import CustomButton from "../shared/customButton";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 
 export default function LoginPage() { 
@@ -11,7 +12,8 @@ export default function LoginPage() {
     const { signIn, signInPending  } = useAuth()
 
     const submit = (event: any) => {
-        event.preventDefault();
+        event.preventDefault(); 
+        Cookies.set("email", email) 
         signIn({
             email: email
         })

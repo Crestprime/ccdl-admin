@@ -1,8 +1,7 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError } from "axios"
 import Cookies from "js-cookie"
 
 const BASE_URL = import.meta.env.VITE_APP_BASE_URL
-
 const httpService = axios.create({
   baseURL: BASE_URL,
   // withCredentials: true,
@@ -34,3 +33,5 @@ httpService.interceptors.request.use(
     return Promise.reject(error)
   },
 )
+
+export default httpService

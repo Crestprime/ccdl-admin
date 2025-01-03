@@ -22,6 +22,7 @@ import { Route as DashboardMaterialsImport } from './routes/dashboard/materials'
 import { Route as DashboardHomeImport } from './routes/dashboard/home'
 import { Route as AuthVerifyImport } from './routes/auth/verify'
 import { Route as AuthLoginImport } from './routes/auth/login'
+import { Route as AuthInviteImport } from './routes/auth/invite'
 import { Route as DashboardWalletAlltransactionImport } from './routes/dashboard/wallet/alltransaction'
 import { Route as DashboardUsersClientsIndexImport } from './routes/dashboard/users/clients/index'
 import { Route as DashboardPropertyScheduleIndexImport } from './routes/dashboard/property/schedule/index'
@@ -108,6 +109,12 @@ const AuthVerifyRoute = AuthVerifyImport.update({
 const AuthLoginRoute = AuthLoginImport.update({
   id: '/auth/login',
   path: '/auth/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthInviteRoute = AuthInviteImport.update({
+  id: '/auth/invite',
+  path: '/auth/invite',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -247,6 +254,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/invite': {
+      id: '/auth/invite'
+      path: '/auth/invite'
+      fullPath: '/auth/invite'
+      preLoaderRoute: typeof AuthInviteImport
       parentRoute: typeof rootRoute
     }
     '/auth/login': {
@@ -469,6 +483,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRouteWithChildren
   '/home': typeof HomeRoute
   '/about': typeof AboutLazyRoute
+  '/auth/invite': typeof AuthInviteRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/verify': typeof AuthVerifyRoute
   '/dashboard/home': typeof DashboardHomeRoute
@@ -497,6 +512,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/home': typeof HomeRoute
   '/about': typeof AboutLazyRoute
+  '/auth/invite': typeof AuthInviteRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/verify': typeof AuthVerifyRoute
   '/dashboard/home': typeof DashboardHomeRoute
@@ -527,6 +543,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRouteWithChildren
   '/home': typeof HomeRoute
   '/about': typeof AboutLazyRoute
+  '/auth/invite': typeof AuthInviteRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/verify': typeof AuthVerifyRoute
   '/dashboard/home': typeof DashboardHomeRoute
@@ -558,6 +575,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/home'
     | '/about'
+    | '/auth/invite'
     | '/auth/login'
     | '/auth/verify'
     | '/dashboard/home'
@@ -585,6 +603,7 @@ export interface FileRouteTypes {
     | '/'
     | '/home'
     | '/about'
+    | '/auth/invite'
     | '/auth/login'
     | '/auth/verify'
     | '/dashboard/home'
@@ -613,6 +632,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/home'
     | '/about'
+    | '/auth/invite'
     | '/auth/login'
     | '/auth/verify'
     | '/dashboard/home'
@@ -643,6 +663,7 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRouteWithChildren
   HomeRoute: typeof HomeRoute
   AboutLazyRoute: typeof AboutLazyRoute
+  AuthInviteRoute: typeof AuthInviteRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthVerifyRoute: typeof AuthVerifyRoute
 }
@@ -652,6 +673,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRouteWithChildren,
   HomeRoute: HomeRoute,
   AboutLazyRoute: AboutLazyRoute,
+  AuthInviteRoute: AuthInviteRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthVerifyRoute: AuthVerifyRoute,
 }
@@ -670,6 +692,7 @@ export const routeTree = rootRoute
         "/dashboard",
         "/home",
         "/about",
+        "/auth/invite",
         "/auth/login",
         "/auth/verify"
       ]
@@ -707,6 +730,9 @@ export const routeTree = rootRoute
     },
     "/about": {
       "filePath": "about.lazy.tsx"
+    },
+    "/auth/invite": {
+      "filePath": "auth/invite.tsx"
     },
     "/auth/login": {
       "filePath": "auth/login.tsx"
