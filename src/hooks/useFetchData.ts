@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchSecureData, fetchUnsecureData } from "@/services/api";
 
-export const useFetchData = <T>(endpoint: string, name: string) => {
+export const useFetchData = <T>(endpoint: string, name: string, params?: any) => {
     return useQuery({
         queryKey: [name],
-        queryFn: () => fetchSecureData<T>(endpoint),
+        queryFn: () => fetchSecureData<T>(endpoint, params),
     })
 };
 

@@ -99,4 +99,10 @@
 @font-face {
     font-family: 'OpenRunde-SemiBold';
     src: url(./assets/fonts/OpenRunde-SemiBold.woff);
+} 
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0;
 }

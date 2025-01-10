@@ -12,7 +12,9 @@ export const fetchUnsecureData = async <T>(endpoint: string): Promise<T> => {
     return response.data?.data; // Extracting only the `data` field
 }; 
 
-export const fetchSecureData = async <T>(endpoint: string): Promise<T> => {
-    const response: any = await httpService.get<ApiResponse<T>>(endpoint);
+export const fetchSecureData = async <T>(endpoint: string, params?: any): Promise<T> => {
+    const response: any = await httpService.get<ApiResponse<T>>(endpoint, {
+        params: params
+    });
     return response.data?.data;; // Extracting only the `data` field
 };

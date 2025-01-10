@@ -46,7 +46,7 @@ const data: any = {
       items: [
         {
           title: "Listings",
-          url: "/dashboard/property/listings",
+          url: "/dashboard/property/listings?type=BUILDING",
         },
         {
           title: "Investments",

@@ -4,7 +4,8 @@ export { default as HomePage } from './homePage';
 // listing Pages
 export { default as ListingPage } from './listingPages/listingPage';
 export { default as ListingDetailsPage } from './listingPages/listingDetails';
-export { default as CreateListing } from './listingPages/createListing';
+export { default as CreateListingBuilding } from './listingPages/createListingBuilding';
+export { default as CreateListingLand } from './listingPages/createListingLand';
 export { default as ListingTransaction } from './listingPages/listingTransaction';
 
 // Sales and Reservetion Page

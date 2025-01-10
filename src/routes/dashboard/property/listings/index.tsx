@@ -1,10 +1,17 @@
 import { ListingPage } from '@/components/dashboardPage'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, getRouteApi } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/dashboard/property/listings/')({
   component: RouteComponent,
+  validateSearch: (search: Record<string, string | undefined>) => ({
+    type: search.type ?? "",
+  })
 })
 
+const routeApi = getRouteApi('/dashboard/property/listings/')
+
 function RouteComponent() {
-  return <ListingPage /> 
+
+  const routeSearch = routeApi.useSearch() 
+  return <ListingPage type={routeSearch?.type} /> 
 }

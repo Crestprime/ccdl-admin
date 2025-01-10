@@ -56,7 +56,8 @@ const useAuth = () => {
         },
         onSuccess: (data: any) => { 
             
-            Cookies.set("access_token", data?.data?.data?.jwtToken) 
+            Cookies.set("access_token", data?.data?.data?.jwtToken)   
+            Cookies.set("userid", data?.data?.data?.admin?.id) 
             toast.success(data?.data?.message)
 
             navigate({
