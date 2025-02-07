@@ -24,8 +24,7 @@ export default function FormSelect(
         label,
         optionData,
         setValue,
-        errors,
-        watch
+        errors
     }: IProps) {
 
     // const { register, formState: { errors } } = useFormContext();
@@ -40,7 +39,7 @@ export default function FormSelect(
         <div className=' w-full flex gap-2 flex-col ' >
             <p className=" font-medium text-sm " >{label}</p>
             <div className=' flex flex-col gap-1 ' >
-                <Select value={watch(name) || value}  onValueChange={(value)=> onValueChange(name, value)} >
+                <Select value={value}  onValueChange={(value)=> onValueChange(name, value)} >
                     <SelectTrigger className="w-full">
                         <SelectValue  placeholder={placeholder ?? "Select "+label} />
                     </SelectTrigger>
