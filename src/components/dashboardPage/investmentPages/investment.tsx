@@ -4,89 +4,30 @@ import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table";
 import { useNavigate } from "@tanstack/react-router";
+import CreateInvestmentBtn from "./createInvestmentBtn";
+import { useFetchData } from "@/hooks/useFetchData";
+import { InvestmentModel, InvestmentPlan } from "@/models/investment";
+import { dateFormat } from "@/utils/dateFormat";
+import { LoadingAnimation } from "@/components/shared";
+import { numberFormatNaire } from "@/utils/formatNumberWithK";
+import { capitalizeFLetter } from "@/utils/capitalLetter";
 
 
 export default function Investment() {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate() 
 
-    const data = [
-        {
-            name: "Sunset Villa - Unit A4",
-            client: "Mr. John Doe",
-            status: "Matured",
-            tenor: "12 Months",
-            date: "Feb 10, 2024",
-            price: "₦85,000,000 "
-        },
-        {
-            name: "Sunset Villa - Unit A4",
-            client: "Mr. John Doe",
-            status: "Withdrawn",
-            tenor: "12 Months",
-            date: "Feb 10, 2024",
-            price: "₦85,000,000 "
-        },
-        {
-            name: "Sunset Villa - Unit A4",
-            client: "Mr. John Doe",
-            status: "Active",
-            tenor: "12 Months",
-            date: "Feb 10, 2024",
-            price: "₦85,000,000 "
-        }, 
-    ]
-
-
-    const dataplans = [
-        {
-            name: "Sunset Villa - Unit A4",
-            plan: "6 - 12 month",
-            roi: "12 - 26%",
-            client: "Mr. John Doe",
-            status: "Open",
-            date: "Feb 10, 2024",
-            price: "₦85,000,000 "
-        },
-        {
-            name: "Sunset Villa - Unit A4",
-            plan: "6 - 12 month",
-            roi: "12 - 26%",
-            client: "Mr. John Doe",
-            status: "Closed",
-            date: "Feb 10, 2024",
-            price: "₦85,000,000 "
-        },
-        {
-            name: "Sunset Villa - Unit A4",
-            plan: "6 - 12 month",
-            roi: "12 - 26%",
-            client: "Mr. John Doe",
-            status: "Closed",
-            date: "Feb 10, 2024",
-            price: "₦85,000,000 "
-        },
-        {
-            name: "Sunset Villa - Unit A4",
-            plan: "6 - 12 month",
-            roi: "12 - 26%",
-            client: "Mr. John Doe",
-            status: "Open",
-            date: "Feb 10, 2024",
-            price: "₦85,000,000 "
-        },
-    ]
+    const { data, isLoading } = useFetchData<Array<InvestmentPlan>>(`/investment`, "investment ");
+    const { data: plans, isLoading: loadingPlans } = useFetchData<Array<InvestmentModel>>(`/investment-plan`, "investment-plans ");
 
     return (
         <div className=" w-full flex h-auto gap-6 flex-col  " >
             <div className=" w-full flex items-center justify-between " >
-                <div className=" flex flex-col " >
+                <div className=" w-full flex flex-col " >
                     <h3 className=" font-semibold text-lg " >Investments</h3>
                     <p className=" text-gray500 text-sm " >View and manage all investments</p>
                 </div>
-                <Button variant={"main"} className=" h-9 rounded-full w-fit text-sm " >
-                    Create plan
-                </Button>
+                <CreateInvestmentBtn />
             </div>
             <div className=" w-full grid grid-cols-4 gap-4 " >
                 <div className=" w-full rounded-xl border p-4 " >
@@ -136,79 +77,83 @@ export default function Investment() {
                     <RiAddCircleLine size={"15px"} />
                     Add filter
                 </Button>
+
                 <TabsContent className=" w-full flex flex-col gap-5 " value="investments">
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Property Name</TableHead>
-                                <TableHead>Client Name</TableHead>
-                                <TableHead>Tenor</TableHead>
-                                <TableHead>Status</TableHead>
-                                <TableHead>Maturity Date</TableHead>
-                                <TableHead>Price</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {data.map((item, index) => {
-                                return (
-                                    <TableRow role="button" onClick={() => navigate({
-                                        to: "/dashboard/property/investments/details"
-                                    })} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
-                                        <TableCell className="">{item?.name}</TableCell>
-                                        <TableCell className="">{item?.client}</TableCell>
-                                        <TableCell className="">{item?.tenor}</TableCell>
-                                        <TableCell>
-                                            <div className=" flex gap-2 items-center " >
-                                                <div className={` ${item?.status?.includes("Matured") ? " text-success800 bg-success100 " : item?.status?.includes("Withdrawn") ? " text-error800 bg-error100 " : " text-blue800 bg-blue100 "} h-[21px] rounded-2xl px-3 text-xs  w-fit flex justify-center items-center `} >
-                                                    {item?.status}
-                                                </div> 
-                                            </div>
-                                        </TableCell>
-                                        <TableCell className="">{item?.date}</TableCell>
-                                        <TableCell className="">{item?.price}</TableCell>
-                                    </TableRow>
-                                )
-                            })}
-                        </TableBody>
-                    </Table>
+                    <LoadingAnimation loading={isLoading} >
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Property Name</TableHead>
+                                    <TableHead>Client Name</TableHead>
+                                    <TableHead>Tenor</TableHead>
+                                    <TableHead>Status</TableHead>
+                                    <TableHead>Maturity Date</TableHead>
+                                    <TableHead>Price</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {data?.map((item, index) => {
+                                    return (
+                                        <TableRow role="button" onClick={() => navigate({
+                                            to: `/dashboard/property/investments/details?id=${item?.id}`
+                                        })} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
+                                            <TableCell className="">{item?.plan?.property?.name}</TableCell>
+                                            <TableCell className="">{"---"}</TableCell>
+                                            <TableCell className="">{item?.plan?.duration} Months</TableCell>
+                                            <TableCell>
+                                                <div className=" flex gap-2 items-center " >
+                                                    <div className={` ${item?.status?.includes("ACTIVE") ? " text-success800 bg-success100 " : item?.status?.includes("Withdrawn") ? " text-error800 bg-error100 " : " text-blue800 bg-blue100 "} h-[21px] rounded-2xl px-3 text-xs  w-fit flex justify-center items-center `} >
+                                                        {capitalizeFLetter(item?.status)}
+                                                    </div>
+                                                </div>
+                                            </TableCell>
+                                            <TableCell className="">{dateFormat(item?.createdAt)}</TableCell>
+                                            <TableCell className="">{numberFormatNaire(item?.amount)}</TableCell>
+                                        </TableRow>
+                                    )
+                                })}
+                            </TableBody>
+                        </Table>
+                    </LoadingAnimation>
                 </TabsContent>
+
                 <TabsContent className=" w-full flex flex-col gap-5 " value="plans">
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Property Name</TableHead>
-                                <TableHead>Plan</TableHead>
-                                <TableHead>ROI</TableHead>
-                                <TableHead>Client Name</TableHead>
-                                <TableHead>Status</TableHead>
-                                <TableHead>Maturity Date</TableHead>
-                                <TableHead>Min Investment</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {dataplans.map((item, index) => {
-                                return (
-                                    <TableRow role="button" onClick={() => navigate({
-                                        to: "/dashboard/property/investments/details"
-                                    })} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
-                                        <TableCell className="">{item?.name}</TableCell>
-                                        <TableCell className="">{item?.plan}</TableCell>
-                                        <TableCell className="">{item?.roi}</TableCell>
-                                        <TableCell className="">{item?.client}</TableCell>
-                                        <TableCell>
-                                            <div className=" flex gap-2 items-center " >
-                                                <div className={` ${item?.status?.includes("Open") ? " text-success800 bg-success100 " : " text-gray800 bg-gray100 "} h-[21px] rounded-2xl px-3 text-xs  w-fit flex justify-center items-center `} >
-                                                    {item?.status}
-                                                </div> 
-                                            </div>
-                                        </TableCell>
-                                        <TableCell className="">{item?.date}</TableCell>
-                                        <TableCell className="">{item?.price}</TableCell>
-                                    </TableRow>
-                                )
-                            })}
-                        </TableBody>
-                    </Table>
+                    <LoadingAnimation loading={loadingPlans} >
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Property Name</TableHead>
+                                    <TableHead>Plan</TableHead>
+                                    <TableHead>ROI</TableHead>
+                                    <TableHead>Status</TableHead>
+                                    <TableHead>Maturity Date</TableHead>
+                                    <TableHead>Min Investment</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {plans?.map((item, index) => {
+                                    return (
+                                        <TableRow role="button" onClick={() => navigate({
+                                            to: `/dashboard/property/investments/details?id=${item?.id}`
+                                        })} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
+                                            <TableCell className="">{item?.property?.name}</TableCell>
+                                            <TableCell className="">{item?.duration} months</TableCell>
+                                            <TableCell className="">{item?.roi}%</TableCell>
+                                            <TableCell>
+                                                <div className=" flex gap-2 items-center " >
+                                                    <div className={` ${item?.status?.includes("ACTIVE") ? " text-success800 bg-success100 " : " text-gray800 bg-gray100 "} h-[21px] rounded-2xl px-3 text-xs  w-fit flex justify-center items-center `} >
+                                                        {capitalizeFLetter(item?.status)}
+                                                    </div>
+                                                </div>
+                                            </TableCell>
+                                            <TableCell className="">{dateFormat(item?.createdAt)}</TableCell>
+                                            <TableCell className="">{numberFormatNaire(item?.minimiumInvestmentAmount)}</TableCell>
+                                        </TableRow>
+                                    )
+                                })}
+                            </TableBody>
+                        </Table>
+                    </LoadingAnimation>
                 </TabsContent>
             </Tabs>
         </div>

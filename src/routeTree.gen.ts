@@ -37,6 +37,7 @@ import { Route as DashboardPropertyListingsDetailsImport } from './routes/dashbo
 import { Route as DashboardPropertyListingsCreateLandImport } from './routes/dashboard/property/listings/create-land'
 import { Route as DashboardPropertyListingsCreateBuildingImport } from './routes/dashboard/property/listings/create-building'
 import { Route as DashboardPropertyInvestmentsDetailsImport } from './routes/dashboard/property/investments/details'
+import { Route as DashboardPropertyInvestmentsDetailPlansImport } from './routes/dashboard/property/investments/detail-plans'
 import { Route as DashboardConstructionsProposalsListingdetailsImport } from './routes/dashboard/constructions/proposals/listingdetails'
 import { Route as DashboardConstructionsProposalsDetailsImport } from './routes/dashboard/constructions/proposals/details'
 
@@ -218,6 +219,13 @@ const DashboardPropertyInvestmentsDetailsRoute =
     getParentRoute: () => DashboardRoute,
   } as any)
 
+const DashboardPropertyInvestmentsDetailPlansRoute =
+  DashboardPropertyInvestmentsDetailPlansImport.update({
+    id: '/property/investments/detail-plans',
+    path: '/property/investments/detail-plans',
+    getParentRoute: () => DashboardRoute,
+  } as any)
+
 const DashboardConstructionsProposalsListingdetailsRoute =
   DashboardConstructionsProposalsListingdetailsImport.update({
     id: '/constructions/proposals/listingdetails',
@@ -341,6 +349,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardConstructionsProposalsListingdetailsImport
       parentRoute: typeof DashboardImport
     }
+    '/dashboard/property/investments/detail-plans': {
+      id: '/dashboard/property/investments/detail-plans'
+      path: '/property/investments/detail-plans'
+      fullPath: '/dashboard/property/investments/detail-plans'
+      preLoaderRoute: typeof DashboardPropertyInvestmentsDetailPlansImport
+      parentRoute: typeof DashboardImport
+    }
     '/dashboard/property/investments/details': {
       id: '/dashboard/property/investments/details'
       path: '/property/investments/details'
@@ -446,6 +461,7 @@ interface DashboardRouteChildren {
   DashboardWalletAlltransactionRoute: typeof DashboardWalletAlltransactionRoute
   DashboardConstructionsProposalsDetailsRoute: typeof DashboardConstructionsProposalsDetailsRoute
   DashboardConstructionsProposalsListingdetailsRoute: typeof DashboardConstructionsProposalsListingdetailsRoute
+  DashboardPropertyInvestmentsDetailPlansRoute: typeof DashboardPropertyInvestmentsDetailPlansRoute
   DashboardPropertyInvestmentsDetailsRoute: typeof DashboardPropertyInvestmentsDetailsRoute
   DashboardPropertyListingsCreateBuildingRoute: typeof DashboardPropertyListingsCreateBuildingRoute
   DashboardPropertyListingsCreateLandRoute: typeof DashboardPropertyListingsCreateLandRoute
@@ -472,6 +488,8 @@ const DashboardRouteChildren: DashboardRouteChildren = {
     DashboardConstructionsProposalsDetailsRoute,
   DashboardConstructionsProposalsListingdetailsRoute:
     DashboardConstructionsProposalsListingdetailsRoute,
+  DashboardPropertyInvestmentsDetailPlansRoute:
+    DashboardPropertyInvestmentsDetailPlansRoute,
   DashboardPropertyInvestmentsDetailsRoute:
     DashboardPropertyInvestmentsDetailsRoute,
   DashboardPropertyListingsCreateBuildingRoute:
@@ -513,6 +531,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/wallet/alltransaction': typeof DashboardWalletAlltransactionRoute
   '/dashboard/constructions/proposals/details': typeof DashboardConstructionsProposalsDetailsRoute
   '/dashboard/constructions/proposals/listingdetails': typeof DashboardConstructionsProposalsListingdetailsRoute
+  '/dashboard/property/investments/detail-plans': typeof DashboardPropertyInvestmentsDetailPlansRoute
   '/dashboard/property/investments/details': typeof DashboardPropertyInvestmentsDetailsRoute
   '/dashboard/property/listings/create-building': typeof DashboardPropertyListingsCreateBuildingRoute
   '/dashboard/property/listings/create-land': typeof DashboardPropertyListingsCreateLandRoute
@@ -543,6 +562,7 @@ export interface FileRoutesByTo {
   '/dashboard/wallet/alltransaction': typeof DashboardWalletAlltransactionRoute
   '/dashboard/constructions/proposals/details': typeof DashboardConstructionsProposalsDetailsRoute
   '/dashboard/constructions/proposals/listingdetails': typeof DashboardConstructionsProposalsListingdetailsRoute
+  '/dashboard/property/investments/detail-plans': typeof DashboardPropertyInvestmentsDetailPlansRoute
   '/dashboard/property/investments/details': typeof DashboardPropertyInvestmentsDetailsRoute
   '/dashboard/property/listings/create-building': typeof DashboardPropertyListingsCreateBuildingRoute
   '/dashboard/property/listings/create-land': typeof DashboardPropertyListingsCreateLandRoute
@@ -575,6 +595,7 @@ export interface FileRoutesById {
   '/dashboard/wallet/alltransaction': typeof DashboardWalletAlltransactionRoute
   '/dashboard/constructions/proposals/details': typeof DashboardConstructionsProposalsDetailsRoute
   '/dashboard/constructions/proposals/listingdetails': typeof DashboardConstructionsProposalsListingdetailsRoute
+  '/dashboard/property/investments/detail-plans': typeof DashboardPropertyInvestmentsDetailPlansRoute
   '/dashboard/property/investments/details': typeof DashboardPropertyInvestmentsDetailsRoute
   '/dashboard/property/listings/create-building': typeof DashboardPropertyListingsCreateBuildingRoute
   '/dashboard/property/listings/create-land': typeof DashboardPropertyListingsCreateLandRoute
@@ -608,6 +629,7 @@ export interface FileRouteTypes {
     | '/dashboard/wallet/alltransaction'
     | '/dashboard/constructions/proposals/details'
     | '/dashboard/constructions/proposals/listingdetails'
+    | '/dashboard/property/investments/detail-plans'
     | '/dashboard/property/investments/details'
     | '/dashboard/property/listings/create-building'
     | '/dashboard/property/listings/create-land'
@@ -637,6 +659,7 @@ export interface FileRouteTypes {
     | '/dashboard/wallet/alltransaction'
     | '/dashboard/constructions/proposals/details'
     | '/dashboard/constructions/proposals/listingdetails'
+    | '/dashboard/property/investments/detail-plans'
     | '/dashboard/property/investments/details'
     | '/dashboard/property/listings/create-building'
     | '/dashboard/property/listings/create-land'
@@ -667,6 +690,7 @@ export interface FileRouteTypes {
     | '/dashboard/wallet/alltransaction'
     | '/dashboard/constructions/proposals/details'
     | '/dashboard/constructions/proposals/listingdetails'
+    | '/dashboard/property/investments/detail-plans'
     | '/dashboard/property/investments/details'
     | '/dashboard/property/listings/create-building'
     | '/dashboard/property/listings/create-land'
@@ -736,6 +760,7 @@ export const routeTree = rootRoute
         "/dashboard/wallet/alltransaction",
         "/dashboard/constructions/proposals/details",
         "/dashboard/constructions/proposals/listingdetails",
+        "/dashboard/property/investments/detail-plans",
         "/dashboard/property/investments/details",
         "/dashboard/property/listings/create-building",
         "/dashboard/property/listings/create-land",
@@ -796,6 +821,10 @@ export const routeTree = rootRoute
     },
     "/dashboard/constructions/proposals/listingdetails": {
       "filePath": "dashboard/constructions/proposals/listingdetails.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/property/investments/detail-plans": {
+      "filePath": "dashboard/property/investments/detail-plans.tsx",
       "parent": "/dashboard"
     },
     "/dashboard/property/investments/details": {

@@ -57,7 +57,18 @@ const listingLandValidation = z.object({
     isDraft: z.any()
 }) 
 
+const investmentValidation = z.object({
+    duration: z.string().nonempty('Required'),
+    roi: z.string().nonempty('Required'),
+    paymentFrequency: z.string().nonempty('Required'),
+    minimiumInvestmentAmount: z.string().nonempty('Required'),
+    propertyId: z.string().nonempty('Required'),
+    status: z.any(),
+    createdBy: z.any()
+})   
+
 export { 
     listingBuildingValidation, 
-    listingLandValidation
+    listingLandValidation,
+    investmentValidation
 };

@@ -273,3 +273,29 @@ export const listingCategory = [
     { label: "LAND", value: "LAND" },
     { label: "BUILDING", value: "BUILDING" }, 
 ]; 
+
+export const durationData = [
+    {
+        label: "3 Months",
+        value: "3"
+    },
+    {
+        label: "6 Months",
+        value: "6"
+    },
+    {
+        label: "12 Months",
+        value: "12"
+    }
+]
+
+export const propertyTypeData = [
+    {
+        label: "Land",
+        value: "LAND"
+    },
+    {
+        label: "Building",
+        value: "BUILDING"
+    }
+]

@@ -22,7 +22,7 @@ export const useForm = ({submit, defaultValues, validationSchema}: IProps) => {
     const renderForm = React.useCallback((children: ReactNode) => {
         return (
             <FormProvider {...methods}>
-                <form style={{ width: '100%' }} onSubmit={methods.handleSubmit(onSubmit)}>
+                <form onSubmit={methods.handleSubmit(onSubmit)}>
                     { children }
                 </form>
             </FormProvider>

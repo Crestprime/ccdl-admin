@@ -13,5 +13,5 @@ const routeApi = getRouteApi('/dashboard/property/listings/details')
 function RouteComponent() { 
 
   const routeSearch = routeApi.useSearch() 
-  return <ListingDetailsPage  id={routeSearch?.id} />
+  return <ListingDetailsPage id={routeSearch?.id} />
 }
