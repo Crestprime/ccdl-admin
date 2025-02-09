@@ -1,13 +1,13 @@
 import { CreateBuildingListing } from "./listing"
 
 export interface Iinvestment {
-    "duration": number,
-    "roi": number,
-    "paymentFrequency": number,
-    "minimiumInvestmentAmount": number,
-    "propertyId": number,
+    "duration": number | any,
+    "roi": number | any,
+    "paymentFrequency": number | any,
+    "minimiumInvestmentAmount": number | any,
+    "propertyId": number | any,
     "status": "PENDING" | "RUNNING" | "SUSPENDED"
-    "createdBy": number
+    "createdBy": number | any
 }
 
 export interface InvestmentModel {

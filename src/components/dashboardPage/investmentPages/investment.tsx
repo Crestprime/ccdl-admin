@@ -1,7 +1,7 @@
-import { RiAddCircleLine, RiCalendarCheckFill, RiCoinsFill, RiKeyFill, RiSearch2Line } from "@remixicon/react";
+import { RiCalendarCheckFill, RiCoinsFill, RiKeyFill, RiSearch2Line } from "@remixicon/react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
 import { Input } from "../../ui/input";
-import { Button } from "../../ui/button";
+// import { Button } from "../../ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table";
 import { useNavigate } from "@tanstack/react-router";
 import CreateInvestmentBtn from "./createInvestmentBtn";
@@ -73,10 +73,11 @@ export default function Investment() {
                         <Input className=" h-[42px] w-full pl-8 " placeholder="Search for client name" />
                     </div>
                 </div>
-                <Button variant={"outline"} className=" w-fit h-11 " >
+
+                {/* <Button variant={"outline"} className=" w-fit h-11 " >
                     <RiAddCircleLine size={"15px"} />
                     Add filter
-                </Button>
+                </Button> */}
 
                 <TabsContent className=" w-full flex flex-col gap-5 " value="investments">
                     <LoadingAnimation loading={isLoading} >
@@ -94,9 +95,7 @@ export default function Investment() {
                             <TableBody>
                                 {data?.map((item, index) => {
                                     return (
-                                        <TableRow role="button" onClick={() => navigate({
-                                            to: `/dashboard/property/investments/details?id=${item?.id}`
-                                        })} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
+                                        <TableRow role="button" className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
                                             <TableCell className="">{item?.plan?.property?.name}</TableCell>
                                             <TableCell className="">{"---"}</TableCell>
                                             <TableCell className="">{item?.plan?.duration} Months</TableCell>

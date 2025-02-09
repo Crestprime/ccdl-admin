@@ -1,4 +1,5 @@
-import { CustomButton, FormInput, FormSelect } from '@/components/shared'
+import { CustomButton } from '@/components/shared'
+import CustomInput from '@/components/shared/customInput'
 import CustomSelect from '@/components/shared/customSelect'
 import SelectProperty from '@/components/shared/selectProperty'
 import { Button } from '@/components/ui/button'
@@ -7,16 +8,29 @@ import useInvestment from '@/hooks/useInvestment'
 import { durationData, propertyTypeData } from '@/models/dummydata'
 import { RiPieChartLine } from '@remixicon/react'
 import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
 export default function CreateInvestmentBtn() {
 
   const [type, setType] = useState("")
   const [isOpen, setIsOpen] = useState(false);
-  const { isPending, setValue, formState, renderForm, values, watch, mutate, isSuccess } = useInvestment()
+  const { isPending, mutate, isSuccess, payload, setPayload } = useInvestment()
 
   const clickHanlder = () => {
-    mutate(values)
-  }
+    if(!payload?.duration){
+      toast.error("Enter Investment Duration")
+    } else if(!payload?.roi){
+      toast.error("Enter Return on Investment")
+    } else if(!payload?.paymentFrequency){
+      toast.error("Enter Frequency Payment")
+    } else if(!payload?.minimiumInvestmentAmount){
+      toast.error("Enter Minimium Investment Amount")
+    } else if(!payload?.propertyId){
+      toast.error("Enter Property ")
+    } else {
+      mutate(payload)
+    }
+  } 
 
   useEffect(() => {
     if (isSuccess) {
@@ -24,7 +38,7 @@ export default function CreateInvestmentBtn() {
     }
   }, [isSuccess])
 
-  return renderForm(
+  return (
     <div className=' w-fit ' >
       <Button type='button' onClick={()=> setIsOpen(true)} variant={"main"} className=" h-9 rounded-full w-fit text-sm " >
         Create plan
@@ -47,15 +61,15 @@ export default function CreateInvestmentBtn() {
           <div className=' w-full flex flex-col gap-3 pb-5 ' >
             <CustomSelect label='Property Type' optionData={propertyTypeData} setValue={setType} />
             {type && (
-              <SelectProperty label='Property Listing' name={'propertyId'} setValue={setValue} errors={formState?.errors} type={type} />
+              <SelectProperty label='Property Listing' name={'propertyId'}  setValue={(values: string) => setPayload({...payload, propertyId: values})} type={type} />
             )}
-            <FormSelect watch={watch} label='Duration' name={'duration'} optionData={durationData} setValue={setValue} errors={formState?.errors} />
-            <FormInput label="Return on Investment (ROI) %" type='number' name="roi" />
-            <FormInput label="Min. Investment Amount" type='number' name="minimiumInvestmentAmount" />
-            <FormSelect watch={watch} label='Payment Frequency for ROI' name={'paymentFrequency'} optionData={durationData} setValue={setValue} errors={formState?.errors} />
+            <CustomSelect label='Duration' optionData={durationData}  setValue={(values: string) => setPayload({...payload, duration: values})} />
+            <CustomInput setValue={(values: string) => setPayload({...payload, roi: values})} label="Return on Investment (ROI) %" type='number' name="roi" />
+            <CustomInput setValue={(values: string) => setPayload({...payload, minimiumInvestmentAmount: values})} label="Min. Investment Amount" type='number' name="minimiumInvestmentAmount" />
+            <CustomSelect label='Payment Frequency for ROI' optionData={durationData} setValue={(values: string) => setPayload({...payload, paymentFrequency: values})}  />
           </div>
           <DialogFooter >
-            <Button variant={"outline"} className=" w-full rounded-full " >Cancel</Button>
+            <Button variant={"outline"} onClick={()=> setIsOpen(false)} className=" w-full rounded-full " >Cancel</Button>
             <CustomButton isLoading={isPending} type='button' onClick={clickHanlder} variant={"main"} className=" w-full rounded-full " >Create</CustomButton>
           </DialogFooter>
         </DialogContent>

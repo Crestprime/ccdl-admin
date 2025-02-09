@@ -86,7 +86,7 @@ const useListing = (land?: boolean) => {
             "floors": null,
             "features": [],
             "parkingSpace": [],
-            "outdorSpace": [],
+            "outdoorSpace": [],
             "heatingAndCooling": [],
             "energyEfficiency": [],
             "security": [],

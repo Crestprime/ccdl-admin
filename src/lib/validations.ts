@@ -15,7 +15,7 @@ const listingBuildingValidation = z.object({
     floors: z.any(),
     features: z.any(),
     parkingSpace: z.any(),
-    outdorSpace: z.any(),
+    outdoorSpace: z.any(),
     heatingAndCooling: z.any(),
     energyEfficiency: z.any(),
     security: z.any(),

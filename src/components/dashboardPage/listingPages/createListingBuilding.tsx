@@ -101,7 +101,7 @@ export default function CreateListingBuilding(
                                 </div>
                                 <div className=" flex gap-3 " >
                                     <Switch color="#17B26A" className=" mt-[2px] " id="airplane-mode" />
-                                    <ListingCheckBox name="outdorSpace" value={values?.outdorSpace} listData={featuresData?.outdoor} label={"Outdoor Space"} control={control} />
+                                    <ListingCheckBox name="outdoorSpace" value={values?.outdoorSpace} listData={featuresData?.outdoor} label={"Outdoor Space"} control={control} />
                                 </div>
                                 <div className=" flex gap-3 " >
                                     <Switch color="#17B26A" className=" mt-[2px] " id="airplane-mode" />

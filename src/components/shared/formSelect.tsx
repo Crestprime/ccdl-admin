@@ -30,9 +30,7 @@ export default function FormSelect(
     // const { register, formState: { errors } } = useFormContext();
 
     const onValueChange = (item: string, value: string) => { 
-        setValue(item, value)
-        console.log(value);
-        
+        setValue(item, value) 
     }
 
     return (
