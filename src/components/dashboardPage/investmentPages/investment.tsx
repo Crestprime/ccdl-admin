@@ -18,7 +18,7 @@ export default function Investment() {
     const navigate = useNavigate() 
 
     const { data, isLoading } = useFetchData<Array<InvestmentPlan>>(`/investment`, "investment ");
-    const { data: plans, isLoading: loadingPlans } = useFetchData<Array<InvestmentModel>>(`/investment-plan`, "investment-plans ");
+    const { data: plans, isLoading: loadingPlans } = useFetchData<Array<InvestmentModel>>(`/investment-plan/admin`, "investment-plans ");
 
     return (
         <div className=" w-full flex h-auto gap-6 flex-col  " >

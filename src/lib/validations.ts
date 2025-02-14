@@ -43,7 +43,7 @@ const listingLandValidation = z.object({
     features: z.any(), 
     communityAmenities: z.any(),
     publicTransport: z.any(),
-    buildingRestrictions: z.string(),
+    buildingRestrictions: z.any(),
     developmentRestriction: z.any(),
     plots: z.any(),
     media: z.any(),  

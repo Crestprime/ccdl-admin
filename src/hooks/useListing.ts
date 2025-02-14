@@ -45,7 +45,7 @@ const useListing = (land?: boolean) => {
         onSuccess: (data: any) => { 
             toast.success(data?.data?.message) 
             navigate({
-                to: "/dashboard/property/listings"
+                to: "/dashboard/property/listings?type=BUILDING"
             })
         },
     });
@@ -58,7 +58,7 @@ const useListing = (land?: boolean) => {
         onSuccess: (data: any) => { 
             toast.success(data?.data?.message) 
             navigate({
-                to: "/dashboard/property/listings"
+                to: "/dashboard/property/listings?type=LAND"
             })
         },
     });
@@ -142,7 +142,7 @@ const useListing = (land?: boolean) => {
             "features": [],
             "communityAmenities": [],
             "publicTransport": [],
-            "buildingRestrictions": "",
+            "buildingRestrictions": [],
             "developmentRestriction": [],
             "plots": [{ 
                 size: "",

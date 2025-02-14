@@ -52,7 +52,7 @@ export default function CreateListingLand(
                         <div className=" flex flex-col gap-3 pb-6 border-b " >
                             <p className=" font-semibold " >Development and Restrictions</p>
                             <ListingCheckBox name="developmentRestriction" value={landValue?.developmentRestriction} listData={featuresData?.developmentreststriction} label={""} control={landControl} />
-                            <FormTextArea label="Building Restrictions" name="buildingRestrictions" />
+                            <FormTextArea label="Building Restrictions" name="buildingRestrictions[0]" />
                         </div>
                         <div className=" flex flex-col gap-3 pb-6 border-b " >
                             <p className=" font-semibold " >Amenities and Community Features</p>
