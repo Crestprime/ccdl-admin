@@ -100,3 +100,13 @@
     font-family: 'OpenRunde-SemiBold';
     src: url(./assets/fonts/OpenRunde-SemiBold.woff);
 }
+
+html, body {
+  background-color: #f2f4f7 !important;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0;
+}

@@ -17,10 +17,12 @@ import {
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <SidebarProvider className=" !bg-[#f2f4f7] " >
-      <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2">
+    <SidebarProvider className=" w-screen overflow-x-hidden p-3 !bg-[#f2f4f7] " >
+      <div className=" w-fit " >
+        <AppSidebar />
+      </div>
+      <SidebarInset className=" w-full relative rounded-lg h-full overflow-y-auto " >
+        <header className="flex h-16 w-fit shrink-0 items-center gap-2">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             {/* <Separator orientation="vertical" className="mr-2 h-4" /> */}
@@ -39,7 +41,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </Breadcrumb> */}
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+        <div className="flex w-full overflow-x-hidden flex-col gap-4 p-4 pt-0">
           {children}
         </div>
       </SidebarInset>

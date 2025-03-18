@@ -36,6 +36,9 @@ export function NavMain({
    
 const pathname: string = new URL(window.location.href).pathname; 
 
+console.log(pathname);
+
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>

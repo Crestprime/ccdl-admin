@@ -1,31 +1,37 @@
-import axios from 'axios';
+import axios, { AxiosError } from "axios"
+import Cookies from "js-cookie"
 
-const TEST_URL = 'https://';
+const BASE_URL = import.meta.env.VITE_APP_BASE_URL
+const httpService = axios.create({
+  baseURL: BASE_URL,
+  // withCredentials: true,
+})
 
-export const httpService = axios.create({
-    baseURL: TEST_URL,
-    decompress: true,
-    timeout: 10 * 60 * 60,
+export const unsecureHttpService = axios.create({
+    baseURL: `${BASE_URL}`,
+})
+
+unsecureHttpService.interceptors.response.use((data) => {
+    return data;
+}, async (error: AxiosError<any, unknown>) => {
+    return Promise.reject(error);
 });
 
 httpService.interceptors.request.use(
-  (config) => {
-    // Do something before request is sent
-    return config;
+  function (config: any) {
+    const token = Cookies.get("access_token") 
+    
+    if (token) {
+      config.headers["Authorization"] = "Bearer " +token
+    }
+    return config
   },
-  (error) => {
-    // Do something with request error
-    return Promise.reject(error);
-  }
-);
+  function (error: any) {
+    // if (error.response.status === 500) {
+    //   error.response.data.message = "Something wrong has happened. Try again later."
+    // }
+    return Promise.reject(error)
+  },
+)
 
-httpService.interceptors.response.use(
-  (response) => {
-    // Any status code within the range of 2xx triggers this function
-    return response;
-  },
-  (error) => {
-    // Any status codes outside the range of 2xx trigger this function
-    return Promise.reject(error);
-  }
-);
+export default httpService

@@ -1,12 +1,26 @@
-import { useNavigate } from "@tanstack/react-router";
-import { PropertyListing } from "../../listingComponents";
-import { Button } from "../../ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
+import { useFetchData } from "@/hooks/useFetchData"; 
+import { LoadingAnimation } from "@/components/shared";
+import { CreateListingBtn, PropertyListing } from "@/components/listingComponents";
+import { useNavigate } from "@tanstack/react-router";
 
 
-export default function ListingPage() {
+export default function ListingPage(
+    { type }: { type: string }
+)  {  
 
-    const navigate = useNavigate()
+    const { data, isLoading} = useFetchData<any>(`/admin-property/property-by-category`, "property "+type, {
+        category: type
+    });  
+
+    const navigate = useNavigate() 
+
+    const clickHandler = (item: string) => { 
+        
+        navigate({
+            to: `/dashboard/property/listings?type=${item}`
+        })
+    }
 
     return (
         <div className=" w-full flex h-auto gap-6 flex-col  " >
@@ -16,23 +30,24 @@ export default function ListingPage() {
                     <p className=" text-sm text-bodyTextColor " >List and manage all properties in capital city</p>
                 </div>
                 <div className=" flex gap-4  " >
-                    <Button onClick={()=> navigate({
-                        to: "/dashboard/property/listings/create"
-                    })} variant={"main"} className=" h-[40px] text-sm font-medium rounded-full " >
-                        Add Listing
-                    </Button>
+                    <CreateListingBtn />
                 </div>
             </div>
 
-            <Tabs defaultValue="estates" className="w-full ">
-                <TabsList className="grid w-fit grid-cols-3 h-fit ">
-                    <TabsTrigger className=" h-[36px] " value="estates">Estates</TabsTrigger>
-                    <TabsTrigger className=" h-[36px] " value="lands">Lands</TabsTrigger>
-                    <TabsTrigger className=" h-[36px] " value="houses">Houses</TabsTrigger>
-                </TabsList> 
-                <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="estates">
-                    <PropertyListing />
-                </TabsContent>
+            <Tabs defaultValue={type} onValueChange={(value)=> clickHandler(value)} className="w-full ">
+                <TabsList className="grid w-fit grid-cols-2 h-fit ">
+                    <TabsTrigger className=" h-[36px] " value="BUILDING">Houses</TabsTrigger>
+                    <TabsTrigger className=" h-[36px] " value="LAND">Lands</TabsTrigger>
+                    {/* <TabsTrigger className=" h-[36px] " value="estates">Estates</TabsTrigger> */}
+                </TabsList>
+                <LoadingAnimation loading={isLoading} >
+                    <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="BUILDING">
+                        <PropertyListing data={data} />
+                    </TabsContent>
+                    <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="LAND">
+                        <PropertyListing data={data} />
+                    </TabsContent>
+                </LoadingAnimation>
             </Tabs>
         </div>
     )
