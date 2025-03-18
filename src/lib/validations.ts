@@ -32,7 +32,11 @@ const listingBuildingValidation = z.object({
     state: z.string().nonempty('Required'),
     country: z.string().nonempty('Required'), 
     adminId: z.any(),
-    isDraft: z.any()
+    isDraft: z.any(), 
+    initalPaymentPercentage: z.any(),
+    level1: z.any(),
+    level2: z.any(),
+    level3: z.any()
 })
 
 const listingLandValidation = z.object({ 
@@ -54,7 +58,11 @@ const listingLandValidation = z.object({
     state: z.string().nonempty('Required'),
     country: z.string().nonempty('Required'), 
     adminId: z.any(),
-    isDraft: z.any()
+    isDraft: z.any(),
+    initalPaymentPercentage: z.any(),
+    level1: z.any(),
+    level2: z.any(),
+    level3: z.any()
 }) 
 
 const investmentValidation = z.object({

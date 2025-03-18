@@ -20,7 +20,7 @@ const useListing = (land?: boolean) => {
 
     const navigate = useNavigate()
 
-    const userId = Cookies.get("userid") 
+    const userId = Cookies.get("userid")
 
     const { mutate: uploadImage, isPending: uploading } = useMutation({
         mutationFn: (data: any) => httpService.post(`/file-upload/upload-multiple?uploadType=ITEM_IMAGE`, data),
@@ -29,10 +29,10 @@ const useListing = (land?: boolean) => {
         },
         onSuccess: (data: any) => {
 
-            if(land) {
-                createLandMutate({...landPayload, media: data?.data?.data, isDraft: isDraft, gisData: JSON.stringify({})})
+            if (land) {
+                createLandMutate({ ...landPayload, media: data?.data?.data, isDraft: isDraft, gisData: JSON.stringify({}) })
             } else {
-                createBuildingMutate({...payload, media: data?.data?.data, isDraft: isDraft})
+                createBuildingMutate({ ...payload, media: data?.data?.data, isDraft: isDraft })
             }
         },
     });
@@ -42,8 +42,8 @@ const useListing = (land?: boolean) => {
         onError: (error: any) => {
             toast.error(error?.response?.data?.message)
         },
-        onSuccess: (data: any) => { 
-            toast.success(data?.data?.message) 
+        onSuccess: (data: any) => {
+            toast.success(data?.data?.message)
             navigate({
                 to: "/dashboard/property/listings?type=BUILDING"
             })
@@ -55,8 +55,8 @@ const useListing = (land?: boolean) => {
         onError: (error: any) => {
             toast.error(error?.response?.data?.message)
         },
-        onSuccess: (data: any) => { 
-            toast.success(data?.data?.message) 
+        onSuccess: (data: any) => {
+            toast.success(data?.data?.message)
             navigate({
                 to: "/dashboard/property/listings?type=LAND"
             })
@@ -103,7 +103,11 @@ const useListing = (land?: boolean) => {
             "state": "",
             "country": "",
             "adminId": Number(userId),
-            "isDraft": false
+            "isDraft": false,
+            "initalPaymentPercentage": null,
+            "level1": null,
+            "level2": null,
+            "level3": null
         },
         validationSchema: listingBuildingValidation,
         submit: (data: CreateBuildingListing) => {
@@ -117,9 +121,9 @@ const useListing = (land?: boolean) => {
                 image.map((item) => {
                     formdata.append("file", item)
                 })
- 
-                const transformedData = transformTextToNumbers(data); 
-                uploadImage(formdata)  
+
+                const transformedData = transformTextToNumbers(data);
+                uploadImage(formdata)
                 setPayload(transformedData)
             }
         },
@@ -144,7 +148,7 @@ const useListing = (land?: boolean) => {
             "publicTransport": [],
             "buildingRestrictions": [],
             "developmentRestriction": [],
-            "plots": [{ 
+            "plots": [{
                 size: "",
                 price: ""
             }],
@@ -154,9 +158,13 @@ const useListing = (land?: boolean) => {
             "lga": "",
             "city": "",
             "state": "",
-            "country": "", 
+            "country": "",
             "adminId": Number(userId),
-            "isDraft": false
+            "isDraft": false,
+            "initalPaymentPercentage": null,
+            "level1": null,
+            "level2": null,
+            "level3": null
         },
         validationSchema: listingLandValidation,
         submit: (data: CreateBuildingListing) => {
@@ -170,12 +178,12 @@ const useListing = (land?: boolean) => {
                 image.map((item) => {
                     formdata.append("file", item)
                 })
- 
-                const transformedData = transformTextToNumbers(data); 
 
-                const newpayload = transformPlotPricesToNumbers(transformedData) 
-                
-                uploadImage(formdata)  
+                const transformedData = transformTextToNumbers(data);
+
+                const newpayload = transformPlotPricesToNumbers(transformedData)
+
+                uploadImage(formdata)
                 setLandPayload(newpayload)
             }
         },

@@ -1,8 +1,8 @@
 import useListing from "@/hooks/useListing";
 import { Button } from "../../ui/button";
 import { Switch } from "../../ui/switch";
-import { CustomButton, FormInput, FormSelect, FormTextArea } from "@/components/shared";
-import { featuresData, listingCategory } from "@/models/dummydata";
+import { CustomButton, FormInput, FormTextArea } from "@/components/shared";
+import { featuresData } from "@/models/dummydata";
 import { ListingCheckBox, ListingImage } from "@/components/listingComponents";
 import { useNavigate } from "@tanstack/react-router";
 import PlotAndPrice from "@/components/listingComponents/plotAndPrice";
@@ -12,7 +12,7 @@ export default function CreateListingLand(
     { type }: { type: string }
 ) {
 
-    const { listingLandForm, landControl, landValue, setValue, landFormState, isPendingland, uploading } = useListing(true)
+    const { listingLandForm, landControl, landValue, isPendingland, uploading } = useListing(true)
     const navigate = useNavigate()  
 
     return listingLandForm(
@@ -38,7 +38,7 @@ export default function CreateListingLand(
                     <p className=" font-semibold " >Basic information</p>
                     <div className=" w-full flex flex-col gap-4 " >
                         <FormInput label="Estate Name" name="name" />
-                        <FormSelect setValue={setValue} errors={landFormState?.errors} label="Category" optionData={listingCategory} name="category" placeholder="Select Category" />
+                        {/* <FormSelect setValue={setValue} errors={landFormState?.errors} label="Category" optionData={listingCategory} name="category" placeholder="Select Category" /> */}
                         {/* <FormInput label="No. of Block/Apartment" name="name" /> */}
                         <FormInput label="Topography" name="topography" />
                         <FormTextArea label="Description" name="description" />
@@ -66,61 +66,27 @@ export default function CreateListingLand(
                                     <ListingCheckBox name="publicTransport" value={landValue?.publicTransport} listData={featuresData?.nearbypublictransport} label={"Nearby Public Transport"} control={landControl} />
                                 </div>
                             </div>
-                        </div>
-                        {/* <div className=" flex flex-col gap-3 pb-6 " >
-                            <p className=" font-semibold " >Legal</p>
-                            <div className=" flex flex-wrap gap-3 mt-2 " >
-                                <div className=" p-1 w-fit text-bodyTextColor flex gap-1 border items-center rounded-[6px] " >
-                                    <Checkbox className=" !border-bodyTextColor " />
-                                    <p className=" font-medium text-sm " >Deed of Assignment</p>
-                                </div>
-                                <div className=" p-1 w-fit text-bodyTextColor flex gap-1 border items-center rounded-[6px] " >
-                                    <Checkbox className=" !border-bodyTextColor " />
-                                    <p className=" font-medium text-sm " >(C of O)</p>
-                                </div>
-                                <div className=" p-1 w-fit text-bodyTextColor flex gap-1 border items-center rounded-[6px] " >
-                                    <Checkbox className=" !border-bodyTextColor " />
-                                    <p className=" font-medium text-sm " >Survey Plan</p>
-                                </div>
-                                <div className=" p-1 w-fit text-bodyTextColor flex gap-1 border items-center rounded-[6px] " >
-                                    <Checkbox className=" !border-bodyTextColor " />
-                                    <p className=" font-medium text-sm " >Building Approval Plan</p>
-                                </div>
-                                <div className=" p-1 w-fit text-bodyTextColor flex gap-1 border items-center rounded-[6px] " >
-                                    <Checkbox className=" !border-bodyTextColor " />
-                                    <p className=" font-medium text-sm " >Sales Agreement</p>
-                                </div>
-                                <div className=" p-1 w-fit text-bodyTextColor flex gap-1 border items-center rounded-[6px] " >
-                                    <Checkbox className=" !border-bodyTextColor " />
-                                    <p className=" font-medium text-sm " >Receipts</p>
-                                </div>
-                                <div className=" p-1 w-fit text-bodyTextColor flex gap-1 border items-center rounded-[6px] " >
-                                    <Checkbox className=" !border-bodyTextColor " />
-                                    <p className=" font-medium text-sm " >Letter of Allocation</p>
-                                </div>
-                                <div className=" p-1 w-fit text-bodyTextColor flex gap-1 border items-center rounded-[6px] " >
-                                    <Checkbox className=" !border-bodyTextColor " />
-                                    <p className=" font-medium text-sm " >Governor's Consent</p>
-                                </div>
-                                <div className=" p-1 w-fit text-bodyTextColor flex gap-1 border items-center rounded-[6px] " >
-                                    <Checkbox className=" !border-bodyTextColor " />
-                                    <p className=" font-medium text-sm " >Utility Bills and Clearance</p>
-                                </div>
-                            </div>
-                        </div> */}
+                        </div> 
                     </div>
                 </div>
                 <div className=" w-fit " >
                     <div className=" w-[484px] relative flex flex-col gap-6 " >
                         <ListingImage />
-                        <PlotAndPrice name={"plots"} value={landValue?.plots} control={landControl}  />
-                        {/* <div className=" w-full p-4 border flex gap-4 flex-col rounded-2xl " >
-                            <p className=" font-semibold " >Price</p>
+                        <PlotAndPrice name={"plots"} value={landValue?.plots} control={landControl}  /> 
+                        <div className=" w-full p-4 border flex gap-4 flex-col rounded-2xl " >
+                            <p className=" font-semibold " >Initial Deposit %</p>
                             <div className=" w-full mt-1 flex flex-col gap-3 " >
-                                <FormInput type="number" label="Shell finished" name="shellFinishedPrice" />
-                                <FormInput type="number" label="Finished" name="finishedPrice" />
+                                <FormInput label="Enter percentage" type="number" name="initalPaymentPercentage" /> 
                             </div>
-                        </div> */}
+                        </div>
+                        <div className=" w-full p-4 border flex gap-4 flex-col rounded-2xl " >
+                            <p className=" font-semibold " >Commission</p>
+                            <div className=" w-full mt-1 flex flex-col gap-3 " >
+                                <FormInput label="Leve 1" type="number" name="level1" /> 
+                                <FormInput label="Leve 2" type="number" name="level2" />
+                                <FormInput label="Leve 3" type="number" name="level3" />
+                            </div>
+                        </div>
                         <div className=" w-full p-4 border flex gap-4 flex-col rounded-2xl " >
                             <p className=" font-semibold " >Location</p>
                             <div className=" w-full mt-1 flex flex-col gap-3 " >
