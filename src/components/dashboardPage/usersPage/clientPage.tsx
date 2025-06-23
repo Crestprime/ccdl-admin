@@ -1,12 +1,8 @@
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ClientTable from "@/components/userComponents/clientTable";
-import { useNavigate } from "@tanstack/react-router";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"; 
+import { ClientTable } from "@/components/userComponents"; 
 
 
-export default function ClientPage() {
-
-    const navigate = useNavigate()
+export default function ClientPage() { 
 
     return (
         <div className=" w-full flex h-auto gap-6 flex-col  " >

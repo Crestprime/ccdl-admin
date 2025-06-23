@@ -1,15 +1,14 @@
 import { ClientConstruction } from "@/components/userComponents";
-import { useFetchData } from "@/hooks/useFetchData";
+// import { useFetchData } from "@/hooks/useFetchData";
 import { RiBuilding2Fill, RiCoinsFill } from "@remixicon/react";
 
 
 export default function ConstructionPage() {
 
 
-    const { data, isLoading } = useFetchData<Array<any>>(`/admin-construction/proposals`, "proposals");
+    // const { data, isLoading } = useFetchData<Array<any>>(`/admin-construction/proposals`, "proposals");
     
-    console.log(data);
-    
+    // console.log(data);
 
     return (
         <div className=" w-full flex h-auto gap-6 flex-col  " >

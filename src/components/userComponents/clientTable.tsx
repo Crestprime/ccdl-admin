@@ -29,7 +29,7 @@ export default function ClientTable() {
                 <TableBody>
                     {data?.map((item, index) => {
                         return (
-                            <TableRow onClick={() => navigate({
+                            <TableRow role="button" onClick={() => navigate({
                                 to: `/dashboard/users/clients/details?id=${item?.id}`
                             })} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
                                 <TableCell className="">

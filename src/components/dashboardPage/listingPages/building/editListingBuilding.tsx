@@ -14,7 +14,7 @@ export default function EditListingBuilding(
 ) {
 
     const { formik } = useEditListing(id)
-    const { updateImage } = useImage((state) => state)
+    const { updatePreview } = useImage((state) => state)
     const navigate = useNavigate()
 
     const { data, isLoading } = useFetchData<IBuildingListingData>(`/admin-property/property/${id}`, "property" + id);
@@ -56,7 +56,7 @@ export default function EditListingBuilding(
             formik?.setFieldValue("level1", data?.property?.level1) 
             formik?.setFieldValue("level2", data?.property?.level2) 
             formik?.setFieldValue("level3", data?.property?.level3) 
-            updateImage(data?.property?.media)
+            updatePreview(data?.property?.media)
         }
     }, [data]) 
     

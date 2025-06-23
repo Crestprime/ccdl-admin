@@ -1,8 +1,7 @@
 import { LoadingAnimation } from "@/components/shared";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ClientConstruction, ClientSaleTable, ClientWalletTable } from "@/components/userComponents";
-import ClientInvestmentTable from "@/components/userComponents/clientInvestmentTable";
+import { ClientConstruction, ClientSaleTable, ClientWalletTable, ClientInvestmentTable } from "@/components/userComponents"; 
 import { useFetchData } from "@/hooks/useFetchData";
 import { IUserInfo } from "@/models/user";
 import { dateFormat } from "@/utils/dateFormat";
@@ -12,10 +11,7 @@ import { RiBuilding2Fill, RiCoinsFill, RiMoneyDollarCircleFill, RiMore2Fill, RiW
 
 export default function ClientDetails({ id }: { id: string }) {
 
-    const { data, isLoading } = useFetchData<IUserInfo>(`/admin/users/${id}`, "user");
-
-    console.log(data);
-
+    const { data, isLoading } = useFetchData<IUserInfo>(`/admin/users/${id}`, "user"); 
 
     return (
         <LoadingAnimation loading={isLoading} >

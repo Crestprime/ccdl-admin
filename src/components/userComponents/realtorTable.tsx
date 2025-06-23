@@ -11,7 +11,7 @@ export default function RealtorTable() {
 
     const navigate = useNavigate()
 
-    const { data, isLoading } = useFetchData<Array<IAgent>>(`/admin/users/agents`, "user");
+    const { data, isLoading } = useFetchData<Array<IAgent>>(`/admin/users/agents`, "agent");
 
     return (
         <LoadingAnimation loading={isLoading} >
@@ -31,7 +31,7 @@ export default function RealtorTable() {
                 <TableBody>
                     {data?.map((item, index) => {
                         return (
-                            <TableRow onClick={() => navigate({
+                            <TableRow role="button" onClick={() => navigate({
                                 to: `/dashboard/users/realtor/details?id=${item?.id}`
                             })} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
                                 <TableCell className="">

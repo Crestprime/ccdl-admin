@@ -9,7 +9,7 @@ import { numberFormatNaire } from "@/utils/formatNumberWithK";
 export default function ClientSaleTable({ id }: { id: string }) {
  
     // const navigate = useNavigate()
-    const { data, isLoading } = useFetchData<Array<ISale>>(`/admin/users/${id}/reservations`, "reservations");
+    const { data, isLoading } = useFetchData<Array<ISale>>(`/admin/users/${id}/reservations`, "reservations"+id);
     
     return (
         <LoadingAnimation loading={isLoading} length={data?.length} >

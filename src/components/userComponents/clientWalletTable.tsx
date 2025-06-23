@@ -9,7 +9,7 @@ import { ITransaction } from "@/models/transaction";
 export default function ClientWalletTable({ id }: { id: string }) {
  
     // const navigate = useNavigate()
-    const { data, isLoading } = useFetchData<Array<ITransaction>>(`/admin/users/${id}/transactions`, "reservations"); 
+    const { data, isLoading } = useFetchData<Array<ITransaction>>(`/admin/users/${id}/transactions`, "transactions"+id); 
     return (
         <LoadingAnimation loading={isLoading} length={data?.length} >
             <Table>

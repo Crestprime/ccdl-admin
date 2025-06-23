@@ -1,12 +1,9 @@
 // import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"; 
-import RealtorTable from "@/components/userComponents/realtorTable";
-// import { useNavigate } from "@tanstack/react-router";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";  
+import { RealtorTable } from "@/components/userComponents";
 
 
-export default function RealtorPage() {
-
-    // const navigate = useNavigate()
+export default function RealtorPage() { 
 
     return (
         <div className=" w-full flex h-auto gap-6 flex-col  " >

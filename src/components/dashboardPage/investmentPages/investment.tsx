@@ -80,7 +80,7 @@ export default function Investment() {
                 </Button> */}
 
                 <TabsContent className=" w-full flex flex-col gap-5 " value="investments">
-                    <LoadingAnimation loading={isLoading} >
+                    <LoadingAnimation loading={isLoading} length={data?.length} >
                         <Table>
                             <TableHeader>
                                 <TableRow>
@@ -117,7 +117,7 @@ export default function Investment() {
                 </TabsContent>
 
                 <TabsContent className=" w-full flex flex-col gap-5 " value="plans">
-                    <LoadingAnimation loading={loadingPlans} >
+                    <LoadingAnimation loading={loadingPlans} length={plans?.length} >
                         <Table>
                             <TableHeader>
                                 <TableRow>
