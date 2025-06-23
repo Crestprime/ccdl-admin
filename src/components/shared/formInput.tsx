@@ -1,6 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import { Input } from '../ui/input';
 import React from 'react';
+import { useField } from 'formik';
 
 interface IProps {
     name: string;
@@ -12,6 +13,10 @@ interface IProps {
     hasBackIcon?: boolean,
     icon?: React.ReactNode,
     iconback?: React.ReactNode
+    setValue: (name: string, value: string) => void, 
+    otherVaule?: any,
+    errors: any,
+    touched: any
 }
 
 export default function FormInput(
@@ -24,10 +29,17 @@ export default function FormInput(
         hasFrontIcon,
         hasBackIcon,
         icon,
-        iconback
+        iconback,
+        setValue,
+        otherVaule,
+        errors,
+        touched
     }: IProps) {
 
-    const { register, formState: { errors } } = useFormContext();
+    const changeHandler = (item: string) => {
+        setValue(name, item)
+    } 
+    
 
     return (
         <div className=' w-full flex gap-2 flex-col ' >
@@ -46,16 +58,15 @@ export default function FormInput(
                     )}
                     <Input
                         type={type ?? "text"}
-                        value={value}
-                        {...register(name, {
-                            required: true,
-                            pattern: /^[A-Za-z]+$/i
-                        })}
+                        value={otherVaule ? otherVaule : (value[name]+"" === "0" || value[name]+"" === null) ? "" : value[name]}
+                        onChange={(e)=> changeHandler(e.target.value)}
                         className={` ${hasFrontIcon ? " pl-12 " : ""} `}
                         placeholder={placeholder}
                     />
                 </div>
-                {errors[name] && <p className=' text-sm text-error600 font-OpenRunde-Medium ' >{errors[name]?.message as string}</p>}
+
+                {(touched[name] && errors[name]) && <div className=' text-sm text-error600 font-OpenRunde-Medium ' >{errors[name]}</div>}
+                {/* {errors[name] && <p className=' text-sm text-error600 font-OpenRunde-Medium ' >{errors[name]?.message as string}</p>} */}
             </div>
         </div>
     )

@@ -32,13 +32,13 @@ const data: any = {
       isActive: false,
       items: []
     },
-    {
-      title: "Inbox",
-      url: "/dashboard/inbox",
-      icon: RiInboxArchiveFill,
-      isActive: true,
-      items: []
-    },
+    // {
+    //   title: "Inbox",
+    //   url: "/dashboard/inbox",
+    //   icon: RiInboxArchiveFill,
+    //   isActive: true,
+    //   items: []
+    // },
     {
       title: "Property",
       url: "property",
@@ -73,41 +73,41 @@ const data: any = {
         },
         {
           title: "Realtors",
-          url: "#",
+          url: "/dashboard/users/realtor",
         },
         {
           title: "Staff",
           url: "#",
         },
-        {
-          title: "Suppliers",
-          url: "#",
-        },
+        // {
+        //   title: "Suppliers",
+        //   url: "#",
+        // },
       ],
     },
-    {
-      title: "Materials",
-      url: "#",
-      icon: RiLayout2Fill,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
+    // {
+    //   title: "Materials",
+    //   url: "#",
+    //   icon: RiLayout2Fill,
+    //   items: [
+    //     {
+    //       title: "General",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "Team",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "Billing",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "Limits",
+    //       url: "#",
+    //     },
+    //   ],
+    // },
     {
       title: "Construction",
       url: "construction",
@@ -125,22 +125,18 @@ const data: any = {
     },
     {
       title: "Wallet",
-      url: "wallet",
+      url: "/dashboard/wallet/alltransaction",
       icon: RiWalletFill,
-      items: [
-        {
-          title: "All Transaction",
-          url: "/dashboard/wallet/alltransaction",
-        },
-        {
-          title: "Cashflow",
-          url: "/dashboard/wallet/cashflow",
-        },
-        {
-          title: "Recent Transactions",
-          url: "/dashboard/wallet/recenttransaction",
-        }
-      ]
+      // items: [
+      //   {
+      //     title: "All Transaction",
+      //     url: "/dashboard/wallet/alltransaction",
+      //   }, 
+      //   {
+      //     title: "Recent Transactions",
+      //     url: "/dashboard/wallet/recenttransaction",
+      //   }
+      // ]
     },
     {
       title: "Reports & Analytics",

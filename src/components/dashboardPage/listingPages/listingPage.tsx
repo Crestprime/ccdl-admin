@@ -42,10 +42,10 @@ export default function ListingPage(
                 </TabsList>
                 <LoadingAnimation loading={isLoading} >
                     <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="BUILDING">
-                        <PropertyListing data={data} />
+                        <PropertyListing type="buildings" data={data} />
                     </TabsContent>
                     <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="LAND">
-                        <PropertyListing data={data} />
+                        <PropertyListing type="lands" data={data} />
                     </TabsContent>
                 </LoadingAnimation>
             </Tabs>

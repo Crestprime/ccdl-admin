@@ -5,7 +5,7 @@ import { textLimit } from "@/utils/textlimit"
 import { useNavigate } from "@tanstack/react-router"
 // import { Key } from "react"
 
-export default function PropertyListing({data}: {data: Array<CreateBuildingListing & CreateLandListing & any>}) {
+export default function PropertyListing({data, type}: {data: Array<CreateBuildingListing & CreateLandListing & any>, type: "buildings" | "lands"}) {
 
     // const data = ["hot", "sold", "hot", "hot", "sold", "sold", "hot", "hot"]
 
@@ -15,7 +15,7 @@ export default function PropertyListing({data}: {data: Array<CreateBuildingListi
         <div className=" w-full grid grid-cols-4 gap-6 pb-6" >
             {data?.map((item, index) => (
                 <div onClick={()=> navigate({
-                    to: `/dashboard/property/listings/details?id=${item?.id}`,
+                    to: `/dashboard/property/listings/details?id=${item?.id}&type=${type}`,
                   })} role="button" key={index} className=" w-full flex flex-col gap-2 pb-4 rounded-xl" >
                     <div className=" w-full h-[212px] rounded-xl relative " >
                         <img src={item?.media[0]} alt={item?.name} className=" w-full h-full object-cover rounded-xl " />

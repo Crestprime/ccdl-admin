@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../ui/select'; 
 
 interface optionProps {
@@ -9,11 +10,12 @@ interface IProps {
     name: string;
     placeholder?: string;
     value?: any;
+    type?: "number" | "string"
     label?: string;
     optionData?: Array<optionProps>;
-    setValue: (name: string, value: string) => void,
+    setValue: (name: string, value: any) => void, 
     errors: any,
-    watch?: any
+    touched: any
 }
 
 export default function FormSelect(
@@ -24,22 +26,31 @@ export default function FormSelect(
         label,
         optionData,
         setValue,
-        errors
+        errors,
+        type,
+        touched
     }: IProps) {
 
-    // const { register, formState: { errors } } = useFormContext();
 
-    const onValueChange = (item: string, value: string) => { 
-        setValue(item, value) 
+    const onValueChange = (item: string, value: any) => { 
+        if(type === "number") {
+            setValue(item, Number(value)) 
+        } else {
+            setValue(item, value) 
+        }
     }
+
+    console.log(value[name]);
+    
+ 
 
     return (
         <div className=' w-full flex gap-2 flex-col ' >
             <p className=" font-medium text-sm " >{label}</p>
             <div className=' flex flex-col gap-1 ' >
-                <Select value={value}  onValueChange={(value)=> onValueChange(name, value)} >
+                <Select value={(value[name] === 0 || value[name] === null) ? "" : value[name]+""} onValueChange={(value)=> onValueChange(name, value)} >
                     <SelectTrigger className="w-full">
-                        <SelectValue  placeholder={placeholder ?? "Select "+label} />
+                        <SelectValue placeholder={placeholder ?? "Select "+label} />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
@@ -51,7 +62,7 @@ export default function FormSelect(
                         </SelectGroup>
                     </SelectContent>
                 </Select>
-                {errors[name] && <p className=' text-sm text-error600 font-OpenRunde-Medium ' >{errors[name]?.message as string}</p>}
+                {(touched[name] && errors[name]) && <div className=' text-sm text-error600 font-OpenRunde-Medium ' >{errors[name]}</div>}
             </div>
         </div>
     )

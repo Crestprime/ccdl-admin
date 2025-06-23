@@ -4,9 +4,11 @@ export { default as HomePage } from './homePage';
 // listing Pages
 export { default as ListingPage } from './listingPages/listingPage';
 export { default as ListingDetailsPage } from './listingPages/listingDetails';
-export { default as CreateListingBuilding } from './listingPages/createListingBuilding';
-export { default as CreateListingLand } from './listingPages/createListingLand';
+export { default as CreateListingBuilding } from './listingPages/building/createListingBuilding';
+export { default as CreateListingLand } from './listingPages/land/createListingLand';
 export { default as ListingTransaction } from './listingPages/listingTransaction';
+export { default as EditListingBuilding } from './listingPages/building/editListingBuilding';
+export { default as EditListingLand } from './listingPages/land/editListingLand'; 
 
 // Sales and Reservetion Page
 export { default as SaleAndReservation } from './salesPages/saleAndReservation';
@@ -22,6 +24,10 @@ export { default as SchedulePage } from './schedule/schedulePage';
 // User Page
 export { default as ClientPage } from './usersPage/clientPage';
 export { default as ClientDetailsPage } from './usersPage/clientDetails';
+
+// agent Page
+export { default as RealtorPage } from './realtorPage/realtorPage';
+export { default as RealtorDetailsPage } from './realtorPage/realtorDetails';
 
 // Client Page
 export { default as ProposalPage } from './constructionPages/proposalPage';

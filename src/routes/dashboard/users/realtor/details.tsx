@@ -1,16 +1,16 @@
-import { ClientDetailsPage } from '@/components/dashboardPage'
+import { RealtorDetailsPage } from '@/components/dashboardPage'
 import { createFileRoute, getRouteApi } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/dashboard/users/clients/details')({
+export const Route = createFileRoute('/dashboard/users/realtor/details')({
   component: RouteComponent,
   validateSearch: (search: Record<string, string | undefined>) => ({
     id: search.id ?? "",
   })
 })
 
-const routeApi = getRouteApi('/dashboard/users/clients/details')
+const routeApi = getRouteApi('/dashboard/users/realtor/details')
 
 function RouteComponent() {
   const routeSearch = routeApi.useSearch() 
-  return <ClientDetailsPage id={routeSearch?.id} />
+  return <RealtorDetailsPage id={routeSearch?.id} />
 }

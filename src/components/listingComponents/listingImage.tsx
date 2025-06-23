@@ -1,6 +1,6 @@
 import { RiUploadCloud2Line } from '@remixicon/react'
 import { useImage } from '../global-state/useImageData';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 export default function ListingImage() {
@@ -14,6 +14,16 @@ export default function ListingImage() {
         setPreview([...preview, ...previews])
         updateImage([...image, ...files]);
     }; 
+
+    useEffect(()=> {
+        if(image?.length && preview?.length === 0) {
+            image?.map((item: any) => {
+                if(item?.includes("http")) {
+                    setPreview(image)
+                }
+            })
+        }
+    }, [image])
 
     return (
         <div className={` w-full grid ${preview?.length === 1 ? "grid-cols-2" : preview?.length > 1 ? "grid-cols-3" : "grid-cols-1"} gap-2 h-[162px] relative `} >

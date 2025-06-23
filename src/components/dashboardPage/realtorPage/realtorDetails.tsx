@@ -1,8 +1,9 @@
 import { LoadingAnimation } from "@/components/shared";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ClientConstruction, ClientSaleTable, ClientWalletTable } from "@/components/userComponents";
-import ClientInvestmentTable from "@/components/userComponents/clientInvestmentTable";
+import { ClientConstruction, ClientSaleTable, ClientInvestmentTable, ClientWalletTable, ClientRefferalTable } from "@/components/userComponents";
+// import ClientInvestmentTable from "@/components/userComponents/clientInvestmentTable"; 
+// import ClientSaleTable from "@/components/userComponents/clientSaleTable";
 import { useFetchData } from "@/hooks/useFetchData";
 import { IUserInfo } from "@/models/user";
 import { dateFormat } from "@/utils/dateFormat";
@@ -10,12 +11,9 @@ import { numberFormatNaire } from "@/utils/formatNumberWithK";
 import { RiBuilding2Fill, RiCoinsFill, RiMoneyDollarCircleFill, RiMore2Fill, RiWalletFill } from "@remixicon/react";
 
 
-export default function ClientDetails({ id }: { id: string }) {
+export default function RealtorDetails({ id }: { id: string }) {
 
-    const { data, isLoading } = useFetchData<IUserInfo>(`/admin/users/${id}`, "user");
-
-    console.log(data);
-
+    const { data, isLoading } = useFetchData<IUserInfo>(`/admin/users/${id}`, "user"+id); 
 
     return (
         <LoadingAnimation loading={isLoading} >
@@ -104,24 +102,28 @@ export default function ClientDetails({ id }: { id: string }) {
                     <Tabs defaultValue="investments" className="w-full ">
                         <TabsList className="grid w-fit grid-cols-5 gap-4 h-fit ">
                             <TabsTrigger className=" h-[36px] " value="investments">Investments</TabsTrigger>
-                            <TabsTrigger className=" h-[36px] " value="sales">Sales & Reservations</TabsTrigger> 
+                            <TabsTrigger className=" h-[36px] " value="refferal">Refferal</TabsTrigger>
+                            <TabsTrigger className=" h-[36px] " value="sales">Sales & Reservations</TabsTrigger>
                             <TabsTrigger className=" h-[36px] " value="wallet">Wallet</TabsTrigger>
                             <TabsTrigger className=" h-[36px] " value="construction">Construction</TabsTrigger>
                         </TabsList>
                         <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="investments">
                             <ClientInvestmentTable id={data?.user?.id+""} />
                         </TabsContent>
-                        <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="sales">
+                        <TabsContent value="sales">
                             <ClientSaleTable id={data?.user?.id+""} />
                         </TabsContent>
-                        <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="wallet">
+                        <TabsContent value="wallet">
                             <ClientWalletTable id={data?.user?.id+""} />
+                        </TabsContent>
+                        <TabsContent value="refferal">
+                            <ClientRefferalTable id={data?.user?.id+""} />
                         </TabsContent> 
                         <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="construction">
                             <ClientConstruction id={data?.user?.id+""} />
                         </TabsContent>
                     </Tabs>
-                </div>
+                </div> 
             </div>
         </LoadingAnimation>
     )

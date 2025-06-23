@@ -24,15 +24,19 @@ import { Route as AuthVerifyImport } from './routes/auth/verify'
 import { Route as AuthLoginImport } from './routes/auth/login'
 import { Route as AuthInviteImport } from './routes/auth/invite'
 import { Route as DashboardWalletAlltransactionImport } from './routes/dashboard/wallet/alltransaction'
+import { Route as DashboardUsersRealtorIndexImport } from './routes/dashboard/users/realtor/index'
 import { Route as DashboardUsersClientsIndexImport } from './routes/dashboard/users/clients/index'
 import { Route as DashboardPropertyScheduleIndexImport } from './routes/dashboard/property/schedule/index'
 import { Route as DashboardPropertySalesIndexImport } from './routes/dashboard/property/sales/index'
 import { Route as DashboardPropertyListingsIndexImport } from './routes/dashboard/property/listings/index'
 import { Route as DashboardPropertyInvestmentsIndexImport } from './routes/dashboard/property/investments/index'
 import { Route as DashboardConstructionsProposalsIndexImport } from './routes/dashboard/constructions/proposals/index'
+import { Route as DashboardUsersRealtorDetailsImport } from './routes/dashboard/users/realtor/details'
 import { Route as DashboardUsersClientsDetailsImport } from './routes/dashboard/users/clients/details'
 import { Route as DashboardPropertySalesDetailsImport } from './routes/dashboard/property/sales/details'
 import { Route as DashboardPropertyListingsTransactionImport } from './routes/dashboard/property/listings/transaction'
+import { Route as DashboardPropertyListingsEditLandImport } from './routes/dashboard/property/listings/edit-land'
+import { Route as DashboardPropertyListingsEditBuildingImport } from './routes/dashboard/property/listings/edit-building'
 import { Route as DashboardPropertyListingsDetailsImport } from './routes/dashboard/property/listings/details'
 import { Route as DashboardPropertyListingsCreateLandImport } from './routes/dashboard/property/listings/create-land'
 import { Route as DashboardPropertyListingsCreateBuildingImport } from './routes/dashboard/property/listings/create-building'
@@ -127,6 +131,14 @@ const DashboardWalletAlltransactionRoute =
     getParentRoute: () => DashboardRoute,
   } as any)
 
+const DashboardUsersRealtorIndexRoute = DashboardUsersRealtorIndexImport.update(
+  {
+    id: '/users/realtor/',
+    path: '/users/realtor/',
+    getParentRoute: () => DashboardRoute,
+  } as any,
+)
+
 const DashboardUsersClientsIndexRoute = DashboardUsersClientsIndexImport.update(
   {
     id: '/users/clients/',
@@ -170,6 +182,13 @@ const DashboardConstructionsProposalsIndexRoute =
     getParentRoute: () => DashboardRoute,
   } as any)
 
+const DashboardUsersRealtorDetailsRoute =
+  DashboardUsersRealtorDetailsImport.update({
+    id: '/users/realtor/details',
+    path: '/users/realtor/details',
+    getParentRoute: () => DashboardRoute,
+  } as any)
+
 const DashboardUsersClientsDetailsRoute =
   DashboardUsersClientsDetailsImport.update({
     id: '/users/clients/details',
@@ -188,6 +207,20 @@ const DashboardPropertyListingsTransactionRoute =
   DashboardPropertyListingsTransactionImport.update({
     id: '/property/listings/transaction',
     path: '/property/listings/transaction',
+    getParentRoute: () => DashboardRoute,
+  } as any)
+
+const DashboardPropertyListingsEditLandRoute =
+  DashboardPropertyListingsEditLandImport.update({
+    id: '/property/listings/edit-land',
+    path: '/property/listings/edit-land',
+    getParentRoute: () => DashboardRoute,
+  } as any)
+
+const DashboardPropertyListingsEditBuildingRoute =
+  DashboardPropertyListingsEditBuildingImport.update({
+    id: '/property/listings/edit-building',
+    path: '/property/listings/edit-building',
     getParentRoute: () => DashboardRoute,
   } as any)
 
@@ -384,6 +417,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardPropertyListingsDetailsImport
       parentRoute: typeof DashboardImport
     }
+    '/dashboard/property/listings/edit-building': {
+      id: '/dashboard/property/listings/edit-building'
+      path: '/property/listings/edit-building'
+      fullPath: '/dashboard/property/listings/edit-building'
+      preLoaderRoute: typeof DashboardPropertyListingsEditBuildingImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/property/listings/edit-land': {
+      id: '/dashboard/property/listings/edit-land'
+      path: '/property/listings/edit-land'
+      fullPath: '/dashboard/property/listings/edit-land'
+      preLoaderRoute: typeof DashboardPropertyListingsEditLandImport
+      parentRoute: typeof DashboardImport
+    }
     '/dashboard/property/listings/transaction': {
       id: '/dashboard/property/listings/transaction'
       path: '/property/listings/transaction'
@@ -403,6 +450,13 @@ declare module '@tanstack/react-router' {
       path: '/users/clients/details'
       fullPath: '/dashboard/users/clients/details'
       preLoaderRoute: typeof DashboardUsersClientsDetailsImport
+      parentRoute: typeof DashboardImport
+    }
+    '/dashboard/users/realtor/details': {
+      id: '/dashboard/users/realtor/details'
+      path: '/users/realtor/details'
+      fullPath: '/dashboard/users/realtor/details'
+      preLoaderRoute: typeof DashboardUsersRealtorDetailsImport
       parentRoute: typeof DashboardImport
     }
     '/dashboard/constructions/proposals/': {
@@ -447,6 +501,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardUsersClientsIndexImport
       parentRoute: typeof DashboardImport
     }
+    '/dashboard/users/realtor/': {
+      id: '/dashboard/users/realtor/'
+      path: '/users/realtor'
+      fullPath: '/dashboard/users/realtor'
+      preLoaderRoute: typeof DashboardUsersRealtorIndexImport
+      parentRoute: typeof DashboardImport
+    }
   }
 }
 
@@ -466,15 +527,19 @@ interface DashboardRouteChildren {
   DashboardPropertyListingsCreateBuildingRoute: typeof DashboardPropertyListingsCreateBuildingRoute
   DashboardPropertyListingsCreateLandRoute: typeof DashboardPropertyListingsCreateLandRoute
   DashboardPropertyListingsDetailsRoute: typeof DashboardPropertyListingsDetailsRoute
+  DashboardPropertyListingsEditBuildingRoute: typeof DashboardPropertyListingsEditBuildingRoute
+  DashboardPropertyListingsEditLandRoute: typeof DashboardPropertyListingsEditLandRoute
   DashboardPropertyListingsTransactionRoute: typeof DashboardPropertyListingsTransactionRoute
   DashboardPropertySalesDetailsRoute: typeof DashboardPropertySalesDetailsRoute
   DashboardUsersClientsDetailsRoute: typeof DashboardUsersClientsDetailsRoute
+  DashboardUsersRealtorDetailsRoute: typeof DashboardUsersRealtorDetailsRoute
   DashboardConstructionsProposalsIndexRoute: typeof DashboardConstructionsProposalsIndexRoute
   DashboardPropertyInvestmentsIndexRoute: typeof DashboardPropertyInvestmentsIndexRoute
   DashboardPropertyListingsIndexRoute: typeof DashboardPropertyListingsIndexRoute
   DashboardPropertySalesIndexRoute: typeof DashboardPropertySalesIndexRoute
   DashboardPropertyScheduleIndexRoute: typeof DashboardPropertyScheduleIndexRoute
   DashboardUsersClientsIndexRoute: typeof DashboardUsersClientsIndexRoute
+  DashboardUsersRealtorIndexRoute: typeof DashboardUsersRealtorIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
@@ -497,10 +562,15 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardPropertyListingsCreateLandRoute:
     DashboardPropertyListingsCreateLandRoute,
   DashboardPropertyListingsDetailsRoute: DashboardPropertyListingsDetailsRoute,
+  DashboardPropertyListingsEditBuildingRoute:
+    DashboardPropertyListingsEditBuildingRoute,
+  DashboardPropertyListingsEditLandRoute:
+    DashboardPropertyListingsEditLandRoute,
   DashboardPropertyListingsTransactionRoute:
     DashboardPropertyListingsTransactionRoute,
   DashboardPropertySalesDetailsRoute: DashboardPropertySalesDetailsRoute,
   DashboardUsersClientsDetailsRoute: DashboardUsersClientsDetailsRoute,
+  DashboardUsersRealtorDetailsRoute: DashboardUsersRealtorDetailsRoute,
   DashboardConstructionsProposalsIndexRoute:
     DashboardConstructionsProposalsIndexRoute,
   DashboardPropertyInvestmentsIndexRoute:
@@ -509,6 +579,7 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardPropertySalesIndexRoute: DashboardPropertySalesIndexRoute,
   DashboardPropertyScheduleIndexRoute: DashboardPropertyScheduleIndexRoute,
   DashboardUsersClientsIndexRoute: DashboardUsersClientsIndexRoute,
+  DashboardUsersRealtorIndexRoute: DashboardUsersRealtorIndexRoute,
 }
 
 const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
@@ -536,15 +607,19 @@ export interface FileRoutesByFullPath {
   '/dashboard/property/listings/create-building': typeof DashboardPropertyListingsCreateBuildingRoute
   '/dashboard/property/listings/create-land': typeof DashboardPropertyListingsCreateLandRoute
   '/dashboard/property/listings/details': typeof DashboardPropertyListingsDetailsRoute
+  '/dashboard/property/listings/edit-building': typeof DashboardPropertyListingsEditBuildingRoute
+  '/dashboard/property/listings/edit-land': typeof DashboardPropertyListingsEditLandRoute
   '/dashboard/property/listings/transaction': typeof DashboardPropertyListingsTransactionRoute
   '/dashboard/property/sales/details': typeof DashboardPropertySalesDetailsRoute
   '/dashboard/users/clients/details': typeof DashboardUsersClientsDetailsRoute
+  '/dashboard/users/realtor/details': typeof DashboardUsersRealtorDetailsRoute
   '/dashboard/constructions/proposals': typeof DashboardConstructionsProposalsIndexRoute
   '/dashboard/property/investments': typeof DashboardPropertyInvestmentsIndexRoute
   '/dashboard/property/listings': typeof DashboardPropertyListingsIndexRoute
   '/dashboard/property/sales': typeof DashboardPropertySalesIndexRoute
   '/dashboard/property/schedule': typeof DashboardPropertyScheduleIndexRoute
   '/dashboard/users/clients': typeof DashboardUsersClientsIndexRoute
+  '/dashboard/users/realtor': typeof DashboardUsersRealtorIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -567,15 +642,19 @@ export interface FileRoutesByTo {
   '/dashboard/property/listings/create-building': typeof DashboardPropertyListingsCreateBuildingRoute
   '/dashboard/property/listings/create-land': typeof DashboardPropertyListingsCreateLandRoute
   '/dashboard/property/listings/details': typeof DashboardPropertyListingsDetailsRoute
+  '/dashboard/property/listings/edit-building': typeof DashboardPropertyListingsEditBuildingRoute
+  '/dashboard/property/listings/edit-land': typeof DashboardPropertyListingsEditLandRoute
   '/dashboard/property/listings/transaction': typeof DashboardPropertyListingsTransactionRoute
   '/dashboard/property/sales/details': typeof DashboardPropertySalesDetailsRoute
   '/dashboard/users/clients/details': typeof DashboardUsersClientsDetailsRoute
+  '/dashboard/users/realtor/details': typeof DashboardUsersRealtorDetailsRoute
   '/dashboard/constructions/proposals': typeof DashboardConstructionsProposalsIndexRoute
   '/dashboard/property/investments': typeof DashboardPropertyInvestmentsIndexRoute
   '/dashboard/property/listings': typeof DashboardPropertyListingsIndexRoute
   '/dashboard/property/sales': typeof DashboardPropertySalesIndexRoute
   '/dashboard/property/schedule': typeof DashboardPropertyScheduleIndexRoute
   '/dashboard/users/clients': typeof DashboardUsersClientsIndexRoute
+  '/dashboard/users/realtor': typeof DashboardUsersRealtorIndexRoute
 }
 
 export interface FileRoutesById {
@@ -600,15 +679,19 @@ export interface FileRoutesById {
   '/dashboard/property/listings/create-building': typeof DashboardPropertyListingsCreateBuildingRoute
   '/dashboard/property/listings/create-land': typeof DashboardPropertyListingsCreateLandRoute
   '/dashboard/property/listings/details': typeof DashboardPropertyListingsDetailsRoute
+  '/dashboard/property/listings/edit-building': typeof DashboardPropertyListingsEditBuildingRoute
+  '/dashboard/property/listings/edit-land': typeof DashboardPropertyListingsEditLandRoute
   '/dashboard/property/listings/transaction': typeof DashboardPropertyListingsTransactionRoute
   '/dashboard/property/sales/details': typeof DashboardPropertySalesDetailsRoute
   '/dashboard/users/clients/details': typeof DashboardUsersClientsDetailsRoute
+  '/dashboard/users/realtor/details': typeof DashboardUsersRealtorDetailsRoute
   '/dashboard/constructions/proposals/': typeof DashboardConstructionsProposalsIndexRoute
   '/dashboard/property/investments/': typeof DashboardPropertyInvestmentsIndexRoute
   '/dashboard/property/listings/': typeof DashboardPropertyListingsIndexRoute
   '/dashboard/property/sales/': typeof DashboardPropertySalesIndexRoute
   '/dashboard/property/schedule/': typeof DashboardPropertyScheduleIndexRoute
   '/dashboard/users/clients/': typeof DashboardUsersClientsIndexRoute
+  '/dashboard/users/realtor/': typeof DashboardUsersRealtorIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -634,15 +717,19 @@ export interface FileRouteTypes {
     | '/dashboard/property/listings/create-building'
     | '/dashboard/property/listings/create-land'
     | '/dashboard/property/listings/details'
+    | '/dashboard/property/listings/edit-building'
+    | '/dashboard/property/listings/edit-land'
     | '/dashboard/property/listings/transaction'
     | '/dashboard/property/sales/details'
     | '/dashboard/users/clients/details'
+    | '/dashboard/users/realtor/details'
     | '/dashboard/constructions/proposals'
     | '/dashboard/property/investments'
     | '/dashboard/property/listings'
     | '/dashboard/property/sales'
     | '/dashboard/property/schedule'
     | '/dashboard/users/clients'
+    | '/dashboard/users/realtor'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -664,15 +751,19 @@ export interface FileRouteTypes {
     | '/dashboard/property/listings/create-building'
     | '/dashboard/property/listings/create-land'
     | '/dashboard/property/listings/details'
+    | '/dashboard/property/listings/edit-building'
+    | '/dashboard/property/listings/edit-land'
     | '/dashboard/property/listings/transaction'
     | '/dashboard/property/sales/details'
     | '/dashboard/users/clients/details'
+    | '/dashboard/users/realtor/details'
     | '/dashboard/constructions/proposals'
     | '/dashboard/property/investments'
     | '/dashboard/property/listings'
     | '/dashboard/property/sales'
     | '/dashboard/property/schedule'
     | '/dashboard/users/clients'
+    | '/dashboard/users/realtor'
   id:
     | '__root__'
     | '/'
@@ -695,15 +786,19 @@ export interface FileRouteTypes {
     | '/dashboard/property/listings/create-building'
     | '/dashboard/property/listings/create-land'
     | '/dashboard/property/listings/details'
+    | '/dashboard/property/listings/edit-building'
+    | '/dashboard/property/listings/edit-land'
     | '/dashboard/property/listings/transaction'
     | '/dashboard/property/sales/details'
     | '/dashboard/users/clients/details'
+    | '/dashboard/users/realtor/details'
     | '/dashboard/constructions/proposals/'
     | '/dashboard/property/investments/'
     | '/dashboard/property/listings/'
     | '/dashboard/property/sales/'
     | '/dashboard/property/schedule/'
     | '/dashboard/users/clients/'
+    | '/dashboard/users/realtor/'
   fileRoutesById: FileRoutesById
 }
 
@@ -765,15 +860,19 @@ export const routeTree = rootRoute
         "/dashboard/property/listings/create-building",
         "/dashboard/property/listings/create-land",
         "/dashboard/property/listings/details",
+        "/dashboard/property/listings/edit-building",
+        "/dashboard/property/listings/edit-land",
         "/dashboard/property/listings/transaction",
         "/dashboard/property/sales/details",
         "/dashboard/users/clients/details",
+        "/dashboard/users/realtor/details",
         "/dashboard/constructions/proposals/",
         "/dashboard/property/investments/",
         "/dashboard/property/listings/",
         "/dashboard/property/sales/",
         "/dashboard/property/schedule/",
-        "/dashboard/users/clients/"
+        "/dashboard/users/clients/",
+        "/dashboard/users/realtor/"
       ]
     },
     "/home": {
@@ -843,6 +942,14 @@ export const routeTree = rootRoute
       "filePath": "dashboard/property/listings/details.tsx",
       "parent": "/dashboard"
     },
+    "/dashboard/property/listings/edit-building": {
+      "filePath": "dashboard/property/listings/edit-building.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/property/listings/edit-land": {
+      "filePath": "dashboard/property/listings/edit-land.tsx",
+      "parent": "/dashboard"
+    },
     "/dashboard/property/listings/transaction": {
       "filePath": "dashboard/property/listings/transaction.tsx",
       "parent": "/dashboard"
@@ -853,6 +960,10 @@ export const routeTree = rootRoute
     },
     "/dashboard/users/clients/details": {
       "filePath": "dashboard/users/clients/details.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/users/realtor/details": {
+      "filePath": "dashboard/users/realtor/details.tsx",
       "parent": "/dashboard"
     },
     "/dashboard/constructions/proposals/": {
@@ -877,6 +988,10 @@ export const routeTree = rootRoute
     },
     "/dashboard/users/clients/": {
       "filePath": "dashboard/users/clients/index.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/users/realtor/": {
+      "filePath": "dashboard/users/realtor/index.tsx",
       "parent": "/dashboard"
     }
   }

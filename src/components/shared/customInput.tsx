@@ -12,6 +12,8 @@ interface IProps {
     icon?: React.ReactNode,
     iconback?: React.ReactNode,
     setValue: (value: string) => void, 
+    errors?: any,
+    touched?: any
 }
 
 export default function CustomInput(
@@ -24,7 +26,9 @@ export default function CustomInput(
         hasBackIcon,
         icon,
         iconback,
-        setValue
+        setValue,
+        errors,
+        touched
     }: IProps) { 
 
     return (
@@ -50,6 +54,7 @@ export default function CustomInput(
                         placeholder={placeholder}
                     />
                 </div>
+                {touched && errors && <div className=' text-red-600 text-xs ' >{errors}</div>}
             </div>
         </div>
     )

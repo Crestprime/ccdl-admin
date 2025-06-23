@@ -8,10 +8,13 @@ import { BathroomIcon, BedroomIcon, FloorIcon, HouseIcon, KitchenIcon, Livingroo
 import { dateFormat } from "@/utils/dateFormat";
 import { numberFormat, numberFormatNaire } from "@/utils/formatNumberWithK";
 import { LoadingAnimation } from "@/components/shared";
+import { useNavigate } from "@tanstack/react-router";
 
-export default function ListingDetails({ id }: { id: string }) {
+export default function ListingDetails({ id, type }: { id: string, type: string }) {
 
     const { data, isLoading } = useFetchData<IBuildingListingData>(`/admin-property/property/${id}`, "property" + id);
+
+    const navigate = useNavigate()
 
     return (
         <LoadingAnimation loading={isLoading} >
@@ -34,7 +37,9 @@ export default function ListingDetails({ id }: { id: string }) {
                         <div role="button" className=" w-9 h-9 rounded-full border border-[#FECDCA] text-[#D92D20] bg-[#FEF3F2] flex justify-center items-center " >
                             <RiDeleteBin2Line size={"17px"} />
                         </div>
-                        <div role="button" className=" w-9 h-9 rounded-full border flex justify-center bg-[#3170F3] text-white items-center " >
+                        <div role="button" onClick={()=> navigate({
+                            to: type === "buildings" ? `/dashboard/property/listings/edit-building?id=${data?.property?.id}&type=${type}` : `/dashboard/property/listings/edit-land?id=${data?.property?.id}&type=${type}`
+                        })} className=" w-9 h-9 rounded-full border flex justify-center bg-[#3170F3] text-white items-center " >
                             <RiPencilLine size={"17px"} />
                         </div>
                     </div>
@@ -44,7 +49,7 @@ export default function ListingDetails({ id }: { id: string }) {
                         <img src={data?.property?.media[0]} alt={data?.property?.media[0]} className=" w-full h-full object-cover rounded-2xl " />
                     </div>
                     <div className=" w-full grid grid-cols-2 gap-3 h-[373px] relative " >
-                        {data?.property?.media?.map((item, index) => {
+                        {data?.property?.media?.map((item: string, index: number) => {
                             if (index !== 0 && index <= 4) {
                                 return (
                                     <div key={index} className=" w-full h-[180px] rounded-2xl bg-gray-600 " >

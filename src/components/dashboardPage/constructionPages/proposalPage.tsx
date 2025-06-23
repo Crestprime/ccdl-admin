@@ -1,8 +1,16 @@
 import { ClientConstruction } from "@/components/userComponents";
+import { useFetchData } from "@/hooks/useFetchData";
 import { RiBuilding2Fill, RiCoinsFill } from "@remixicon/react";
 
 
 export default function ConstructionPage() {
+
+
+    const { data, isLoading } = useFetchData<Array<any>>(`/admin-construction/proposals`, "proposals");
+    
+    console.log(data);
+    
+
     return (
         <div className=" w-full flex h-auto gap-6 flex-col  " >
             <div className=" w-full flex justify-between pb-4 border-b items-center " >
@@ -47,7 +55,7 @@ export default function ConstructionPage() {
                 </div>
             </div>
             <div className=" w-full " >
-                <ClientConstruction />
+                <ClientConstruction id={""} />
             </div>
         </div>
     )

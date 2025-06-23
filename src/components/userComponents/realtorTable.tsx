@@ -1,16 +1,17 @@
 import { useNavigate } from "@tanstack/react-router"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table"
 import { useFetchData } from "@/hooks/useFetchData";
-import { IUser } from "@/models/user";
+import { IAgent } from "@/models/user";
 import { LoadingAnimation } from "../shared";
 import { dateFormat } from "@/utils/dateFormat";
-import { numberFormatNaire } from "@/utils/formatNumberWithK";
+import { numberFormat } from "@/utils/formatNumberWithK";
 
-export default function ClientTable() {
+
+export default function RealtorTable() {
 
     const navigate = useNavigate()
 
-    const { data, isLoading } = useFetchData<Array<IUser>>(`/admin/users`, "user");
+    const { data, isLoading } = useFetchData<Array<IAgent>>(`/admin/users/agents`, "user");
 
     return (
         <LoadingAnimation loading={isLoading} >
@@ -19,9 +20,10 @@ export default function ClientTable() {
                 <TableHeader>
                     <TableRow>
                         <TableHead>Client Name</TableHead>
-                        <TableHead>No. of Property </TableHead>
-                        <TableHead>Amount</TableHead>
-                        <TableHead>Active Investments</TableHead>
+                        {/* <TableHead>Account Type</TableHead> */}
+                        <TableHead>Property sold</TableHead>
+                        <TableHead>Referrals</TableHead>
+                        {/* <TableHead>Status</TableHead> */}
                         <TableHead>Date Joined</TableHead>
                         <TableHead>Last Activity</TableHead>
                     </TableRow>
@@ -30,7 +32,7 @@ export default function ClientTable() {
                     {data?.map((item, index) => {
                         return (
                             <TableRow onClick={() => navigate({
-                                to: `/dashboard/users/clients/details?id=${item?.id}`
+                                to: `/dashboard/users/realtor/details?id=${item?.id}`
                             })} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
                                 <TableCell className="">
                                     <div className=" flex gap-2 items-center " >
@@ -44,15 +46,20 @@ export default function ClientTable() {
                                         <p>{item?.firstName + " " + item?.lastName}</p>
                                     </div>
                                 </TableCell>
-                                <TableCell >
+                                {/* <TableCell >
                                     {numberFormatNaire(item?.reservations)}
+                                </TableCell> */}
+                                <TableCell>
+                                    {numberFormat(item?.statistics?.soldProperties)}
                                 </TableCell>
                                 <TableCell>
-                                    {numberFormatNaire(item?.totalAmount)}
+                                    {numberFormat(item?.statistics?.totalEarnings)}
                                 </TableCell>
-                                <TableCell>
-                                    {numberFormatNaire(item?.investments)}
-                                </TableCell>
+                                {/* <TableCell>
+                                    <div className={` ${item?.status?.includes("Not") ? " text-error800 bg-error100 " : item?.status?.includes("Verified") ? " text-success800  bg-success100 " : " text-warning800 bg-warning100 "} px-2 py-[2px] rounded-2xl w-fit text-xs font-medium `} >
+                                        {item?.status}
+                                    </div>
+                                </TableCell> */}
                                 <TableCell>
                                     {dateFormat(item?.createdAt)}
                                 </TableCell>
