@@ -16,7 +16,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { RiAccountCircleFill, RiBuilding2Fill, RiFolderOpenFill, RiHome4Fill, RiInboxArchiveFill, RiLayout2Fill, RiPieChartFill, RiSettings3Fill, RiWalletFill } from "@remixicon/react"
+import { RiAccountCircleFill, RiBuilding2Fill, RiFolderOpenFill, RiHome4Fill, RiPieChartFill, RiSettings3Fill, RiWalletFill } from "@remixicon/react"
 
 const data: any = {
   user: {

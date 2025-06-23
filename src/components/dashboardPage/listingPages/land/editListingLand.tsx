@@ -13,7 +13,7 @@ export default function EditListingLand(
 ) {
 
     const { formikLand: formik, isPendingland, uploading } = useEditListing(id)
-    const { updateImage } = useImage((state) => state)
+    const { updatePreview } = useImage((state) => state)
     const navigate = useNavigate()
 
     const { data, isLoading } = useFetchData<IBuildingListingData>(`/admin-property/property/${id}`, "property" + id);
@@ -25,6 +25,10 @@ export default function EditListingLand(
                 price: item.price,
                 size: item.plotSize
             }));
+
+            console.log(data?.plots);
+            console.log(simplifiedData);
+            
 
             formik?.setFieldValue("name", data?.property?.name)
             formik?.setFieldValue("category", data?.property?.category)
@@ -50,10 +54,9 @@ export default function EditListingLand(
             formik?.setFieldValue("level3", data?.property?.level3)
 
             formik?.setFieldValue("plots", simplifiedData)
-            updateImage(data?.property?.media)
+            updatePreview(data?.property?.media)
         }
     }, [data])
-
 
     return (
         <LoadingAnimation loading={isLoading} >
@@ -68,7 +71,7 @@ export default function EditListingLand(
                         <Button variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >
                             Save as Draft
                         </Button>
-                        <CustomButton variant={"main"} onClick={() => formik?.handleSubmit()} className=" h-[40px] text-sm font-medium rounded-full " isLoading={isPendingland || uploading} >
+                        <CustomButton variant={"main"} type="button"  onClick={() => formik?.handleSubmit()} className=" h-[40px] text-sm font-medium rounded-full " isLoading={isPendingland || uploading} >
                             Publish
                         </CustomButton>
                     </div>

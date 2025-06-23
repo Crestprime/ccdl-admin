@@ -9,60 +9,10 @@ import { dateFormat } from "@/utils/dateFormat";
 
 
 export default function TransactionTab() {
-
-    const datainfo = [
-        {
-            name: "TBF Bakery",
-            email: "olivia@gmail.com",
-            date: "Tue 5:40am",
-            amount: "₦300,000.00",
-            bonus: "10% Bonus",
-            property: "Palmgrove  Estate, Ikot Akpan Etok, Ibesikpo Asutan, Akwa ibom State",
-            type: "438 sqm ・Residential ・ Land"
-        },
-        {
-            name: "TBF Bakery",
-            email: "olivia@gmail.com",
-            date: "Tue 5:40am",
-            amount: "₦300,000.00",
-            bonus: "10% Bonus",
-            property: "Palmgrove  Estate, Ikot Akpan Etok, Ibesikpo Asutan, Akwa ibom State",
-            type: "438 sqm ・Residential ・ Land"
-        },
-        {
-            name: "TBF Bakery",
-            email: "olivia@gmail.com",
-            date: "Tue 5:40am",
-            amount: "₦300,000.00",
-            bonus: "10% Bonus",
-            property: "Palmgrove  Estate, Ikot Akpan Etok, Ibesikpo Asutan, Akwa ibom State",
-            type: "438 sqm ・Residential ・ Land"
-        },
-        {
-            name: "TBF Bakery",
-            email: "olivia@gmail.com",
-            date: "Tue 5:40am",
-            amount: "₦300,000.00",
-            bonus: "10% Bonus",
-            property: "Palmgrove  Estate, Ikot Akpan Etok, Ibesikpo Asutan, Akwa ibom State",
-            type: "438 sqm ・Residential ・ Land"
-        },
-        {
-            name: "TBF Bakery",
-            email: "olivia@gmail.com",
-            date: "Tue 5:40am",
-            amount: "₦300,000.00",
-            bonus: "10% Bonus",
-            property: "Palmgrove  Estate, Ikot Akpan Etok, Ibesikpo Asutan, Akwa ibom State",
-            type: "438 sqm ・Residential ・ Land"
-        }
-    ]
-
+ 
 
     const { data, isLoading } = useFetchData<Array<ITransaction>>(`/admin/transactions`, "transactions");
-
-    console.log(data);
-
+ 
 
     return (
         <LoadingAnimation loading={isLoading} > 

@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useImage } from '@/components/global-state/useImageData';
 // import { transformTextToNumbers } from '@/utils/transformNumber';
 import Cookies from "js-cookie";
+import { transformTextToNumbers } from '@/utils/transformNumber';
 
 const useEditListing = (id?: string) => {
     const userId = Cookies.get("userid")
@@ -16,7 +17,7 @@ const useEditListing = (id?: string) => {
     const navigate = useNavigate()
     const [payload, setPayload] = useState<CreateBuildingListing>({} as CreateBuildingListing)
     const [landPayload, setLandPayload] = useState<CreateLandListing>({} as CreateLandListing)
-    const { image } = useImage((state) => state)
+    const { image, preview } = useImage((state) => state)
 
     const { mutate: uploadImage, isPending: uploading } = useMutation({
         mutationFn: (data: any) => httpService.post(`/file-upload/upload-multiple?uploadType=ITEM_IMAGE`, data),
@@ -25,9 +26,9 @@ const useEditListing = (id?: string) => {
         },
         onSuccess: (data: any) => {
             if (formik?.values?.name) {
-                createBuildingMutate({ ...payload, media: data?.data?.data })
+                createBuildingMutate({ ...payload, media: [...preview, ...data?.data?.data] })
             } else {
-                createLandMutate({ ...landPayload, media: data?.data?.data, gisData: JSON.stringify({}) })
+                createLandMutate({ ...landPayload, media: [...preview, ...data?.data?.data], gisData: JSON.stringify({}) })
             }
         },
     });
@@ -136,22 +137,21 @@ const useEditListing = (id?: string) => {
             level3: Yup.number().required('Required'),
         }),
         onSubmit: (data: CreateBuildingListing) => {
+ 
+            const transformedData = transformTextToNumbers(data);
+            if (image?.length > 0) {
+                const formdata = new FormData()
+                image.map((item) => { 
+                    formdata.append("file", item)
+                })
+                uploadImage(formdata)
+                setPayload(transformedData)
+            } else if (image?.length === 0 && preview?.length === 0) {
+                toast.error("Please Upload Image")
+            } else {
+                createBuildingMutate({ ...transformedData, media: preview })
+            }
 
-            // if (image?.length <= 0) {
-            //     toast.error("Please Upload Image")
-            // } else {
-            //     const formdata = new FormData()
-            //     image.map((item) => {
-            //         if(!item?.include("http"))
-            //         formdata.append("file", item)
-            //     })
-
-            //     const transformedData = transformTextToNumbers(data);
-            //     uploadImage(formdata)
-            //     setPayload(transformedData)
-            // }
-
-            createBuildingMutate({ ...data, media: image })
         },
     });
 
@@ -189,7 +189,7 @@ const useEditListing = (id?: string) => {
             name: Yup.string().required('Required'),
             category: Yup.string().required('Required'),
             description: Yup.string().required('Required'),
-            buildingType: Yup.string().required('Required'),
+            // buildingType: Yup.string().required('Required'),
             // tags: Yup.array().of(Yup.string()),
             // bedrooms: Yup.number().min(0).required('Required'),
             // livingSpace: Yup.number().min(0).required('Required'),
@@ -204,12 +204,12 @@ const useEditListing = (id?: string) => {
             // heatingAndCooling: Yup.array().of(Yup.string()).required('Required'),
             // energyEfficiency: Yup.array().of(Yup.string()).required('Required'),
             // security: Yup.array().of(Yup.string()).required('Required'),
-            yearOfConstruction: Yup.string().required('Required'),
-            condition: Yup.string().required('Required'),
+            // yearOfConstruction: Yup.string().required('Required'),
+            // condition: Yup.string().required('Required'),
             // communityAmenities: Yup.array().of(Yup.string()).required('Required'),
             // publicTransport: Yup.array().of(Yup.string()).required('Required'),
-            shellFinishedPrice: Yup.number().min(0).required('Required'),
-            finishedPrice: Yup.number().min(0).required('Required'),
+            // shellFinishedPrice: Yup.number().min(0).required('Required'),
+            // finishedPrice: Yup.number().min(0).required('Required'),
             // media: Yup.array().of(Yup.string()).required('Required'),
             address: Yup.string().required('Required'),
             lga: Yup.string().required('Required'),
@@ -223,7 +223,7 @@ const useEditListing = (id?: string) => {
             level2: Yup.number().required('Required'),
             level3: Yup.number().required('Required'),
         }),
-        onSubmit: (data: CreateLandListing) => {
+        onSubmit: (data: CreateLandListing) => { 
 
             // if (image?.length <= 0) {
             //     toast.error("Please Upload Image")
@@ -238,7 +238,23 @@ const useEditListing = (id?: string) => {
             //     setLandPayload(transformedData)
             // }
 
-            createLandMutate({ ...data, media: image })
+            // createLandMutate({ ...data, media: image })
+            const transformedData = transformTextToNumbers(data);
+
+            if (image?.length > 0) {
+                const formdata = new FormData()
+                image.map((item) => { 
+                    formdata.append("file", item)
+                })
+
+                const transformedData = transformTextToNumbers(data);
+                uploadImage(formdata)
+                setLandPayload(transformedData)
+            } else if (image?.length === 0 && preview?.length === 0) {
+                toast.error("Please Upload Image")
+            } else {
+                createLandMutate({ ...transformedData, media: preview })
+            }
         },
     });
 

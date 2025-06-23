@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../ui/select'; 
 
 interface optionProps {

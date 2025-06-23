@@ -13,7 +13,7 @@ export default function EditListingBuilding(
     { type, id }: { type: string, id: string }
 ) {
 
-    const { formik } = useEditListing(id)
+    const { formik, uploading, isPendingBuilding } = useEditListing(id)
     const { updatePreview } = useImage((state) => state)
     const navigate = useNavigate()
 
@@ -59,6 +59,9 @@ export default function EditListingBuilding(
             updatePreview(data?.property?.media)
         }
     }, [data]) 
+
+    console.log(formik?.errors);
+    
     
 
     return (
@@ -74,7 +77,7 @@ export default function EditListingBuilding(
                         <Button variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >
                             Save as Draft
                         </Button>
-                        <CustomButton type="button" onClick={() => formik?.handleSubmit()} variant={"main"} className=" h-[40px] text-sm font-medium rounded-full " >
+                        <CustomButton type="button" onClick={() => formik?.handleSubmit()} isLoading={uploading || isPendingBuilding} variant={"main"} className=" h-[40px] text-sm font-medium rounded-full " >
                             Publish
                         </CustomButton>
                     </div>

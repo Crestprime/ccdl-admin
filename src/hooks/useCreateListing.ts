@@ -232,7 +232,7 @@ const useCreateListing = () => {
 
                 const transformedData = transformTextToNumbers(data);
                 uploadImage(formdata)
-                setPayload(transformedData)
+                setLandPayload(transformedData)
             }
         },
     });
