@@ -36,17 +36,20 @@ export interface CreateBuildingListing {
     "adminId": number | any,
     "isDraft": boolean
 }
+
+export interface IPlots {
+    "id": number | any,
+    "propertyId": number | any,
+    "plotSize": string,
+    "price": number | any,
+    "status": string,
+    "createdAt": string,
+    "updatedAt": string,
+    "deleted": boolean
+}
+
 export interface IBuildingListingData {
-    plots?: Array<{
-        "id": number | any,
-        "propertyId": number | any,
-        "plotSize": string,
-        "price": number | any,
-        "status": string,
-        "createdAt": string,
-        "updatedAt": string,
-        "deleted": boolean
-    }>,
+    plots?: Array<IPlots>,
     property: IProperty;
 }
 

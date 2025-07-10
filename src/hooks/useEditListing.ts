@@ -59,6 +59,25 @@ const useEditListing = (id?: string) => {
         },
     });
 
+    const { mutate: updatePlot, isPending: isPendingplots } = useMutation({
+        mutationFn: (data: {
+            id: string
+            payload: {
+                "plotSize": string,
+                "price": string
+            }
+          }) => httpService.put(`/admin-property/plot/${data?.id}`, data.payload),
+        onError: (error: any) => {
+            toast.error(error?.response?.data?.message)
+        },
+        onSuccess: (data: any) => {
+            toast.success(data?.data?.message)
+            // navigate({
+            //     to: "/dashboard/property/listings?type=LAND"
+            // })
+        },
+    });
+
     const formik = useFormik({
         initialValues: {
             "name": "",
@@ -263,7 +282,9 @@ const useEditListing = (id?: string) => {
         uploading,
         isPendingland,
         isPendingBuilding,
-        formikLand
+        formikLand,
+        updatePlot,
+        isPendingplots
     }
 
 }

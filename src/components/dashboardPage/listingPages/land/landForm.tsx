@@ -2,14 +2,14 @@ import { ListingCheckBox, ListingImage } from "@/components/listingComponents";
 import PlotAndPrice from "@/components/listingComponents/plotAndPrice";
 import { FormTextArea, FormInput } from "@/components/shared";
 import { featuresData } from "@/models/dummydata";
+import { IPlots } from "@/models/listing";
 import { Switch } from "@radix-ui/react-switch";
 import { RiSearch2Line } from "@remixicon/react";  
 
 
 export default function LandForm(
-    {formik, type} : {formik: any, type: string}
-) { 
-    
+    {formik, type, plots} : {formik: any, type: string, plots: IPlots | any}
+) {  
 
     return (
 
@@ -53,7 +53,7 @@ export default function LandForm(
             <div className=" w-fit " >
                 <div className=" w-[484px] relative flex flex-col gap-6 " >
                     <ListingImage />
-                    <PlotAndPrice formik={formik} name={"plots"} value={formik?.values?.plots} setValue={formik?.setFieldValue}  /> 
+                    <PlotAndPrice data={plots} formik={formik} name={"plots"} value={formik?.values?.plots} setValue={formik?.setFieldValue}  /> 
                     <div className=" w-full p-4 border flex gap-4 flex-col rounded-2xl " >
                         <p className=" font-semibold " >Initial Deposit %</p>
                         <div className=" w-full mt-1 flex flex-col gap-3 " >

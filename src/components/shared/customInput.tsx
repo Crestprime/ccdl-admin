@@ -50,7 +50,7 @@ export default function CustomInput(
                         type={type ?? "text"}
                         value={value}
                         onChange={(e)=> setValue(e.target.value)}
-                        className={` ${hasFrontIcon ? " pl-12 " : ""} `}
+                        className={` ${hasFrontIcon ? " pl-12 " : ""} h-[39px] `}
                         placeholder={placeholder}
                     />
                 </div>

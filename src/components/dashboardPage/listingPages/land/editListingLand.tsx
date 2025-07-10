@@ -18,17 +18,12 @@ export default function EditListingLand(
 
     const { data, isLoading } = useFetchData<IBuildingListingData>(`/admin-property/property/${id}`, "property" + id);
 
+
+    console.log(data?.property);
+    
+
     useEffect(() => {
-        if (!formik.values?.name) {
-
-            const simplifiedData = data?.plots?.map((item: any) => ({
-                price: item.price,
-                size: item.plotSize
-            }));
-
-            console.log(data?.plots);
-            console.log(simplifiedData);
-            
+        if (!formik.values?.name) { 
 
             formik?.setFieldValue("name", data?.property?.name)
             formik?.setFieldValue("category", data?.property?.category)
@@ -53,7 +48,7 @@ export default function EditListingLand(
             formik?.setFieldValue("level2", data?.property?.level2)
             formik?.setFieldValue("level3", data?.property?.level3)
 
-            formik?.setFieldValue("plots", simplifiedData)
+            // formik?.setFieldValue("plots", simplifiedData)
             updatePreview(data?.property?.media)
         }
     }, [data])
@@ -64,7 +59,7 @@ export default function EditListingLand(
                 <div className=" w-full flex justify-end items-center " >
                     <div className=" flex gap-4  " >
                         <Button type="button" onClick={() => navigate({
-                            to: "/dashboard/property/listings?type=BUILDING"
+                            to: `/dashboard/property/listings/details?id=${data?.property?.id}&type=lands`
                         })} variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >
                             Cancel
                         </Button>
@@ -76,7 +71,7 @@ export default function EditListingLand(
                         </CustomButton>
                     </div>
                 </div>
-                <LandForm formik={formik} type={type} />
+                <LandForm plots={data?.plots} formik={formik} type={type} />
             </div>
         </LoadingAnimation>
     )
