@@ -66,7 +66,7 @@ const useEditListing = (id?: string) => {
                 "plotSize": string,
                 "price": string
             }
-          }) => httpService.put(`/admin-property/plot/${data?.id}`, data.payload),
+        }) => httpService.put(`/admin-property/plot/${data?.id}`, data.payload),
         onError: (error: any) => {
             toast.error(error?.response?.data?.message)
         },
@@ -156,11 +156,11 @@ const useEditListing = (id?: string) => {
             level3: Yup.number().required('Required'),
         }),
         onSubmit: (data: CreateBuildingListing) => {
- 
+
             const transformedData = transformTextToNumbers(data);
             if (image?.length > 0) {
                 const formdata = new FormData()
-                image.map((item) => { 
+                image.map((item) => {
                     formdata.append("file", item)
                 })
                 uploadImage(formdata)
@@ -239,7 +239,7 @@ const useEditListing = (id?: string) => {
             level2: Yup.number().required('Required'),
             level3: Yup.number().required('Required'),
         }),
-        onSubmit: (data: CreateLandListing) => { 
+        onSubmit: (data: CreateLandListing) => {
 
             // if (image?.length <= 0) {
             //     toast.error("Please Upload Image")
@@ -255,17 +255,34 @@ const useEditListing = (id?: string) => {
             // }
 
             // createLandMutate({ ...data, media: image })
-            const transformedData = transformTextToNumbers(data);
+            let transformedData = {} as any
+            const isEmptyOrZeroValues = data?.plots.length === 0 || data?.plots.every(item => (item.price === 0 || !item.price || item.price === "") || (item.size === 0 || !item.size || item.size === ""));
+
+
+            if (isEmptyOrZeroValues && data.plots.length === 1) {
+
+                let clone = { ...data }
+
+                const { plots, ...withoutPlots } = clone;
+
+                transformedData = transformTextToNumbers(withoutPlots)
+            } else {
+                transformedData = transformTextToNumbers(data)
+            }
+
 
             if (image?.length > 0) {
                 const formdata = new FormData()
-                image.map((item) => { 
+                image.map((item) => {
                     formdata.append("file", item)
                 })
+
 
                 const transformedData = transformTextToNumbers(data);
                 uploadImage(formdata)
                 setLandPayload(transformedData)
+            } else if (isEmptyOrZeroValues && data?.plots?.length > 1) {
+                toast.error("add the plot")
             } else if (image?.length === 0 && preview?.length === 0) {
                 toast.error("Please Upload Image")
             } else {
