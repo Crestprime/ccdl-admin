@@ -164,10 +164,7 @@ const useCreateListing = () => {
             "publicTransport": [],
             "buildingRestrictions": [],
             "developmentRestriction": [],
-            "plots": [{
-                size: "",
-                price: ""
-            }],
+            "plots": [],
             "media": [],
             "gisData": {},
             "address": "",

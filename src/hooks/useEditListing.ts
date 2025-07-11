@@ -186,10 +186,7 @@ const useEditListing = (id?: string) => {
             "publicTransport": [],
             "buildingRestrictions": [],
             "developmentRestriction": [],
-            "plots": [{
-                size: "",
-                price: ""
-            }],
+            "plots": [],
             "media": [],
             "gisData": {},
             "address": "",

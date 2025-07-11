@@ -15,6 +15,10 @@
       "condition",
       "shellFinishedPrice",
       "finishedPrice",
+      "initalPaymentPercentage",
+      "level1",
+      "level2",
+      "level3"
     ];
   
     // Create a copy of the data to avoid mutating the original

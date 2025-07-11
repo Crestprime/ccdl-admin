@@ -13,7 +13,7 @@ interface IProps {
     hasBackIcon?: boolean,
     icon?: React.ReactNode,
     iconback?: React.ReactNode
-    setValue: (name: string, value: string) => void, 
+    setValue: (name: string, value: any) => void, 
     otherVaule?: any,
     errors: any,
     touched: any
@@ -37,7 +37,11 @@ export default function FormInput(
     }: IProps) {
 
     const changeHandler = (item: string) => {
-        setValue(name, item)
+        if(type === "number") {
+            setValue(name, Number(item))
+        } else {
+            setValue(name, item)
+        }
     } 
     
 

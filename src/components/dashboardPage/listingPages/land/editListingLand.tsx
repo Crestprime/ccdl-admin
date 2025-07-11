@@ -18,10 +18,6 @@ export default function EditListingLand(
 
     const { data, isLoading } = useFetchData<IBuildingListingData>(`/admin-property/property/${id}`, "property" + id);
 
-
-    console.log(data?.property);
-    
-
     useEffect(() => {
         if (!formik.values?.name) { 
 
@@ -52,6 +48,9 @@ export default function EditListingLand(
             updatePreview(data?.property?.media)
         }
     }, [data])
+
+    console.log(formik.values);
+    
 
     return (
         <LoadingAnimation loading={isLoading} >
