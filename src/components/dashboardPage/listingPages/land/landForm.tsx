@@ -8,7 +8,7 @@ import { RiSearch2Line } from "@remixicon/react";
 
 
 export default function LandForm(
-    {formik, type, plots} : {formik: any, type: string, plots: IPlots | any}
+    {formik, type, plots} : {formik: any, type: string, plots?: IPlots | any}
 ) {  
 
     return (
