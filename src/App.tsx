@@ -50,3 +50,29 @@ function App() {
 }
 
 export default App
+
+// import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom"; 
+// import { InvitePage, LoginPage, VerificationPage } from "./components/authComponents";
+ 
+
+
+// function App() {
+//   const router = createBrowserRouter(
+    
+//     createRoutesFromElements(
+//       <Route path="/">
+        
+//         <Route index element={<LoginPage />} />  
+//         <Route path="/auth/verify" element={<VerificationPage />} /> 
+//         <Route path="auth/invite" element={<InvitePage />} /> 
+//       </Route>
+//     )
+//   );
+//   return (
+//     <div className=" w-full "  style={{ fontFamily: "Axiforma-Medium" }} >
+//       <RouterProvider router={router} />
+//     </div>
+//   )
+// }
+
+// export default App
