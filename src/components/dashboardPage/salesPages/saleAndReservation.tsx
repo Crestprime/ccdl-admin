@@ -2,8 +2,8 @@ import { RiAddCircleLine, RiCalendarCheckFill, RiCoinsFill, RiKeyFill, RiSearch2
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table";
-import { useNavigate } from "@tanstack/react-router";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table"; 
+import { useNavigate } from "react-router-dom";
 
 
 export default function SaleAndReservation() {
@@ -114,9 +114,7 @@ export default function SaleAndReservation() {
                         <TableBody>
                             {data.map((item, index) => {
                                 return (
-                                    <TableRow role="button" onClick={()=> navigate({
-                                        to: "/dashboard/property/sales/details"
-                                    })} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
+                                    <TableRow role="button" onClick={()=> navigate("/dashboard/property/sales/details")} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
                                         <TableCell className="">{item?.name}</TableCell>
                                         <TableCell className="">{item?.client}</TableCell>
                                         <TableCell>

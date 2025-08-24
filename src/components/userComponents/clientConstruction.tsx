@@ -1,7 +1,7 @@
 import { useFetchData } from "@/hooks/useFetchData";
-import { RiArrowRightSFill, RiAttachmentLine, RiMailLine, RiMore2Fill } from "@remixicon/react"
-import { useNavigate } from "@tanstack/react-router"
+import { RiArrowRightSFill, RiAttachmentLine, RiMailLine, RiMore2Fill } from "@remixicon/react" 
 import { LoadingAnimation } from "../shared";
+import { useNavigate } from "react-router-dom";
 
 
 export default function ClientConstruction({ id }: { id: string }) {
@@ -23,9 +23,9 @@ export default function ClientConstruction({ id }: { id: string }) {
                 <div className=" w-fit flex gap-4 " >
                     {datainfo?.map((item, index) => {
                         return (
-                            <div role="button" onClick={() => navigate({
-                                to: "/dashboard/constructions/proposals/details"
-                            })} key={index} className=" w-[340px] border rounded-2xl flex flex-col gap-6 p-6 " >
+                            <div role="button" onClick={() => navigate(
+                                "/dashboard/constructions/proposals/details"
+                            )} key={index} className=" w-[340px] border rounded-2xl flex flex-col gap-6 p-6 " >
                                 <div className=" w-full pb-6 border-b flex justify-between items-center " >
                                     <div className=" flex gap-2 items-center " >
                                         <RiArrowRightSFill size={"24px"} />

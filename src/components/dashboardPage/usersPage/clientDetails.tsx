@@ -7,10 +7,14 @@ import { IUserInfo } from "@/models/user";
 import { dateFormat } from "@/utils/dateFormat";
 import { numberFormatNaire } from "@/utils/formatNumberWithK";
 import { RiBuilding2Fill, RiCoinsFill, RiMoneyDollarCircleFill, RiMore2Fill, RiWalletFill } from "@remixicon/react";
+import { useSearchParams } from "react-router-dom";
 
 
-export default function ClientDetails({ id }: { id: string }) {
+export default function ClientDetails() {
 
+
+    const [searchParams] = useSearchParams(); 
+    const id: any = searchParams.get("id");
     const { data, isLoading } = useFetchData<IUserInfo>(`/admin/users/${id}`, "user"); 
 
     return (

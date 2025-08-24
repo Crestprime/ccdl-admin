@@ -5,12 +5,15 @@ import { useFetchData } from "@/hooks/useFetchData";
 import { InvestmentModel } from "@/models/investment";
 import { capitalizeFLetter } from "@/utils/capitalLetter";
 import { dateFormat } from "@/utils/dateFormat";
-import { RiCoinsFill, RiUser4Fill } from "@remixicon/react";
-import { useNavigate } from "@tanstack/react-router";
+import { RiCoinsFill, RiUser4Fill } from "@remixicon/react"; 
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 
-export default function InvestmentDetails({ id }: { id: string }) {
+export default function InvestmentDetails() {
 
+
+    const [searchParams] = useSearchParams(); 
+    const id: any = searchParams.get("id");
     // const dataplans = [
     //     {
     //         name: "Sunset Villa - Unit A4",
@@ -131,9 +134,7 @@ export default function InvestmentDetails({ id }: { id: string }) {
                             <p className=" text-gray500 " >{data?.property?.squareFoot} sqm</p>
                         </div>
                         <div className=" w-full border rounded-b-2xl p-4  " >
-                            <Button onClick={() => navigate({
-                                to: `/dashboard/property/listings/details?id=${data?.property?.id}`,
-                            })} variant={"main"} className=" h-9 rounded-full " >View property</Button>
+                            <Button onClick={() => navigate(`/dashboard/property/listings/details?id=${data?.property?.id}`)} variant={"main"} className=" h-9 rounded-full " >View property</Button>
                         </div>
                     </div>
                 </div>

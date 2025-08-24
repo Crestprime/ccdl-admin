@@ -1,17 +1,20 @@
 // import useListing from "@/hooks/useListing";
 import { Button } from "../../../ui/button";
-import { CustomButton, LoadingAnimation } from "@/components/shared";
-import { useNavigate } from "@tanstack/react-router"; 
+import { CustomButton, LoadingAnimation } from "@/components/shared"; 
 import BuildingForm from "./buildingForm";
 import { useFetchData } from "@/hooks/useFetchData";
 import { IBuildingListingData } from "@/models/listing";
 import { useEffect } from "react";
 import { useImage } from "@/components/global-state/useImageData";
 import useEditListing from "@/hooks/useEditListing";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
-export default function EditListingBuilding(
-    { type, id }: { type: string, id: string }
-) {
+export default function EditListingBuilding() {
+ 
+
+    const [searchParams] = useSearchParams();
+    const type: any = searchParams.get("type");
+    const id: any = searchParams.get("id");
 
     const { formik, uploading, isPendingBuilding } = useEditListing(id)
     const { updatePreview } = useImage((state) => state)
@@ -69,9 +72,7 @@ export default function EditListingBuilding(
             <div className=" w-full flex h-auto gap-6 flex-col  " >
                 <div className=" w-full flex justify-end items-center " >
                     <div className=" flex gap-4  " >
-                        <Button type="button" onClick={() => navigate({
-                            to: "/dashboard/property/listings?type=BUILDING"
-                        })} variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >
+                        <Button type="button" onClick={() => navigate("/dashboard/property/listings?type=BUILDING" )} variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >
                             Cancel
                         </Button>
                         <Button variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >

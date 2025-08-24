@@ -74,11 +74,23 @@
 }
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border !font-OpenRunde-Regular;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground ;
   }
+} 
+
+.font-bold {
+  font-family: OpenRunde-Bold !important;
+}
+
+.font-medium {
+  font-family: OpenRunde-Medium !important;
+}
+
+.font-semibold {
+  font-family: OpenRunde-SemiBold !important;
 }
 
 @font-face {
@@ -103,6 +115,7 @@
 
 html, body {
   background-color: #f2f4f7 !important;
+  font-family: "OpenRunde-Regular" !important;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

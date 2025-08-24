@@ -32,10 +32,11 @@ export default function ClientInvestmentTable({ id }: { id: string }) {
                                     00{index + 1}
                                 </TableCell>
                                 <TableCell>
-                                    {/* {item?.name} */}
+                                    {item?.plan?.property?.name}
                                 </TableCell>
                                 <TableCell>
-                                    {/* {item?.tenor} */}
+                                {/* {item?.plan?.property?.} */}
+                                ----
                                 </TableCell>
                                 <TableCell>
                                     <div className={` ${item?.status?.includes("ACTIVE") ? " text-blue800 bg-blue100 " : item?.status?.includes("Matured") ? " text-success800  bg-success100 " : " text-error800 bg-error100 "} px-2 py-[2px] rounded-2xl w-fit text-xs font-medium `} >

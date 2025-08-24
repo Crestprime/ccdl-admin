@@ -7,10 +7,15 @@ import { IBuildingListingData } from "@/models/listing";
 import { BathroomIcon, BedroomIcon, FloorIcon, HouseIcon, KitchenIcon, LivingroomIcon, PlotIcon } from "@/assets/svg";
 import { dateFormat } from "@/utils/dateFormat";
 import { numberFormat, numberFormatNaire } from "@/utils/formatNumberWithK";
-import { LoadingAnimation } from "@/components/shared";
-import { useNavigate } from "@tanstack/react-router";
+import { LoadingAnimation } from "@/components/shared"; 
+import { useNavigate, useSearchParams } from "react-router-dom";
 
-export default function ListingDetails({ id, type }: { id: string, type: string }) {
+export default function ListingDetails() {
+
+
+    const [searchParams] = useSearchParams();
+    const type: any = searchParams.get("type");
+    const id: any = searchParams.get("id");
 
     const { data, isLoading } = useFetchData<IBuildingListingData>(`/admin-property/property/${id}`, "property" + id);
 
@@ -37,9 +42,9 @@ export default function ListingDetails({ id, type }: { id: string, type: string 
                         <div role="button" className=" w-9 h-9 rounded-full border border-[#FECDCA] text-[#D92D20] bg-[#FEF3F2] flex justify-center items-center " >
                             <RiDeleteBin2Line size={"17px"} />
                         </div>
-                        <div role="button" onClick={()=> navigate({
-                            to: type === "buildings" ? `/dashboard/property/listings/edit-building?id=${data?.property?.id}&type=${type}` : `/dashboard/property/listings/edit-land?id=${data?.property?.id}&type=${type}`
-                        })} className=" w-9 h-9 rounded-full border flex justify-center bg-[#3170F3] text-white items-center " >
+                        <div role="button" onClick={() => navigate(
+                            type === "buildings" ? `/dashboard/property/listings/edit-building?id=${data?.property?.id}&type=${type}` : `/dashboard/property/listings/edit-land?id=${data?.property?.id}&type=${type}`
+                        )} className=" w-9 h-9 rounded-full border flex justify-center bg-[#3170F3] text-white items-center " >
                             <RiPencilLine size={"17px"} />
                         </div>
                     </div>

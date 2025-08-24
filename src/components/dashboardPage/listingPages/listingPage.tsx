@@ -2,12 +2,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
 import { useFetchData } from "@/hooks/useFetchData"; 
 import { LoadingAnimation } from "@/components/shared";
 import { CreateListingBtn, PropertyListing } from "@/components/listingComponents";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, useSearchParams } from "react-router-dom";
+// import { useNavigate } from "@tanstack/react-router";
 
 
-export default function ListingPage(
-    { type }: { type: string }
-)  {  
+export default function ListingPage()  {  
+
+  const [searchParams] = useSearchParams();
+  const type: any = searchParams.get("type");
 
     const { data, isLoading} = useFetchData<any>(`/admin-property/property-by-category`, "property "+type, {
         category: type
@@ -17,9 +19,7 @@ export default function ListingPage(
 
     const clickHandler = (item: string) => { 
         
-        navigate({
-            to: `/dashboard/property/listings?type=${item}`
-        })
+        navigate(`/dashboard/property/listings?type=${item}`)
     }
 
     return (

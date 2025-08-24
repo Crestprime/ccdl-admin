@@ -1,10 +1,10 @@
-import { useNavigate } from "@tanstack/react-router"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table"
 import { useFetchData } from "@/hooks/useFetchData";
 import { IUser } from "@/models/user";
 import { LoadingAnimation } from "../shared";
 import { dateFormat } from "@/utils/dateFormat";
 import { numberFormatNaire } from "@/utils/formatNumberWithK";
+import { useNavigate } from "react-router-dom";
 
 export default function ClientTable() {
 
@@ -29,9 +29,8 @@ export default function ClientTable() {
                 <TableBody>
                     {data?.map((item, index) => {
                         return (
-                            <TableRow role="button" onClick={() => navigate({
-                                to: `/dashboard/users/clients/details?id=${item?.id}`
-                            })} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
+                            <TableRow role="button" onClick={() => navigate(`/dashboard/users/clients/details?id=${item?.id}`
+                            )} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
                                 <TableCell className="">
                                     <div className=" flex gap-2 items-center " >
                                         <div className=" w-fit " >

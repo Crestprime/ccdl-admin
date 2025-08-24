@@ -2,8 +2,7 @@ import { RiCalendarCheckFill, RiCoinsFill, RiKeyFill, RiSearch2Line } from "@rem
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
 import { Input } from "../../ui/input";
 // import { Button } from "../../ui/button";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table";
-import { useNavigate } from "@tanstack/react-router";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table"; 
 import CreateInvestmentBtn from "./createInvestmentBtn";
 import { useFetchData } from "@/hooks/useFetchData";
 import { InvestmentModel, InvestmentPlan } from "@/models/investment";
@@ -11,6 +10,7 @@ import { dateFormat } from "@/utils/dateFormat";
 import { LoadingAnimation } from "@/components/shared";
 import { numberFormatNaire } from "@/utils/formatNumberWithK";
 import { capitalizeFLetter } from "@/utils/capitalLetter";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Investment() {
@@ -132,9 +132,8 @@ export default function Investment() {
                             <TableBody>
                                 {plans?.map((item, index) => {
                                     return (
-                                        <TableRow role="button" onClick={() => navigate({
-                                            to: `/dashboard/property/investments/details?id=${item?.id}`
-                                        })} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
+                                        <TableRow role="button" onClick={() => navigate(`/dashboard/property/investments/details?id=${item?.id}`
+                                        )} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
                                             <TableCell className="">{item?.property?.name}</TableCell>
                                             <TableCell className="">{item?.duration} months</TableCell>
                                             <TableCell className="">{item?.roi}%</TableCell>

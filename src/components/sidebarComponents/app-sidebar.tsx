@@ -16,7 +16,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { RiAccountCircleFill, RiBuilding2Fill, RiFolderOpenFill, RiHome4Fill, RiPieChartFill, RiSettings3Fill, RiWalletFill } from "@remixicon/react"
+import { RiAccountCircleFill, RiBuilding2Fill, RiFolderOpenFill, RiHome4Fill, RiWalletFill } from "@remixicon/react"
 
 const data: any = {
   user: {
@@ -32,13 +32,6 @@ const data: any = {
       isActive: false,
       items: []
     },
-    // {
-    //   title: "Inbox",
-    //   url: "/dashboard/inbox",
-    //   icon: RiInboxArchiveFill,
-    //   isActive: true,
-    //   items: []
-    // },
     {
       title: "Property",
       url: "property",
@@ -55,11 +48,7 @@ const data: any = {
         {
           title: "Sales & Reservations",
           url: "/dashboard/property/sales",
-        },
-        {
-          title: "Schedule",
-          url: "/dashboard/property/schedule",
-        },
+        }
       ],
     },
     {
@@ -78,36 +67,9 @@ const data: any = {
         {
           title: "Staff",
           url: "#",
-        },
-        // {
-        //   title: "Suppliers",
-        //   url: "#",
-        // },
+        }
       ],
-    },
-    // {
-    //   title: "Materials",
-    //   url: "#",
-    //   icon: RiLayout2Fill,
-    //   items: [
-    //     {
-    //       title: "General",
-    //       url: "#",
-    //     },
-    //     {
-    //       title: "Team",
-    //       url: "#",
-    //     },
-    //     {
-    //       title: "Billing",
-    //       url: "#",
-    //     },
-    //     {
-    //       title: "Limits",
-    //       url: "#",
-    //     },
-    //   ],
-    // },
+    }, 
     {
       title: "Construction",
       url: "construction",
@@ -126,37 +88,15 @@ const data: any = {
     {
       title: "Wallet",
       url: "/dashboard/wallet/alltransaction",
-      icon: RiWalletFill,
-      // items: [
-      //   {
-      //     title: "All Transaction",
-      //     url: "/dashboard/wallet/alltransaction",
-      //   }, 
-      //   {
-      //     title: "Recent Transactions",
-      //     url: "/dashboard/wallet/recenttransaction",
-      //   }
-      // ]
-    },
-    {
-      title: "Reports & Analytics",
-      url: "#",
-      icon: RiPieChartFill,
-      items: []
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: RiSettings3Fill,
-      items: []
-    },
+      icon: RiWalletFill, 
+    }
   ],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
-    <Sidebar className=" w-[17vw] !bg-[#f2f4f7] " variant="inset" {...props}>
+    <Sidebar className=" !bg-[#f2f4f7] " variant="inset" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>

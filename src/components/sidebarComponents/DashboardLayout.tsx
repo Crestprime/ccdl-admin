@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom"
 import { AppSidebar } from "./app-sidebar"
 // import {
 //   Breadcrumb,
@@ -15,13 +16,13 @@ import {
 } from "@/components/ui/sidebar"
 // import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "../ui/breadcrumb"
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default function DashboardLayout() {
   return (
-    <SidebarProvider className=" w-screen overflow-x-hidden p-3 !bg-[#f2f4f7] " >
-      <div className=" w-fit " >
+    <SidebarProvider className=" p-3 !bg-[#f2f4f7] " >
+      {/* <div className=" w-fit " > */}
         <AppSidebar />
-      </div>
-      <SidebarInset className=" w-full relative rounded-lg h-full overflow-y-auto " >
+      {/* </div> */}
+      <SidebarInset className=" flex-1 relative rounded-lg h-full overflow-y-auto " >
         <header className="flex h-16 w-fit shrink-0 items-center gap-2">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
@@ -41,8 +42,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </Breadcrumb> */}
           </div>
         </header>
-        <div className="flex w-full overflow-x-hidden flex-col gap-4 p-4 pt-0">
-          {children}
+        <div className="flex flex-1 overflow-x-hidden flex-col gap-4 p-4 pt-0">
+          {/* {children} */}
+          <Outlet />
         </div>
       </SidebarInset>
     </SidebarProvider>

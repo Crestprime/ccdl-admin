@@ -1,6 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
-import { useNavigate } from "@tanstack/react-router";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog"; 
 // import { BuildingImage, EstateBuildingImage, EstateLandImage, LandImage } from "@/assets/svg";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import { useState } from "react";
@@ -16,13 +16,9 @@ export default function CreateListingBtn() {
 
     const clickHanlder = () => {
         if (tab.includes("building")) {
-            navigate({
-                to: `/dashboard/property/listings/create-building?type=${tab}`
-            })
+            navigate( `/dashboard/property/listings/create-building?type=${tab}` )
         } else {
-            navigate({
-                to: `/dashboard/property/listings/create-land?type=${tab}`
-            })
+            navigate(`/dashboard/property/listings/create-land?type=${tab}` )
         }
     }
 

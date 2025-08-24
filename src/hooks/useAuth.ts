@@ -1,10 +1,10 @@
 import { ILogin, IVerify, Iinvite } from "@/models/auth";
 import { unsecureHttpService } from "@/services/httpService";
-import { useMutation } from "@tanstack/react-query";
-import { useNavigate } from "@tanstack/react-router";
+import { useMutation } from "@tanstack/react-query"; 
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const useAuth = () => {  
 
@@ -26,11 +26,8 @@ const useAuth = () => {
             toast.error(error?.response?.data?.message)
         },
         onSuccess: (data: any) => { 
-            toast.success(data?.data?.message)
-
-            navigate({
-                to: "/auth/verify"
-            }) 
+            toast.success(data?.data?.message) 
+            navigate("/auth/verify") 
         },
     });   
 
@@ -43,9 +40,7 @@ const useAuth = () => {
         onSuccess: (data: any) => { 
             toast.success(data?.data?.message)
 
-            navigate({
-                to: "/auth/verify"
-            }) 
+            navigate("/auth/verify") 
         },
     }); 
 
@@ -60,9 +55,7 @@ const useAuth = () => {
             Cookies.set("userid", data?.data?.data?.admin?.id) 
             toast.success(data?.data?.message)
 
-            navigate({
-                to: "/dashboard"
-            }) 
+            navigate("/dashboard") 
         },
     }); 
 
