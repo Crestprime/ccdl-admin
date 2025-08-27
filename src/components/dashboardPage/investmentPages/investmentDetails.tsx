@@ -48,6 +48,9 @@ export default function InvestmentDetails() {
     const navigate = useNavigate()
     const { data, isLoading } = useFetchData<InvestmentModel & any>(`/investment-plan/${id}`, ["investment-detail", id]);
 
+    console.log(data);
+    
+
     return (
         <LoadingAnimation loading={isLoading} >
             <div className=" w-full flex h-auto gap-4 flex-col  " >

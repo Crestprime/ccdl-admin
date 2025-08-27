@@ -17,7 +17,7 @@ export default function RealtorDetails() {
 
     const [searchParams] = useSearchParams(); 
     const id: any = searchParams.get("id"); 
-    const { data, isLoading } = useFetchData<IUserInfo>(`/admin/users/${id}`, "user"+id); 
+    const { data, isLoading } = useFetchData<IUserInfo>(`/admin/users/${id}`, ["user", id]); 
 
     return (
         <LoadingAnimation loading={isLoading} >

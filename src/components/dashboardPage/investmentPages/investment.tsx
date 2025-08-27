@@ -8,9 +8,10 @@ import { useFetchData } from "@/hooks/useFetchData";
 import { InvestmentModel, InvestmentPlan } from "@/models/investment";
 import { dateFormat } from "@/utils/dateFormat";
 import { LoadingAnimation } from "@/components/shared";
-import { numberFormatNaire } from "@/utils/formatNumberWithK";
+import { formatNumberWithK, numberFormatNaire } from "@/utils/formatNumberWithK";
 import { capitalizeFLetter } from "@/utils/capitalLetter";
 import { useNavigate } from "react-router-dom";
+import { IAInvestment } from "@/models/analytics";
 
 
 export default function Investment() {
@@ -19,6 +20,9 @@ export default function Investment() {
 
     const { data, isLoading } = useFetchData<Array<InvestmentPlan>>(`/investment`, ["investment"]);
     const { data: plans, isLoading: loadingPlans } = useFetchData<Array<InvestmentModel>>(`/investment-plan/admin`, ["investment-plans"]);
+
+
+    const { data: analytics, isLoading: loading } = useFetchData<IAInvestment>(`/admin/investments/analytics`, ["analytics"],  {} , true);
 
     return (
         <div className=" w-full flex h-auto gap-6 flex-col  " >
@@ -29,36 +33,39 @@ export default function Investment() {
                 </div>
                 <CreateInvestmentBtn />
             </div>
+            <LoadingAnimation loading={loading} >
+
             <div className=" w-full grid grid-cols-4 gap-4 " >
                 <div className=" w-full rounded-xl border p-4 " >
                     <div className=" w-10 h-10 text-gray500 rounded-full border flex justify-center items-center " >
                         <RiCoinsFill size={"24px"} />
                     </div>
                     <p className=" text-gray500 text-sm mt-6 " >Total Investment</p>
-                    <p className=" text-[30px] font-semibold text-gray900 " >₦60,000,000.01</p>
+                    <p className=" text-[30px] font-semibold text-gray900 " >{formatNumberWithK(analytics?.totalInvestmentsAmount, true)}</p>
                 </div>
                 <div className=" w-full rounded-xl border p-4 " >
                     <div className=" w-10 h-10 text-gray500 rounded-full border flex justify-center items-center " >
                         <RiCoinsFill size={"24px"} />
                     </div>
                     <p className=" text-gray500 text-sm mt-6 " >Total Profit Paid Out</p>
-                    <p className=" text-[30px] font-semibold text-gray900 " >₦60,000,000.01</p>
+                    <p className=" text-[30px] font-semibold text-gray900 " >{formatNumberWithK(analytics?.totalMaturedAmount, true)}</p>
                 </div>
                 <div className=" w-full rounded-xl border p-4 " >
                     <div className=" w-10 h-10 text-gray500 rounded-full border flex justify-center items-center " >
                         <RiKeyFill size={"24px"} />
                     </div>
                     <p className=" text-gray500 text-sm mt-6 " >Total Investors</p>
-                    <p className=" text-[30px] font-semibold text-gray900 " >50</p>
+                    <p className=" text-[30px] font-semibold text-gray900 " >{formatNumberWithK(analytics?.uniqueInvestorsCount, true)}</p>
                 </div>
                 <div className=" w-full rounded-xl border p-4 " >
                     <div className=" w-10 h-10 text-gray500 rounded-full border flex justify-center items-center " >
                         <RiCalendarCheckFill size={"24px"} />
                     </div>
                     <p className=" text-gray500 text-sm mt-6 " >Pending Payout</p>
-                    <p className=" text-[30px] font-semibold text-gray900 " >20</p>
+                    <p className=" text-[30px] font-semibold text-gray900 " >{formatNumberWithK(analytics?.pendingPayoutsCount, true)}</p>
                 </div>
             </div>
+            </LoadingAnimation>
 
             <Tabs defaultValue="investments" className="w-full flex flex-col gap-4 ">
                 <div className=" w-full justify-between flex items-center " >

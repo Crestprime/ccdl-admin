@@ -3,8 +3,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from ".
 import { useFetchData } from "@/hooks/useFetchData";
 import { ITransaction } from "@/models/transaction";
 import { LoadingAnimation } from "../shared";
-import { numberFormatNaire } from "@/utils/formatNumberWithK";
+import { formatNumberWithK, numberFormatNaire } from "@/utils/formatNumberWithK";
 import { dateFormat } from "@/utils/dateFormat";
+import { IAWallet } from "@/models/analytics";
 // import { useFetchData } from "@/hooks/useFetchData";
 
 
@@ -13,17 +14,16 @@ export default function TransactionTab() {
 
     const { data, isLoading } = useFetchData<Array<ITransaction>>(`/admin/transactions`, ["transactions"]);
  
-    console.log(data);
-    
+    const { data: wallet, isLoading: loading } = useFetchData<IAWallet>(`/analytics/wallet`, ["analytics"]);
 
     return (
-        <LoadingAnimation loading={isLoading} > 
+        <LoadingAnimation loading={isLoading || loading} > 
             <div className=" w-full flex gap-6 flex-col " >
                 <div className=" w-full h-fit flex flex-col " >
                     <div className=" w-full flex gap-4 " >
                         <div className=" w-full h-[178px] flex flex-col p-4 border rounded-2xl " >
                             <p className=" text-bodyTextColor text-sm leading-5 " >Available Balance</p>
-                            <p className=" text-[30px] font-medium leading-9 " >₦200,480,000.24</p>
+                            <p className=" text-[30px] font-medium leading-9 " >{formatNumberWithK(wallet?.balance, true)}</p>
                         </div>
                         <div className=" w-full h-[178px] flex flex-col p-4 border rounded-2xl " >
                             <div className=" w-10 h-10 rounded-full border flex justify-center items-center " >
@@ -31,7 +31,7 @@ export default function TransactionTab() {
                             </div>
                             <div className=" mt-auto  " >
                                 <p className=" text-bodyTextColor text-sm leading-5 " >Total Investments</p>
-                                <p className=" text-[30px] font-medium leading-9 " >₦60,000,000.01</p>
+                                <p className=" text-[30px] font-medium leading-9 " >{formatNumberWithK(wallet?.totalInvestments, true)}</p>
                             </div>
                         </div>
                     </div>

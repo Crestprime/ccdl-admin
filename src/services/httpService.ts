@@ -26,10 +26,7 @@ httpService.interceptors.request.use(
     }
     return config
   },
-  function (error: any) {
-    // if (error.response.status === 500) {
-    //   error.response.data.message = "Something wrong has happened. Try again later."
-    // }
+  function (error: any) { 
     return Promise.reject(error)
   },
 )

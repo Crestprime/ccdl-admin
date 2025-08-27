@@ -1,17 +1,8 @@
-import ProjectTable from "@/components/constructionComponents/projectTable";
-import ProposalTable from "@/components/constructionComponents/proposalTable";
-import { TabsList, TabsTrigger, Tabs, TabsContent } from "@/components/ui/tabs";
-import { ClientConstruction } from "@/components/userComponents";
-// import { useFetchData } from "@/hooks/useFetchData";
+import ProjectTable from "@/components/constructionComponents/projectTable";  
 import { RiBuilding2Fill, RiCoinsFill } from "@remixicon/react";
 
 
-export default function ConstructionPage() {
-
-
-    // const { data, isLoading } = useFetchData<Array<any>>(`/admin-construction/proposals`, "proposals");
-
-    // console.log(data);
+export default function ConstructionPage() { 
 
     return (
         <div className=" w-full flex h-auto gap-6 flex-col  " >

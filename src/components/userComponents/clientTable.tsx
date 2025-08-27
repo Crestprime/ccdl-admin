@@ -10,7 +10,7 @@ export default function ClientTable() {
 
     const navigate = useNavigate()
 
-    const { data, isLoading } = useFetchData<Array<IUser>>(`/admin/users`, ["user"]);
+    const { data, isLoading, error } = useFetchData<Array<IUser>>(`/admin/users`, ["user"]);
 
     return (
         <LoadingAnimation loading={isLoading} >
