@@ -15,8 +15,6 @@ export default function SalesCard(
     }
 ) {
 
-
-
     const { data: tnx } = useFetchData<Array<ITransaction>>(`/admin/transactions`, ["transactions"]);
 
     return (

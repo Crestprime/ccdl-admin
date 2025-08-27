@@ -5,6 +5,7 @@ import { LoadingAnimation } from "../shared";
 import { dateFormat } from "@/utils/dateFormat";
 import { numberFormatNaire } from "@/utils/formatNumberWithK";
 import { useNavigate } from "react-router-dom";
+import { formatNumber } from "@/utils/numberFormat";
 
 export default function ClientTable() {
 
@@ -44,7 +45,7 @@ export default function ClientTable() {
                                     </div>
                                 </TableCell>
                                 <TableCell >
-                                    {numberFormatNaire(item?.reservations)}
+                                    {formatNumber(item?.reservations, "")}
                                 </TableCell>
                                 <TableCell>
                                     {numberFormatNaire(item?.totalAmount)}

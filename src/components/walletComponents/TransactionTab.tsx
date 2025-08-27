@@ -57,7 +57,11 @@ export default function TransactionTab() {
                                 return (
                                     <TableRow className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
                                         <TableCell className=" flex gap-2 items-center ">
-                                            <div className=" w-10 h-10 rounded-full bg-green-500 " />
+                                            <div className=" w-10 h-10 rounded-full bg-gray-200 " >
+                                                {item?.user[0]?.profilePicture && (
+                                                    <img alt={"user"+index} src={item?.user[0]?.profilePicture} className=" w-full h-full object-cover " />
+                                                )}
+                                            </div>
                                             <div className=" flex flex-col " >
                                                 <p className=" text-sm text-gray800 font-medium " >{item?.user[0]?.firstName+" "+item?.user[0]?.lastName}</p>
                                                 {/* <p className=" text-sm text-gray500 " >{item?.email}</p> */}
