@@ -24,14 +24,14 @@ export default function RealtorDetails() {
 
             <div className=" w-full flex h-auto gap-6 flex-col overflow-x-hidden " >
                 <div className=" w-full flex justify-end pb-4 border-b items-center " >
-                    <div className=" flex gap-4  " >
+                    {/* <div className=" flex gap-4  " >
                         <Button variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >
                             Edit
                         </Button>
                         <Button variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >
                             <RiMore2Fill size={"25px"} />
                         </Button>
-                    </div>
+                    </div> */}
                 </div>
                 <div className=" w-full p-6 gap-6 flex flex-col border border-gray-200 rounded-xl " >
                     <div className=" flex items-center gap-4 pb-6 border-b " >
@@ -41,11 +41,11 @@ export default function RealtorDetails() {
                         <div className=" flex flex-col gap-1 " >
                             <div className=" flex gap-2 items-center " >
                                 <p className=" text-xl font-semibold " >{data?.user?.firstName+" "+data?.user?.lastName}</p>
-                                <div className=" px-2 py-[2px] rounded-2xl bg-warning100 text-warning800 ">
+                                {/* <div className=" px-2 py-[2px] rounded-2xl bg-warning100 text-warning800 ">
                                     <p className=" text-xs font-medium " >Pending</p>
-                                </div>
+                                </div> */}
                             </div>
-                            <p className=" text-sm " >Online</p>
+                            {/* <p className=" text-sm " >Online</p> */}
                         </div>
                     </div>
                     <div className=" w-full grid grid-cols-2 " >

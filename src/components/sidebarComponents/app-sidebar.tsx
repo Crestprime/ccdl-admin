@@ -61,7 +61,7 @@ const data: any = {
           url: "/dashboard/users/clients",
         },
         {
-          title: "Realtors",
+          title: "ESP Realtors",
           url: "/dashboard/users/realtor",
         },
         {

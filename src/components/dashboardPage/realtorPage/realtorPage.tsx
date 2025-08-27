@@ -9,7 +9,7 @@ export default function RealtorPage() {
         <div className=" w-full flex h-auto gap-6 flex-col  " >
             <div className=" w-full flex justify-between pb-4 border-b items-center " >
                 <div className=" flex flex-col  " >
-                    <h3 className=" font-semibold text-lg " >Realtor</h3>
+                    <h3 className=" font-semibold text-lg " >ESP Realtor</h3>
                     <p className=" text-sm text-bodyTextColor " >View and manage all ESP profiles on capital city</p>
                 </div>
                 {/* <div className=" flex gap-4  " >
