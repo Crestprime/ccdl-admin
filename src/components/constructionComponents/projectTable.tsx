@@ -42,9 +42,9 @@ export default function ProjectTable() {
                                     <div className=" flex gap-2 items-center " >
                                         <RiArrowRightSFill size={"24px"} />
                                         <p className=" font-semibold " >{item?.projectType}</p>
-                                        <div className=" w-4 h-4 rounded-full flex justify-center items-center " >
+                                        {/* <div className=" w-4 h-4 rounded-full flex justify-center items-center " >
                                             <p className=" font-medium text-xs " >5</p>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     {/* <RiMore2Fill className=" text-gray800 " /> */}
                                 </div>
@@ -66,13 +66,13 @@ export default function ProjectTable() {
                                         <p className=" text-xs font-semibold text-primary500 " >{getOverallCompletion(item?.tasks)}%</p>
                                     </div>
                                     <div className=" w-full flex justify-between items-center " >
-                                        <div className=" flex " >
+                                        {/* <div className=" flex " >
                                             <div className=" w-6 h-6 bg-red-500 rounded-full " />
                                             <div className=" w-6 h-6 -ml-[6px] rounded-full border bg-blue-500 " />
                                             <div className=" w-6 h-6 -ml-[6px] rounded-full border bg-green-500 " />
                                             <div className=" w-6 h-6 -ml-[6px] rounded-full border bg-yellow-500 " />
-                                        </div>
-                                        <div className=" flex gap-4 " >
+                                        </div> */}
+                                        <div className=" flex gap-4 ml-auto " >
                                             {/* <div className=" flex gap-1 items-center " >
                                                 <RiMailLine size={"14px"} />
                                                 <p className=" text-sm text-gray800 font-medium " >12</p>

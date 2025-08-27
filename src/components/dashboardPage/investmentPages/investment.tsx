@@ -55,7 +55,7 @@ export default function Investment() {
                         <RiKeyFill size={"24px"} />
                     </div>
                     <p className=" text-gray500 text-sm mt-6 " >Total Investors</p>
-                    <p className=" text-[30px] font-semibold text-gray900 " >{formatNumberWithK(analytics?.uniqueInvestorsCount, true)}</p>
+                    <p className=" text-[30px] font-semibold text-gray900 " >{formatNumberWithK(analytics?.uniqueInvestorsCount)}</p>
                 </div>
                 <div className=" w-full rounded-xl border p-4 " >
                     <div className=" w-10 h-10 text-gray500 rounded-full border flex justify-center items-center " >

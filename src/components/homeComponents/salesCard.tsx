@@ -1,7 +1,5 @@
-import { RiFireLine, RiMoneyDollarCircleLine, RiSafe2Fill } from "@remixicon/react";
-import { Button } from "../ui/button";
-import { Label } from "@radix-ui/react-dropdown-menu";
-import { Switch } from "../ui/switch"; 
+import { RiMoneyDollarCircleLine, RiSafe2Fill } from "@remixicon/react";
+import { Button } from "../ui/button"; 
 import { IHome } from "@/models/analytics";
 import { formatNumberWithK } from "@/utils/formatNumberWithK";
 import { useFetchData } from "@/hooks/useFetchData";
@@ -30,7 +28,7 @@ export default function SalesCard(
                     See all
                 </Button>
             </div>
-            <div className=" w-full p-4 h-[374px] rounded-2xl flex flex-col border " >
+            {/* <div className=" w-full p-4 h-[374px] rounded-2xl flex flex-col border " >
                 <div className=" flex gap-2 items-center " >
                     <RiFireLine />
                     <p className=" font-medium " >Top selling</p>
@@ -44,19 +42,12 @@ export default function SalesCard(
                         View more
                     </Button>
                 </div>
-            </div>
+            </div> */}
             <div className=" w-full p-4 h-[374px] rounded-2xl flex flex-col border  " >
                 <div className=" flex gap-2 mb-5 items-center " >
                     <RiMoneyDollarCircleLine />
                     <p className=" font-medium " >Recent Transactions</p>
-                </div>
-                {/* <Tabs defaultValue="incoming" className="w-full mt-4 "> */}
-                {/* <TabsList className="grid w-full grid-cols-3 h-fit ">
-                        <TabsTrigger className=" h-[36px] " value="incoming">Incoming</TabsTrigger>
-                        <TabsTrigger className=" h-[36px] " value="outgoing">Outgoing</TabsTrigger>
-                        <TabsTrigger className=" h-[36px] " value="pending">Pending</TabsTrigger>
-                    </TabsList>
-                    <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="incoming"> */}
+                </div> 
                 <div className=" flex w-full max-h-fit overflow-y-auto flex-col gap-3 " >
                     {tnx?.map((item, index) => {
                         return (
