@@ -51,7 +51,7 @@ export default function ClientTable() {
                                     {numberFormatNaire(item?.totalAmount)}
                                 </TableCell>
                                 <TableCell>
-                                    {numberFormatNaire(item?.investments)}
+                                    {formatNumber(item?.investments, "")}
                                 </TableCell>
                                 <TableCell>
                                     {dateFormat(item?.createdAt)}
