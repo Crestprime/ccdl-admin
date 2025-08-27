@@ -1,11 +1,9 @@
 import { RiAddCircleLine, RiCalendarCheckFill, RiCoinsFill, RiKeyFill, RiSearch2Line } from "@remixicon/react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
+import { Tabs, TabsContent } from "../../ui/tabs";
 import { Input } from "../../ui/input";
-import { Button } from "../../ui/button";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table";
-import { useNavigate } from "react-router-dom";
-import { useFetchData } from "@/hooks/useFetchData";
-import { InvestmentModel } from "@/models/investment";
+import { Button } from "../../ui/button"; 
+// import { useNavigate } from "react-router-dom";
+import { useFetchData } from "@/hooks/useFetchData"; 
 import ReservationTable from "@/components/reservationComponents/reservationTable";
 import { IReservation } from "@/models/analytics";
 import { LoadingAnimation } from "@/components/shared";
@@ -14,7 +12,7 @@ import { formatNumberWithK } from "@/utils/formatNumberWithK";
 
 export default function SaleAndReservation() {
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     // const data = [
     //     {

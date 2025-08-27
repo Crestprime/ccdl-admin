@@ -1,8 +1,7 @@
-import { RiArrowRightSLine, RiBuildingFill, RiFireLine, RiMoneyDollarCircleLine, RiSafe2Fill } from "@remixicon/react";
+import { RiFireLine, RiMoneyDollarCircleLine, RiSafe2Fill } from "@remixicon/react";
 import { Button } from "../ui/button";
 import { Label } from "@radix-ui/react-dropdown-menu";
-import { Switch } from "../ui/switch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { Switch } from "../ui/switch"; 
 import { IHome } from "@/models/analytics";
 import { formatNumberWithK } from "@/utils/formatNumberWithK";
 import { useFetchData } from "@/hooks/useFetchData";
@@ -20,7 +19,7 @@ export default function SalesCard(
 
 
 
-    const { data: tnx, isLoading } = useFetchData<Array<ITransaction>>(`/admin/transactions`, ["transactions"]);
+    const { data: tnx } = useFetchData<Array<ITransaction>>(`/admin/transactions`, ["transactions"]);
 
     return (
         <div className=' w-full h-fit flex gap-4 ' >

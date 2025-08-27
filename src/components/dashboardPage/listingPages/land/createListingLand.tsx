@@ -3,10 +3,12 @@ import { CustomButton } from "@/components/shared";
 import { useNavigate } from "@tanstack/react-router";  
 import useCreateListing from "@/hooks/useCreateListing";
 import LandForm from "./landForm";
+import { useSearchParams } from "react-router-dom";
 
-export default function CreateListingLand(
-    { type }: { type: string }
-) { 
+export default function CreateListingLand() { 
+    
+    const [searchParams] = useSearchParams();
+    const type: any = searchParams.get("type"); 
 
     const { formikLand: formik, isPendingland, uploading } = useCreateListing()
     const navigate = useNavigate()  

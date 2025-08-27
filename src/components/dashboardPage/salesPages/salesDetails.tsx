@@ -1,6 +1,6 @@
 import { LoadingAnimation } from "@/components/shared";
 import { Button } from "@/components/ui/button";
-import { TableHeader, TableRow, TableHead, TableBody, TableCell, Table } from "@/components/ui/table";
+import { TableHeader, TableRow, TableHead, TableBody, Table } from "@/components/ui/table";
 import { useFetchData } from "@/hooks/useFetchData";
 import { ISale } from "@/models/sales";
 import { dateFormat } from "@/utils/dateFormat";

@@ -10,7 +10,6 @@ import useEditListing from "@/hooks/useEditListing";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function EditListingBuilding() {
- 
 
     const [searchParams] = useSearchParams();
     const type: any = searchParams.get("type");
@@ -20,7 +19,7 @@ export default function EditListingBuilding() {
     const { updatePreview } = useImage((state) => state)
     const navigate = useNavigate()
 
-    const { data, isLoading } = useFetchData<IBuildingListingData>(`/admin-property/property/${id}`, "property" + id);
+    const { data, isLoading } = useFetchData<IBuildingListingData>(`/admin-property/property/${id}`, ["property", id]);
 
     useEffect(() =>{
         if(!formik.values?.name){

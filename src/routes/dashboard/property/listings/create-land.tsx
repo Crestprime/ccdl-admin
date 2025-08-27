@@ -1,5 +1,5 @@
-import { CreateListingLand } from '@/components/dashboardPage'
-import { createFileRoute, getRouteApi } from '@tanstack/react-router'
+// import { CreateListingLand } from '@/components/dashboardPage'
+import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute(
   '/dashboard/property/listings/create-land',
@@ -10,11 +10,12 @@ export const Route = createFileRoute(
   })
 })
 
-const routeApi = getRouteApi('/dashboard/property/listings/create-land')
+// const routeApi = getRouteApi('/dashboard/property/listings/create-land')
 
 
 function RouteComponent() {
-
-  const routeSearch = routeApi.useSearch() 
-  return <CreateListingLand type={routeSearch?.type} />
+<>
+</>
+  // const routeSearch = routeApi.useSearch() 
+  // return <CreateListingLand type={routeSearch?.type} />
 }

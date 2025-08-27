@@ -9,7 +9,7 @@ import Cookies from "js-cookie";
 
 export default function InvitePage({ inviteId }: { inviteId: string }) {
  
-    const { data, isLoading } = useUnsecureFetchData<InviteData>(`/admin-auth/invitation/${inviteId}`, "invite" + inviteId); 
+    const { data, isLoading } = useUnsecureFetchData<InviteData>(`/admin-auth/invitation/${inviteId}`, ["invite", inviteId]); 
     const { acceptInvite, InvitePending } = useAuth()
 
     const submit = (event: any) => {

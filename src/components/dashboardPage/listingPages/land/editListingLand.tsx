@@ -7,11 +7,15 @@ import { useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import LandForm from "./landForm";
 import useEditListing from "@/hooks/useEditListing";
+import { useSearchParams } from "react-router-dom";
 
-export default function EditListingLand(
-    { type, id }: { type: string, id: string }
-) {
+export default function EditListingLand() {
 
+
+    const [searchParams] = useSearchParams();
+    const type: any = searchParams.get("type");
+    const id: any = searchParams.get("id");
+    
     const { formikLand: formik, isPendingland, uploading } = useEditListing(id)
     const { updatePreview } = useImage((state) => state)
     const navigate = useNavigate()

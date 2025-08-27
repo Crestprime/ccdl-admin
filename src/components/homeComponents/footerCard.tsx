@@ -1,5 +1,4 @@
-import { RiArrowRightSLine, RiFolderOpenLine, RiStarSmileLine } from "@remixicon/react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { RiFolderOpenLine } from "@remixicon/react"; 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import { useFetchData } from "@/hooks/useFetchData";
 import { IConstruction } from "@/models/construction";
