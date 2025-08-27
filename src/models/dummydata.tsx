@@ -271,8 +271,8 @@ export const buildingTypes = [
 
 export const listingCategory = [
     { label: "LAND", value: "LAND" },
-    { label: "BUILDING", value: "BUILDING" }, 
-]; 
+    { label: "BUILDING", value: "BUILDING" },
+];
 
 export const durationData = [
     {
@@ -286,6 +286,55 @@ export const durationData = [
     {
         label: "12 Months",
         value: "12"
+    }
+]
+
+    // CONVEYANCE, DEEDS, POWER_OF_ATTORNEY, SURVEY_PLAN, PLOT_DIAGRAM, ARCHITECURAL_PLAN, SALE_AGREEMENT, OWNERSHIP_TRANSFER, ALLOCATION_LETTER, MAINTENACE_AGREEMENT, WARRANTY_INFORMATION
+
+export const DocumentData = [
+    {
+        label: "CONVEYANCE",
+        value: "CONVEYANCE"
+    },
+    {
+        label: "DEEDS",
+        value: "DEEDS"
+    },
+    {
+        label: "POWER_OF_ATTORNEY",
+        value: "POWER_OF_ATTORNEY"
+    },
+    {
+        label: "SURVEY_PLAN",
+        value: "SURVEY_PLAN"
+    },
+    {
+        label: "PLOT_DIAGRAM",
+        value: "PLOT_DIAGRAM"
+    },
+    {
+        label: "ARCHITECURAL_PLAN",
+        value: "ARCHITECURAL_PLAN"
+    },
+    {
+        label: "SALE_AGREEMENT",
+        value: "SALE_AGREEMENT"
+    },
+    {
+        label: "OWNERSHIP_TRANSFER",
+        value: "OWNERSHIP_TRANSFER"
+    },
+    {
+        label: "ALLOCATION_LETTER",
+        value: "ALLOCATION_LETTER"
+    },
+    {
+        label: "MAINTENACE_AGREEMENT",
+        value: "MAINTENACE_AGREEMENT"
+    },
+    {
+        label: "WARRANTY_INFORMATION",
+        value: "WARRANTY_INFORMATION"
     }
 ]
 

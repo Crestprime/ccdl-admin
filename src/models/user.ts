@@ -44,6 +44,7 @@ export interface IUser {
     "paystackCode": string,
     "referralCode": string,
     "dob": any,
+    position: string,
     "isAgent": boolean,
     "has2fa": boolean,
     "suspend": boolean,

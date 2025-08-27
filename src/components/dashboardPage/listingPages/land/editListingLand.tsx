@@ -16,7 +16,7 @@ export default function EditListingLand(
     const { updatePreview } = useImage((state) => state)
     const navigate = useNavigate()
 
-    const { data, isLoading } = useFetchData<IBuildingListingData>(`/admin-property/property/${id}`, "property" + id);
+    const { data, isLoading } = useFetchData<IBuildingListingData>(`/admin-property/property/${id}`, ["property", id+""]);
 
     useEffect(() => {
         if (!formik.values?.name) { 

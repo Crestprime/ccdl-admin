@@ -11,7 +11,7 @@ export default function ListingPage()  {
   const [searchParams] = useSearchParams();
   const type: any = searchParams.get("type");
 
-    const { data, isLoading} = useFetchData<any>(`/admin-property/property-by-category`, "property "+type, {
+    const { data, isLoading} = useFetchData<any>(`/admin-property/property-by-category`, ["property", type], {
         category: type
     });  
 

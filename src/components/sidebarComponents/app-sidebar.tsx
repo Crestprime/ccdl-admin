@@ -72,18 +72,9 @@ const data: any = {
     }, 
     {
       title: "Construction",
-      url: "construction",
+      url: "/dashboard/constructions/proposals",
       icon: RiFolderOpenFill,
-      items: [
-        {
-          title: "Proposals",
-          url: "/dashboard/constructions/proposals",
-        },
-        {
-          title: "Projects",
-          url: "/dashboard/constructions/projects",
-        }
-      ],
+      items: [],
     },
     {
       title: "Wallet",

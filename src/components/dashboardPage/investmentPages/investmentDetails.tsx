@@ -46,7 +46,7 @@ export default function InvestmentDetails() {
     // ]
 
     const navigate = useNavigate()
-    const { data, isLoading } = useFetchData<InvestmentModel & any>(`/investment-plan/${id}`, "investment-detail");
+    const { data, isLoading } = useFetchData<InvestmentModel & any>(`/investment-plan/${id}`, ["investment-detail", id]);
 
     return (
         <LoadingAnimation loading={isLoading} >

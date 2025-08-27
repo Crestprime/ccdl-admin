@@ -1,3 +1,6 @@
+import ProjectTable from "@/components/constructionComponents/projectTable";
+import ProposalTable from "@/components/constructionComponents/proposalTable";
+import { TabsList, TabsTrigger, Tabs, TabsContent } from "@/components/ui/tabs";
 import { ClientConstruction } from "@/components/userComponents";
 // import { useFetchData } from "@/hooks/useFetchData";
 import { RiBuilding2Fill, RiCoinsFill } from "@remixicon/react";
@@ -7,7 +10,7 @@ export default function ConstructionPage() {
 
 
     // const { data, isLoading } = useFetchData<Array<any>>(`/admin-construction/proposals`, "proposals");
-    
+
     // console.log(data);
 
     return (
@@ -53,9 +56,25 @@ export default function ConstructionPage() {
                     </div>
                 </div>
             </div>
-            <div className=" w-full " >
-                <ClientConstruction id={""} />
-            </div>
+
+            {/* <Tabs defaultValue="proposal" className="w-full flex flex-col gap-4 ">
+                <div className=" w-full " >
+
+                    <TabsList className="grid w-fit grid-cols-2 h-fit ">
+                        <TabsTrigger className=" h-[36px] " value="proposal">Proposal</TabsTrigger>
+                        <TabsTrigger className=" h-[36px] " value="project">Project</TabsTrigger>
+                    </TabsList>
+                </div>
+
+                <TabsContent className=" w-full flex flex-col gap-5 " value="proposal">
+                    <ProposalTable />
+                </TabsContent>
+
+                <TabsContent className=" w-full flex flex-col gap-5 " value="project">
+                    <ProjectTable />
+                </TabsContent>
+            </Tabs> */}
+            <ProjectTable />
         </div>
     )
 }

@@ -17,7 +17,7 @@ export default function ListingDetails() {
     const type: any = searchParams.get("type");
     const id: any = searchParams.get("id");
 
-    const { data, isLoading } = useFetchData<IBuildingListingData>(`/admin-property/property/${id}`, "property" + id);
+    const { data, isLoading } = useFetchData<IBuildingListingData>(`/admin-property/property/${id}`, ["property", id+""]);
 
     const navigate = useNavigate()
 

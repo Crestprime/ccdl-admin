@@ -33,6 +33,7 @@ export { default as RealtorDetailsPage } from './realtorPage/realtorDetails';
 export { default as ProposalPage } from './constructionPages/proposalPage';
 export { default as ProposalDetailsPage } from './constructionPages/proposalDetailsPage';
 export { default as ProposalListingDetailPage } from './constructionPages/proposalListingDetailPage';
+export { default as ProposalCreateTaskPage } from './constructionPages/createTask';
 
 // Wallet Page
 export { default as AllTransaction } from './walletPages/alltransaction';

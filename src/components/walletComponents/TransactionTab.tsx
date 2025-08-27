@@ -11,8 +11,10 @@ import { dateFormat } from "@/utils/dateFormat";
 export default function TransactionTab() {
  
 
-    const { data, isLoading } = useFetchData<Array<ITransaction>>(`/admin/transactions`, "transactions");
+    const { data, isLoading } = useFetchData<Array<ITransaction>>(`/admin/transactions`, ["transactions"]);
  
+    console.log(data);
+    
 
     return (
         <LoadingAnimation loading={isLoading} > 
@@ -57,7 +59,7 @@ export default function TransactionTab() {
                                         <TableCell className=" flex gap-2 items-center ">
                                             <div className=" w-10 h-10 rounded-full bg-green-500 " />
                                             <div className=" flex flex-col " >
-                                                <p className=" text-sm text-gray800 font-medium " >{item?.userId}</p>
+                                                <p className=" text-sm text-gray800 font-medium " >{item?.user[0]?.firstName+" "+item?.user[0]?.lastName}</p>
                                                 {/* <p className=" text-sm text-gray500 " >{item?.email}</p> */}
                                             </div>
                                         </TableCell>

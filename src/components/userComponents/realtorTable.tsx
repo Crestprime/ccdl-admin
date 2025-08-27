@@ -11,7 +11,7 @@ export default function RealtorTable() {
 
     const navigate = useNavigate()
 
-    const { data, isLoading } = useFetchData<Array<IAgent>>(`/admin/users/agents`, "agent");
+    const { data, isLoading } = useFetchData<Array<IAgent>>(`/admin/users/agents`, ["agent"]);
 
     return (
         <LoadingAnimation loading={isLoading} >

@@ -15,7 +15,7 @@ export default function ClientDetails() {
 
     const [searchParams] = useSearchParams(); 
     const id: any = searchParams.get("id");
-    const { data, isLoading } = useFetchData<IUserInfo>(`/admin/users/${id}`, "user"); 
+    const { data, isLoading } = useFetchData<IUserInfo>(`/admin/users/${id}`, ["user"]); 
 
     return (
         <LoadingAnimation loading={isLoading} >
