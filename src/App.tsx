@@ -3,7 +3,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import { LoginPage, VerificationPage } from "./components/authComponents";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DashboardLayout } from "./components/sidebarComponents";
-import { ClientDetailsPage, ClientPage, HomePage, InvestmentDetailPage, InvestmentPage, ListingDetailsPage, ListingPage, ProposalCreateTaskPage, ProposalDetailsPage, ProposalListingDetailPage, ProposalPage, RealtorDetailsPage, RealtorPage, SaleAndReservation, SaleDetails } from "./components/dashboardPage";
+import { ClientDetailsPage, ClientPage, CreateListingBuilding, CreateListingLand, EditListingBuilding, EditListingLand, HomePage, InvestmentDetailPage, InvestmentPage, ListingDetailsPage, ListingPage, ProposalCreateTaskPage, ProposalDetailsPage, ProposalListingDetailPage, ProposalPage, RealtorDetailsPage, RealtorPage, SaleAndReservation, SaleDetails } from "./components/dashboardPage";
 import TransactionTab from "./components/walletComponents/TransactionTab";
 
 function App() {
@@ -19,6 +19,10 @@ function App() {
             <Route path="listings">
               <Route index element={<ListingPage />} />
               <Route path="details" element={<ListingDetailsPage />} />
+              <Route path="create-building" element={<CreateListingBuilding />} />
+              <Route path="create-land" element={<CreateListingLand />} />
+              <Route path="edit-land" element={<EditListingLand />} />
+              <Route path="edit-building" element={<EditListingBuilding />} />
             </Route>
 
             <Route path="investments">

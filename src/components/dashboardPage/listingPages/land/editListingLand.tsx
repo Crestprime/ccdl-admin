@@ -2,12 +2,11 @@ import { useImage } from "@/components/global-state/useImageData";
 import { CustomButton, LoadingAnimation } from "@/components/shared";
 import { Button } from "@/components/ui/button";
 import { useFetchData } from "@/hooks/useFetchData";
-import { IBuildingListingData } from "@/models/listing";
-import { useNavigate } from "@tanstack/react-router";
+import { IBuildingListingData } from "@/models/listing"; 
 import { useEffect } from "react";
 import LandForm from "./landForm";
 import useEditListing from "@/hooks/useEditListing";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function EditListingLand() {
 
@@ -53,17 +52,14 @@ export default function EditListingLand() {
         }
     }, [data])
 
-    console.log(formik.values);
-    
-
     return (
         <LoadingAnimation loading={isLoading} >
             <div className=" w-full flex h-auto gap-6 flex-col  " >
                 <div className=" w-full flex justify-end items-center " >
                     <div className=" flex gap-4  " >
-                        <Button type="button" onClick={() => navigate({
-                            to: `/dashboard/property/listings/details?id=${data?.property?.id}&type=lands`
-                        })} variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >
+                        <Button type="button" onClick={() => navigate(
+                            `/dashboard/property/listings/details?id=${data?.property?.id}&type=lands`
+                        )} variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >
                             Cancel
                         </Button>
                         <Button variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >
