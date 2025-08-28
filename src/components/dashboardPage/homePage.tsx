@@ -3,6 +3,7 @@ import { FooterCard, HeaderCard, SalesCard } from "../homeComponents";
 import { Button } from "../ui/button";
 import { IHome } from "@/models/analytics";
 import { LoadingAnimation } from "../shared";
+import { AdminBtn } from "./adminPage/adminBtn";
 
 
 export default function HomePage() {
@@ -24,9 +25,7 @@ export default function HomePage() {
                         <Button variant={"main"} className=" h-[40px] text-sm font-medium rounded-full " >
                             Add Listing
                         </Button>
-                        <Button variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >
-                            Invite Staff
-                        </Button>
+                        <AdminBtn variant="outline" />
                     </div>
                 </div>
                 <HeaderCard data={data as IHome} />

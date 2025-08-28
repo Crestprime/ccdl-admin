@@ -66,7 +66,7 @@ const data: any = {
         },
         {
           title: "Staff",
-          url: "#",
+          url: "/dashboard/users/admin",
         }
       ],
     }, 

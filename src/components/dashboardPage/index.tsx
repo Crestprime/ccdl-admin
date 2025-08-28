@@ -29,6 +29,10 @@ export { default as ClientDetailsPage } from './usersPage/clientDetails';
 export { default as RealtorPage } from './realtorPage/realtorPage';
 export { default as RealtorDetailsPage } from './realtorPage/realtorDetails';
 
+// admin Page
+export { default as AdminPage } from './adminPage/adminPage';
+export { default as AdminDetailsPage } from './adminPage/adminDetails';
+
 // Client Page
 export { default as ProposalPage } from './constructionPages/proposalPage';
 export { default as ProposalDetailsPage } from './constructionPages/proposalDetailsPage';

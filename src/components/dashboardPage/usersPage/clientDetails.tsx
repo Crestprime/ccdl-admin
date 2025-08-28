@@ -1,12 +1,11 @@
-import { LoadingAnimation } from "@/components/shared";
-import { Button } from "@/components/ui/button";
+import { LoadingAnimation } from "@/components/shared"; 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ClientConstruction, ClientSaleTable, ClientWalletTable, ClientInvestmentTable } from "@/components/userComponents"; 
 import { useFetchData } from "@/hooks/useFetchData";
 import { IUserInfo } from "@/models/user";
 import { dateFormat } from "@/utils/dateFormat";
 import { numberFormatNaire } from "@/utils/formatNumberWithK";
-import { RiBuilding2Fill, RiCoinsFill, RiMoneyDollarCircleFill, RiMore2Fill, RiWalletFill } from "@remixicon/react";
+import { RiBuilding2Fill, RiCoinsFill, RiMoneyDollarCircleFill, RiWalletFill } from "@remixicon/react";
 import { useSearchParams } from "react-router-dom";
 
 
@@ -33,8 +32,8 @@ export default function ClientDetails() {
                 </div>
                 <div className=" w-full p-6 gap-6 flex flex-col border border-gray-200 rounded-xl " >
                     <div className=" flex items-center gap-4 pb-6 border-b " >
-                        <div className=" w-12 h-12 rounded-full bg-yellow-300 " >
-
+                        <div className=" w-12 h-12 rounded-full bg-gray-300 " >
+                            {/* {data} */}
                         </div>
                         <div className=" flex flex-col gap-1 " >
                             <div className=" flex gap-2 items-center " >
