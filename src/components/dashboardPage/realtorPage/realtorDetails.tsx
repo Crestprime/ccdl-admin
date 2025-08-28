@@ -37,12 +37,8 @@ export default function RealtorDetails() {
                         </div>
                         <div className=" flex flex-col gap-1 " >
                             <div className=" flex gap-2 items-center " >
-                                <p className=" text-xl font-semibold " >{data?.user?.firstName+" "+data?.user?.lastName}</p>
-                                {/* <div className=" px-2 py-[2px] rounded-2xl bg-warning100 text-warning800 ">
-                                    <p className=" text-xs font-medium " >Pending</p>
-                                </div> */}
-                            </div>
-                            {/* <p className=" text-sm " >Online</p> */}
+                                <p className=" text-xl font-semibold " >{data?.user?.firstName+" "+data?.user?.lastName}</p> 
+                            </div> 
                         </div>
                     </div>
                     <div className=" w-full grid grid-cols-2 " >
@@ -52,11 +48,7 @@ export default function RealtorDetails() {
                             <p className=" font-medium text-gray900 " >Phone number:</p>
                             <p className=" text-gray700 " >{data?.user?.phone ?? "none"}</p>
                             <p className=" font-medium text-gray900 " >DOB:</p>
-                            <p className=" text-gray700 " >{"---"}</p>
-                            {/* <p className=" font-medium text-gray900 " >Status:</p>
-                            <div className=" px-2 w-fit bg-success100 text-success800 py-[2px] " >
-                                <p className=" text-xs font-medium " >Active</p>
-                            </div> */}
+                            <p className=" text-gray700 " >{"---"}</p> 
                         </div>
                         <div className=" w-[70%] grid grid-cols-2 gap-2  " >
                             <p className=" font-medium text-gray900 " >Date Joined:</p>
