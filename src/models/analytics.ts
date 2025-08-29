@@ -28,3 +28,22 @@ export interface IAWallet {
     "outflow": number,
     "totalInvestments": number
 }
+
+export interface IReport {
+    "totalRevenue": number,
+    "totalProperties": number,
+    "totalPropertiesSold": number,
+    "totalInvestmentAmount": number,
+    "totalInvestmentProfitPaid": number,
+    "totalInvestors": number,
+    "totalPendingPayout": number,
+    "totqlProposals": number,
+    "totalPendingProposals": number,
+    "totalAcceptedProposals": number,
+    "totalRejectedProposals": number,
+    "totalCustomers": number,
+    "totalListings": number,
+    "totalAvailableListing": number,
+    "totalReserved": number,
+    "totalSold": number
+}

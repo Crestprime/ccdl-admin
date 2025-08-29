@@ -16,7 +16,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { RiAccountCircleFill, RiBuilding2Fill, RiFolderOpenFill, RiHome4Fill, RiWalletFill } from "@remixicon/react"
+import { RiAccountCircleFill, RiBuilding2Fill, RiFolderOpenFill, RiHome4Fill, RiPieChartFill, RiWalletFill } from "@remixicon/react"
 
 const data: any = {
   user: {
@@ -69,7 +69,7 @@ const data: any = {
           url: "/dashboard/users/admin",
         }
       ],
-    }, 
+    },
     {
       title: "Construction",
       url: "/dashboard/constructions/proposals",
@@ -79,8 +79,14 @@ const data: any = {
     {
       title: "Wallet",
       url: "/dashboard/wallet/alltransaction",
-      icon: RiWalletFill, 
-    }
+      icon: RiWalletFill,
+    },
+    {
+      title: "Reports & Analytics",
+      url: "/dashboard/analytics",
+      icon: RiPieChartFill,
+      items: []
+    },
   ],
 }
 

@@ -3,7 +3,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import { LoginPage, VerificationPage } from "./components/authComponents";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DashboardLayout } from "./components/sidebarComponents";
-import { AdminDetailsPage, AdminPage, ClientDetailsPage, ClientPage, CreateListingBuilding, CreateListingLand, EditListingBuilding, EditListingLand, HomePage, InvestmentDetailPage, InvestmentPage, ListingDetailsPage, ListingPage, ProposalCreateTaskPage, ProposalDetailsPage, ProposalListingDetailPage, ProposalPage, RealtorDetailsPage, RealtorPage, SaleAndReservation, SaleDetails } from "./components/dashboardPage";
+import { AdminDetailsPage, AdminPage, ClientDetailsPage, ClientPage, CreateListingBuilding, CreateListingLand, EditListingBuilding, EditListingLand, HomePage, InvestmentDetailPage, InvestmentPage, ListingDetailsPage, ListingPage, ProposalCreateTaskPage, ProposalDetailsPage, ProposalListingDetailPage, ProposalPage, RealtorDetailsPage, RealtorPage, ReportPages, SaleAndReservation, SaleDetails } from "./components/dashboardPage";
 import TransactionTab from "./components/walletComponents/TransactionTab";
 
 function App() {
@@ -60,6 +60,7 @@ function App() {
           <Route path="wallet" >
             <Route path="alltransaction" element={<TransactionTab />} />
           </Route>
+          <Route path="analytics" element={<ReportPages />} />
         </Route>
       </Route>
     )

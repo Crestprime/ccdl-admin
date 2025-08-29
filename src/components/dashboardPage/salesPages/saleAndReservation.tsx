@@ -1,8 +1,7 @@
 import { RiAddCircleLine, RiCalendarCheckFill, RiCoinsFill, RiKeyFill, RiSearch2Line } from "@remixicon/react";
 import { Tabs, TabsContent } from "../../ui/tabs";
 import { Input } from "../../ui/input";
-import { Button } from "../../ui/button"; 
-// import { useNavigate } from "react-router-dom";
+import { Button } from "../../ui/button";  
 import { useFetchData } from "@/hooks/useFetchData"; 
 import ReservationTable from "@/components/reservationComponents/reservationTable";
 import { IReservation } from "@/models/analytics";
@@ -10,44 +9,8 @@ import { LoadingAnimation } from "@/components/shared";
 import { formatNumberWithK } from "@/utils/formatNumberWithK";
 
 
-export default function SaleAndReservation() {
+export default function SaleAndReservation() { 
 
-    // const navigate = useNavigate()
-
-    // const data = [
-    //     {
-    //         name: "Sunset Villa - Unit A4",
-    //         client: "Mr. John Doe", 
-    //         status: "Completed",
-    //         sale: "Feb 10, 2024",
-    //         price: "₦85,000,000 ",
-    //         allocated: "March 15, 2024"
-    //     },
-    //     {
-    //         name: "Sunset Villa - Unit A4",
-    //         client: "Mr. John Doe", 
-    //         status: "Allocating",
-    //         sale: "Feb 10, 2024",
-    //         price: "₦85,000,000 ",
-    //         allocated: "March 15, 2024"
-    //     },
-    //     {
-    //         name: "Sunset Villa - Unit A4",
-    //         client: "Mr. John Doe", 
-    //         status: "Allocating",
-    //         sale: "Feb 10, 2024",
-    //         price: "₦85,000,000 ",
-    //         allocated: "March 15, 2024"
-    //     },
-    //     {
-    //         name: "Sunset Villa - Unit A4",
-    //         client: "Mr. John Doe", 
-    //         status: "Completed",
-    //         sale: "Feb 10, 2024",
-    //         price: "₦85,000,000 ",
-    //         allocated: "March 15, 2024"
-    //     }
-    // ]
     const { data, isLoading } = useFetchData<IReservation | any>(`/analytics/reservation`, ["analytics/reservation"]);
   
     return (
