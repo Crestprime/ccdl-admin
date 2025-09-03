@@ -1,6 +1,6 @@
 
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
-import { LoginPage, VerificationPage } from "./components/authComponents";
+import { InvitePage, LoginPage, VerificationPage } from "./components/authComponents";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DashboardLayout } from "./components/sidebarComponents";
 import { AdminDetailsPage, AdminPage, ClientDetailsPage, ClientPage, CreateListingBuilding, CreateListingLand, EditListingBuilding, EditListingLand, HomePage, InvestmentDetailPage, InvestmentPage, ListingDetailsPage, ListingPage, ProposalCreateTaskPage, ProposalDetailsPage, ProposalListingDetailPage, ProposalPage, RealtorDetailsPage, RealtorPage, ReportPages, SaleAndReservation, SaleDetails } from "./components/dashboardPage";
@@ -13,6 +13,7 @@ function App() {
       <Route path="/">
         <Route index element={<LoginPage />} />
         <Route path="/auth/verify" element={<VerificationPage />} />
+        <Route path="/auth/invite" element={<InvitePage />} />
         <Route path="/dashboard" element={<DashboardLayout />} >
           <Route index element={<HomePage />} />
           <Route path="property" >

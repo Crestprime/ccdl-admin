@@ -5,21 +5,25 @@ import { useFormik } from "formik";
 import * as Yup from 'yup';
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const useAdmin = () => {
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false)
 
     const { mutate: createAdmin, isPending: isLoading } = useMutation({
-        mutationFn: (data: IAdminData) => httpService.post(`/admin-auth/login`, data),
+        mutationFn: (data: IAdminData) => httpService.post(`/admin-auth/create-invitation`, data),
         onError: (error: any) => {
             toast.error(error?.response?.data?.message)
         },
         onSuccess: (data: any) => {
             toast.success(data?.data?.message)
-            navigate("/auth/verify")
+            // navigate("/auth/verify")
+            console.log(data);
+
+            setIsOpen(false)
+            
         },
     });
 
@@ -38,8 +42,7 @@ const useAdmin = () => {
         validationSchema: Yup.object({
             firstName: Yup.string().required('Required'),
             lastName: Yup.string().required('Required'),
-            email: Yup.string().required('Required'),
-            name: Yup.string().required('Required'),
+            email: Yup.string().required('Required'), 
             position: Yup.string().required('Required'),
         }),
         onSubmit: (data: IAdminData) => {

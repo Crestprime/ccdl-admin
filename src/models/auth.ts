@@ -32,5 +32,6 @@ export interface IAdminData {
     firstName: string;  
     lastName: string;
     position: string; 
-    workspaces: Array<string>
+    workspaces: Array<string>;
+    profilePicture?: string
 }

@@ -40,34 +40,18 @@ export function AdminBtn(
                         <FormInput setValue={formik.setFieldValue} errors={formik?.errors} touched={formik?.touched} value={formik?.values} label="Email Address" name="email" placeholder="e.g john_doe@gmail.com" />
                         <FormSelect setValue={formik.setFieldValue} errors={formik?.errors} optionData={[
                             {
-                                label: "Developer",
-                                value: "Developer"
+                                label: "Admin",
+                                value: "Admin"
                             },
                             {
                                 label: "Developer",
                                 value: "Developer"
                             },
                             {
-                                label: "Developer",
-                                value: "Developer"
-                            },
-                            {
-                                label: "Developer",
-                                value: "Developer"
-                            },
-                            {
-                                label: "Developer",
-                                value: "Developer"
-                            },
-                            {
-                                label: "Developer",
-                                value: "Developer"
-                            },
-                            {
-                                label: "Developer",
-                                value: "Developer"
-                            },
-                        ]} touched={formik?.touched} value={formik?.values} label="Role" name="name" />
+                                label: "IT Admin",
+                                value: "IT Admin"
+                            }, 
+                        ]} touched={formik?.touched} value={formik?.values} label="Role" name="position" placeholder="Select Role" />
                     </div>
                     <DialogFooter >
                         <Button variant={"outline"} onClick={() => setIsOpen(false)} className=" w-full rounded-full " >Cancel</Button> 
