@@ -5,11 +5,9 @@ import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
 
 import {
     Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
+    CardContent
 } from "@/components/ui/card"
+
 import {
     ChartConfig,
     ChartContainer,
@@ -17,14 +15,7 @@ import {
     ChartLegendContent,
     ChartTooltip,
     ChartTooltipContent,
-} from "@/components/ui/chart"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/chart" 
 
 export const description = "An interactive area chart"
 
@@ -152,6 +143,10 @@ export function PropertyPerformance() {
         startDate.setDate(startDate.getDate() - daysToSubtract)
         return date >= startDate
     })
+
+    React.useEffect(()=> {
+        setTimeRange("90d")
+    },[])
 
     return (
         <div className=" w-full flex-col flex gap-3 p-4 border border-gray200 rounded-2xl " >
