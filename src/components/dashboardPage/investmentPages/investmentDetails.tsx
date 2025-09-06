@@ -7,7 +7,7 @@ import { capitalizeFLetter } from "@/utils/capitalLetter";
 import { dateFormat } from "@/utils/dateFormat";
 import { formatNumberWithK } from "@/utils/formatNumberWithK";
 import { RiCoinsFill, RiUser4Fill } from "@remixicon/react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 
 interface IProps {
