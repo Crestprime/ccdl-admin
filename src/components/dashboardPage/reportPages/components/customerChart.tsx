@@ -31,6 +31,7 @@ const chartConfig = {
     },
 } satisfies ChartConfig
 
+
 export default function CustomerChart() {
     return (
         <div className=" w-full flex-col flex gap-3 p-4 border border-gray200 rounded-2xl " >
