@@ -18,7 +18,7 @@ import {
 
 export default function DashboardLayout() {
   return (
-    <SidebarProvider className=" p-3 !bg-[#f2f4f7] " >
+    <SidebarProvider className=" p-3 !bg-[#f2f4f7] font-OpenRunde-Regular " >
       {/* <div className=" w-fit " > */}
         <AppSidebar />
       {/* </div> */}
