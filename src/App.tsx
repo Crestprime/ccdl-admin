@@ -69,7 +69,7 @@ function App() {
   );
   const queryClient = new QueryClient();
   return (
-    <div className=" w-full " style={{ fontFamily: "OpenRunde-Regular" }} >
+    <div className=" w-full !font-OpenRunde-Regular " style={{ fontFamily: "OpenRunde-Regular" }} >
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
       </QueryClientProvider>
