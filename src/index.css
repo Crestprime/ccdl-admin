@@ -82,34 +82,25 @@
 } 
 
 .font-bold {
-  font-family: OpenRunde-Bold !important;
+  font-family: 'OpenRunde-Bold' !important;
 }
 
 .font-medium {
-  font-family: OpenRunde-Medium !important;
-}
-
-.font-semibold {
-  font-family: OpenRunde-SemiBold !important;
-}
+  font-family: 'OpenRunde-Medium' !important;
+} 
 
 @font-face {
-    font-family: 'OpenRunde-Bold';
+    font-family: 'OpenRunde-Bold' !important;
     src: url(./assets/fonts/OpenRunde-Bold.woff);
 }
 
 @font-face {
-    font-family: 'OpenRunde-Medium';
-    src: url(./assets/fonts/OpenRunde-Medium.woff);
-}
-
-@font-face {
-    font-family: 'OpenRunde-Regular';
+    font-family: 'OpenRunde-Regular' !important;
     src: url(./assets/fonts/OpenRunde-Regular.woff);
 }
 
 @font-face {
-    font-family: 'OpenRunde-SemiBold';
+    font-family: 'OpenRunde-SemiBold' !important;
     src: url(./assets/fonts/OpenRunde-SemiBold.woff);
 }
 
