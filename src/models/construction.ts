@@ -4,6 +4,7 @@ export interface IConstruction {
     id: number,
     admin: IUser
     adminId: any
+    user: IUser
     agentId: any
     "userId": number,
     "profileId": number,

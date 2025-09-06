@@ -25,7 +25,6 @@ export default function InvitePage() {
         })
     }
 
-
     return (
         <LoadingAnimation loading={isLoading} >
             <div className=' w-full h-screen flex flex-col items-center justify-center ' >

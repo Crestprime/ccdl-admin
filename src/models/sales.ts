@@ -3,6 +3,12 @@ import { IUser } from "./user"
 
  export interface ISale {
     "id": number,
+    analytics: {
+        "totalAmountPaid": number,
+        "totalSalePrice": number,
+        "outstandingBalance": number,
+        "paymentPlan": string
+    }
     "userId": number,
     "plots": Array<number>,
     "propertyId": number,

@@ -17,6 +17,8 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { RiAccountCircleFill, RiBuilding2Fill, RiFolderOpenFill, RiHome4Fill, RiPieChartFill, RiWalletFill } from "@remixicon/react"
+import { useFetchData } from "@/hooks/useFetchData"
+import Cookies from "js-cookie";
 
 const data: any = {
   user: {
@@ -92,6 +94,9 @@ const data: any = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
+  const id = Cookies.get("userid")
+  const { data: userData, isLoading } = useFetchData<any>(`/admin/details/${id}`, ["userData"]);
+
   return (
     <Sidebar className=" !bg-[#f2f4f7] " variant="inset" {...props}>
       <SidebarHeader>
@@ -114,9 +119,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={data?.navMain} />
       </SidebarContent>
-      <SidebarFooter className="mt-auto" >
-        <NavUser user={data.user} />
-      </SidebarFooter>
+      {!isLoading && (
+        <SidebarFooter className="mt-auto" >
+          <NavUser user={userData} />
+        </SidebarFooter>
+      )}
     </Sidebar>
   )
 }

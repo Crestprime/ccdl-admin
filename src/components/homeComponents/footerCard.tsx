@@ -80,9 +80,13 @@ export default function FooterCard() {
                                             <TableCell>
                                                 <div className=" flex items-center gap-2 " >
                                                     <div className=" w-fit " >
-                                                        <div className=" w-8 h-8 rounded-full bg-red-600 " />
+                                                        <div className=" w-8 h-8 rounded-full bg-gray-200 " >
+                                                            {item?.user?.profilePicture && (
+                                                                <img src={item?.user?.profilePicture} alt="profile" className=" w-full h-full rounded-full " />     
+                                                            )} 
+                                                        </div>
                                                     </div>
-                                                    {/* <p className=" text-sm " >{item?.user}</p> */}
+                                                    <p className=" text-sm " >{item?.user?.firstName + " " + item?.user?.lastName}</p>
                                                 </div>
                                             </TableCell>
                                             <TableCell>

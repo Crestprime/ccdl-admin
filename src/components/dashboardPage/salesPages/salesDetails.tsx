@@ -2,56 +2,16 @@ import { LoadingAnimation } from "@/components/shared";
 import { Button } from "@/components/ui/button";
 import { TableHeader, TableRow, TableHead, TableBody, Table } from "@/components/ui/table";
 import { useFetchData } from "@/hooks/useFetchData";
-import { ISale } from "@/models/sales";
-import { dateFormat } from "@/utils/dateFormat";
+import { ISale } from "@/models/sales"; 
 import { formatNumberWithK } from "@/utils/formatNumberWithK";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 
 export default function SalesDetails() {
 
     const [searchParams] = useSearchParams();
     const id: any = searchParams.get("id");
-    // const data = [
-    //     {
-    //         document: "Sale Agreement",
-    //         status: "Not Ready"
-    //     },
-    //     {
-    //         document: "Sale Agreement",
-    //         status: "Not Ready"
-    //     },
-    //     {
-    //         document: "Sale Agreement",
-    //         status: "Not Ready"
-    //     },
-    //     {
-    //         document: "Sale Agreement",
-    //         status: "Not Ready"
-    //     },
-    //     {
-    //         document: "Sale Agreement",
-    //         status: "Not Ready"
-    //     },
-    // ]
-
-    // const datasecond = [
-    //     {
-    //         date: "March 1, 2024",
-    //         amount: "₦5,000,000",
-    //         status: "Completed"
-    //     },
-    //     {
-    //         date: "March 1, 2024",
-    //         amount: "₦5,000,000",
-    //         status: "Due"
-    //     },
-    //     {
-    //         date: "March 1, 2024",
-    //         amount: "₦5,000,000",
-    //         status: "Not Paid"
-    //     },
-    // ]
+    const navigate = useNavigate()
 
 
     const { data, isLoading } = useFetchData<ISale>(`/admin-property/reservation/${id}`, ["reservations", id]);
@@ -62,25 +22,25 @@ export default function SalesDetails() {
                 <div className=" w-full grid grid-cols-4 gap-4 mt-4 " >
                     <div className=" w-full rounded-xl border p-4 " >
                         <p className=" text-gray500 text-sm " >Amount Paid</p>
-                        <p className=" text-lg font-semibold text-gray900 " >{formatNumberWithK(data?.paymentsMade, true)}</p>
+                        <p className=" text-lg font-semibold text-gray900 " >{formatNumberWithK(data?.analytics?.totalAmountPaid, true)}</p>
                     </div>
                     <div className=" w-full rounded-xl border p-4 " >
                         <p className=" text-gray500 text-sm " >Total Sale Price</p>
-                        <p className=" text-lg font-semibold text-gray900 " >{formatNumberWithK(data?.property.shellFinishedPrice)}</p>
+                        <p className=" text-lg font-semibold text-gray900 " >{formatNumberWithK(data?.analytics?.totalSalePrice, true)}</p>
                     </div>
                     <div className=" w-full rounded-xl border p-4 " >
                         <p className=" text-gray500 text-sm " >Outstanding Balance</p>
-                        <p className=" text-lg font-semibold text-error600 " >---</p>
+                        <p className=" text-lg font-semibold text-error600 " >{formatNumberWithK(data?.analytics?.outstandingBalance, true)}</p>
                     </div>
                     <div className=" w-full rounded-xl border p-4 " >
                         <p className=" text-gray500 text-sm " >Payment Plan</p>
-                        <p className=" text-lg font-semibold text-gray900 " >{data?.paymentPlan}</p>
+                        <p className=" text-lg font-semibold text-gray900 " >{data?.analytics?.paymentPlan}</p>
                     </div>
                 </div>
                 <div className=" w-full flex gap-4 " >
                     <div className=" w-full flex flex-col gap-4 " >
 
-                        <div className=" p-4 w-full flex flex-col gap-6 bg-primary50 rounded-2xl " >
+                        {/* <div className=" p-4 w-full flex flex-col gap-6 bg-primary50 rounded-2xl " >
                             <div className=" w-full flex justify-between items-center " >
                                 <p className=" text-xl font-semibold " >Reservation Made</p>
                                 <p className=" text-gray600 " >{dateFormat(data?.createdAt)}</p>
@@ -99,7 +59,7 @@ export default function SalesDetails() {
                                 </div>
                                 <Button variant={"outline"} className=" rounded-full " >View timeline</Button>
                             </div>
-                        </div>
+                        </div> */}
                         <div className=" w-full border rounded-2xl p-4 h-fit " >
                             <div className=" w-full h-[190px] rounded-t-2xl bg-slate-500 " >
                                 <img alt="porperty" src={data?.property?.media[0]} className=" h-[190px] object-cover w-full rounded-2xl " />
@@ -109,7 +69,7 @@ export default function SalesDetails() {
                                 <p className=" text-gray500 " >{data?.property?.squareFoot}sqm</p>
                             </div>
                             <div className=" w-full border rounded-b-2xl p-4  " >
-                                <Button variant={"main"} className=" h-9 rounded-full " >View property</Button>
+                                <Button onClick={() => navigate(`/dashboard/property/listings/details?id=${data?.property?.id}`)} variant={"main"} className=" h-9 rounded-full " >View property</Button>
                             </div>
                         </div>
                         <div className=" w-full p-4 rounded-2xl flex flex-col gap-3 border " >

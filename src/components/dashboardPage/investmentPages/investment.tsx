@@ -102,7 +102,8 @@ export default function Investment() {
                             <TableBody>
                                 {data?.map((item, index) => {
                                     return (
-                                        <TableRow role="button" className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
+                                        <TableRow role="button" onClick={() => navigate(`/dashboard/property/investments/details?id=${item?.id}`
+                                        )} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
                                             <TableCell className="">{item?.plan?.property?.name}</TableCell>
                                             <TableCell className="">{"---"}</TableCell>
                                             <TableCell className="">{item?.plan?.duration} Months</TableCell>
@@ -139,7 +140,7 @@ export default function Investment() {
                             <TableBody>
                                 {plans?.map((item, index) => {
                                     return (
-                                        <TableRow role="button" onClick={() => navigate(`/dashboard/property/investments/details?id=${item?.id}`
+                                        <TableRow role="button" onClick={() => navigate(`/dashboard/property/investments/details-plans?id=${item?.id}`
                                         )} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
                                             <TableCell className="">{item?.property?.name}</TableCell>
                                             <TableCell className="">{item?.duration} months</TableCell>

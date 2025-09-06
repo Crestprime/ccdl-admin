@@ -3,7 +3,7 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import { InvitePage, LoginPage, VerificationPage } from "./components/authComponents";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DashboardLayout } from "./components/sidebarComponents";
-import { AdminDetailsPage, AdminPage, ClientDetailsPage, ClientPage, CreateListingBuilding, CreateListingLand, EditListingBuilding, EditListingLand, HomePage, InvestmentDetailPage, InvestmentPage, ListingDetailsPage, ListingPage, ProposalCreateTaskPage, ProposalDetailsPage, ProposalListingDetailPage, ProposalPage, RealtorDetailsPage, RealtorPage, ReportPages, SaleAndReservation, SaleDetails } from "./components/dashboardPage";
+import { AdminDetailsPage, AdminPage, ClientDetailsPage, ClientPage, CreateListingBuilding, CreateListingLand, EditListingBuilding, EditListingLand, HomePage, InvestmentDetailPage, InvestmentDetailPagePlans, InvestmentPage, ListingDetailsPage, ListingPage, ProposalCreateTaskPage, ProposalDetailsPage, ProposalListingDetailPage, ProposalPage, RealtorDetailsPage, RealtorPage, ReportPages, SaleAndReservation, SaleDetails } from "./components/dashboardPage";
 import TransactionTab from "./components/walletComponents/TransactionTab";
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
             <Route path="investments">
               <Route index element={<InvestmentPage />} />
               <Route path="details" element={<InvestmentDetailPage />} />
+              <Route path="details-plans" element={<InvestmentDetailPagePlans />} />
             </Route>
             <Route path="sales" >
               <Route index element={<SaleAndReservation />} />

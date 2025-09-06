@@ -22,9 +22,9 @@ export default function SalesCard(
             <div className=" w-full p-4 h-[374px] rounded-2xl flex flex-col border " >
                 <p className=" text-bodyTextColor text-sm leading-5 " >Cashflow</p>
                 <p className=" text-[30px] font-medium leading-9 " >{formatNumberWithK(data?.outflow, true)}</p>
-                <Button variant={"outline"} className=" h-[40px] text-sm font-medium mt-auto w-fit rounded-full " >
+                {/* <Button variant={"outline"} className=" h-[40px] text-sm font-medium mt-auto w-fit rounded-full " >
                     See all
-                </Button>
+                </Button> */}
             </div>
             {/* <div className=" w-full p-4 h-[374px] rounded-2xl flex flex-col border " >
                 <div className=" flex gap-2 items-center " >
