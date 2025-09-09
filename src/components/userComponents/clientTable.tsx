@@ -13,6 +13,9 @@ export default function ClientTable() {
 
     const { data, isLoading } = useFetchData<Array<IUser>>(`/admin/users`, ["user"]);
 
+    console.log(data);
+    
+
     return (
         <LoadingAnimation loading={isLoading} >
 

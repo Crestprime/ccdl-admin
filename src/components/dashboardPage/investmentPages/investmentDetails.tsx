@@ -1,11 +1,12 @@
 import { LoadingAnimation } from "@/components/shared";
 import { Button } from "@/components/ui/button";
-import { TableHeader, TableRow, TableHead, TableBody, Table } from "@/components/ui/table";
+import { TableHeader, TableRow, TableHead, TableBody, Table, TableCell } from "@/components/ui/table";
 import { useFetchData } from "@/hooks/useFetchData";
 import { IUser } from "@/models/user";
 import { capitalizeFLetter } from "@/utils/capitalLetter";
 import { dateFormat } from "@/utils/dateFormat";
 import { formatNumberWithK } from "@/utils/formatNumberWithK";
+import { formatNumber } from "@/utils/numberFormat";
 import { RiCoinsFill, RiUser4Fill } from "@remixicon/react";
 import { useSearchParams } from "react-router-dom";
 
@@ -47,20 +48,34 @@ interface IPropsInvestment {
     "user": IUser
 }
 
+interface IDisbustment {
+    id: string
+    investmentId: number
+    propertyId: number
+    amount: number
+    roi: number
+    totalAmount: number
+    note: string
+    status: string
+    disbursedAt: any
+    createdAt: any
+    updatedAt: any
+}
+
 export default function InvestmentDetails() {
 
 
     const [searchParams] = useSearchParams();
     const id: any = searchParams.get("id");
- 
+
     const { data: analytics, isLoading: loading } = useFetchData<IProps>(`/investment/analytics/${id}`, ["investment-analytics-detail", id]);
 
 
-    const { data: history, isLoading: loadinghistory } = useFetchData<any>(`/investment/disbursement-history/${id}`, ["investment-disbursement", id]);
+    const { data: history, isLoading: loadinghistory } = useFetchData<Array<IDisbustment>>(`/investment/disbursement-history/${id}`, ["investment-disbursement", id]);
 
     const { data, isLoading } = useFetchData<IPropsInvestment>(`/investment/${id}`, ["investment-details", id]);
 
-    console.log(history);
+    console.log(data);
 
 
     return (
@@ -155,42 +170,38 @@ export default function InvestmentDetails() {
                 </div>
                 <div className=" w-full flex flex-col gap-4 " >
                     <p className=" text-gray900 font-semibold " >Disbursement History</p>
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Property Name</TableHead>
-                                <TableHead>Amount</TableHead>
-                                <TableHead>Status</TableHead>
-                                <TableHead>Method</TableHead>
-                                <TableHead>Notes</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {/* {dataplans.map((item, index) => {
-                                return (
-                                    <TableRow role="button" onClick={() => navigate({
-                                        to: "/dashboard/property/investments/details"
-                                    })} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
-                                        <TableCell className="">{item?.name}</TableCell>
-                                        <TableCell className="">{item?.price}</TableCell>
-                                        <TableCell>
-                                            <div className=" flex gap-2 items-center " >
-                                                <div className={` ${item?.status?.includes("Completed") ? " text-success800 bg-success100 " : " text-warning800 bg-warning100 "} h-[21px] rounded-2xl px-3 text-xs  w-fit flex justify-center items-center `} >
-                                                    {item?.status}
+                    <LoadingAnimation loading={loadinghistory} length={history?.length} >
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Property Name</TableHead>
+                                    <TableHead>Amount</TableHead>
+                                    <TableHead>Status</TableHead>
+                                    <TableHead>Method</TableHead>
+                                    <TableHead>Notes</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {history?.map((item, index) => {
+                                    return (
+                                        <TableRow role="button" className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
+                                            <TableCell className="">{item?.propertyId}</TableCell>
+                                            <TableCell className="">{formatNumber(item?.totalAmount)}</TableCell>
+                                            <TableCell>
+                                                <div className=" flex gap-2 items-center " >
+                                                    <div className={` ${item?.status?.includes("Completed") ? " text-success800 bg-success100 " : " text-warning800 bg-warning100 "} h-[21px] rounded-2xl px-3 text-xs  w-fit flex justify-center items-center `} >
+                                                        {item?.status}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </TableCell>
-                                        <TableCell className="">{item?.method}</TableCell>
-                                        <TableCell className="">{item?.note}</TableCell>
-                                    </TableRow>
-                                )
-                            })} */}
-                        </TableBody>
-                    </Table>
-
-                    <div className=" w-full py-6 flex justify-center items-center " >
-                        <p>No Record Found</p>
-                    </div>
+                                            </TableCell>
+                                            <TableCell className="">{"---"}</TableCell>
+                                            <TableCell className="">{item?.note}</TableCell>
+                                        </TableRow>
+                                    )
+                                })}
+                            </TableBody>
+                        </Table>
+                    </LoadingAnimation>
                 </div>
 
             </div>

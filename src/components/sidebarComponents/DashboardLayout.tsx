@@ -14,32 +14,52 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from "../ui/breadcrumb";
 // import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "../ui/breadcrumb"
 
 export default function DashboardLayout() {
+
+
+  const pathname = new URL(window.location.href);
+
+  console.log(pathname?.pathname);
+
+  const pathArray = pathname?.pathname.split("/").filter(Boolean);
+
+
   return (
     <SidebarProvider className=" p-3 !bg-[#f2f4f7] font-OpenRunde-Regular " >
       {/* <div className=" w-fit " > */}
-        <AppSidebar />
+      <AppSidebar />
       {/* </div> */}
       <SidebarInset className=" flex-1 relative rounded-lg h-full overflow-y-auto " >
         <header className="flex h-16 w-fit shrink-0 items-center gap-2">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             {/* <Separator orientation="vertical" className="mr-2 h-4" /> */}
-            {/* <Breadcrumb>
+            <Breadcrumb>
               <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
+                {/* <BreadcrumbItem className="hidden md:block">
                   <BreadcrumbLink href="/dashboard">
                     dashboard
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/dashboard/">Components</BreadcrumbLink>
-                </BreadcrumbItem>
+                  <BreadcrumbLink href="/dashboard/">back</BreadcrumbLink>
+                </BreadcrumbItem> */}
+                {pathArray?.map((item, index) => {
+                  return (
+                    <div key={index} className=" flex gap-2 items-center " > 
+                      <BreadcrumbItem>
+                        <BreadcrumbLink href={index === 0 ? "/dashboard" : ""} >{item}</BreadcrumbLink>
+                      </BreadcrumbItem>
+                      <BreadcrumbSeparator className="hidden md:block" />
+                    </div>
+                  )
+                })}
               </BreadcrumbList>
-            </Breadcrumb> */}
+            </Breadcrumb>
           </div>
         </header>
         <div className="flex flex-1 overflow-x-hidden flex-col gap-4 p-4 pt-0">

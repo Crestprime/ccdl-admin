@@ -50,7 +50,7 @@ export default function AdminTable() {
                                     {item?.position}
                                 </TableCell>
                                 <TableCell>
-                                    0
+                                    {item?.projects?.length}
                                 </TableCell>
                                 <TableCell>
                                     <div className=" px-4 flex h-[21px] justify-center items-center w-fit font-medium text-sm rounded-full bg-success100 text-success800 " >

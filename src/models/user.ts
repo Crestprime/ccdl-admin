@@ -55,6 +55,35 @@ export interface IUser {
     "totalAmount": number,
     "reservations": number,
     "investments": number
+    projects: Array<{
+        "id": number,
+        "userId": number,
+        "profileId": number,
+        "signed": boolean,
+        "projectType": string,
+        "buildingType": string,
+        "projectAddress": string,
+        "projectDescription": string,
+        "proposedStartDate": string,
+        "images": Array<string>,
+        "duration": number,
+        "furnishingType": string,
+        "cement": string,
+        "roofing": string,
+        "flooring": string,
+        "windows": string,
+        "doors": string,
+        "budget": number,
+        "totalPayment": number,
+        "paymentStructure": string,
+        "status": string,
+        "priority": string,
+        "adminId": number,
+        "agentId": null,
+        "createdAt": string,
+        "percentage": number,
+        "updatedAt": string
+    }>
 }
 
 export interface IAgent {

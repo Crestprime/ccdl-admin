@@ -17,7 +17,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "@/components/ui/sidebar" 
+} from "@/components/ui/sidebar"
 
 export function NavMain({
   items,
@@ -32,19 +32,16 @@ export function NavMain({
       url: string
     }[]
   }[]
-}) {  
-   
-const pathname: string = new URL(window.location.href).pathname; 
+}) {
 
-console.log(pathname);
-
+  const pathname: string = new URL(window.location.href).pathname;
 
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
-          <Collapsible key={item.title} asChild  defaultOpen={pathname?.includes(item?.url) ? true : false}>
+          <Collapsible key={item.title} asChild defaultOpen={pathname?.includes(item?.url) ? true : false}>
             <SidebarMenuItem>
               <SidebarMenuButton asChild tooltip={item.title}>
                 {item?.items?.length > 0 ? (
