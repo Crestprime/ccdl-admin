@@ -4,9 +4,11 @@ import ConstructionInfo from "./components/constructionInfo";
 import PropertyStatistics from "./components/propertyStatistics";
 import { useFetchData } from "@/hooks/useFetchData";
 import { IReport } from "@/models/analytics";
-import * as React from "react" 
+import * as React from "react"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { dateRangeOptions, getDateRange } from "@/utils/dateRange"; 
+import { dateRangeOptions, getDateRange } from "@/utils/dateRange";
+import { useReactToPrint } from "react-to-print";
+import { dateFormat } from "@/utils/dateFormat";
 
 
 export default function ReportPage() {
@@ -14,14 +16,14 @@ export default function ReportPage() {
     const [selectedDate, setSelectedDate] = React.useState<{
         startDate: string | any;
         endDate: string | any;
-      }>({
+    }>({
         startDate: "",
         endDate: "",
-      });
+    });
     // /analytics/reports
 
     const { data, isLoading } = useFetchData<IReport>(`/analytics/reports`, ["analytics/reports", selectedDate?.startDate, selectedDate?.endDate], {
-        startDate: selectedDate?.startDate, 
+        startDate: selectedDate?.startDate,
         endDate: selectedDate?.endDate
     });
 
@@ -33,44 +35,18 @@ export default function ReportPage() {
         setSelectedDate({
             startDate: date?.start,
             endDate: date?.end
-        }) 
+        })
         setSelected(item)
     }
-    const reportRef = React.useRef<HTMLDivElement>(null);
+    const contentRef = React.useRef<HTMLDivElement | any>(null);
 
-    // const handleExportPDF = async () => {
-    //   if (!reportRef.current) return;
-  
-    //   // take screenshot of the div
-    //   const canvas = await html2canvas(reportRef.current, { scale: 2 });
-    //   const imgData = canvas.toDataURL("image/png");
-  
-    //   // create pdf
-    //   const pdf = new jsPDF("p", "mm", "a4");
-    //   const pageWidth = pdf.internal.pageSize.getWidth();
-    //   const pageHeight = pdf.internal.pageSize.getHeight();
-  
-    //   const imgProps = pdf.getImageProperties(imgData);
-    //   const pdfWidth = pageWidth;
-    //   const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-  
-    //   let position = 0;
-  
-    //   if (pdfHeight > pageHeight) {
-    //     // if content is longer than one page
-    //     let heightLeft = pdfHeight;
-    //     while (heightLeft > 0) {
-    //       pdf.addImage(imgData, "PNG", 0, position, pdfWidth, pdfHeight);
-    //       heightLeft -= pageHeight;
-    //       position -= pageHeight;
-    //       if (heightLeft > 0) pdf.addPage();
-    //     }
-    //   } else {
-    //     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-    //   }
-  
-    //   pdf.save("report.pdf");
-    // };
+    const reactToPrintFn = useReactToPrint({ contentRef, 
+        documentTitle: "report "+dateFormat(new Date()),
+        pageStyle: `
+          @page {
+            size: Legal landscape
+          }   
+        `, });
 
     return (
         <LoadingAnimation loading={isLoading} >
@@ -80,21 +56,21 @@ export default function ReportPage() {
                         <h3 className=" font-semibold text-lg " >Reports & Analytics</h3>
                         <p className=" text-gray500 text-sm " >Track and analyze your real estate metrics</p>
                     </div>
-                    <CustomButton variant={"main"} className=" w-fit px-4 rounded-full " >Export</CustomButton>
+                    <CustomButton variant={"main"} onClick={reactToPrintFn} className=" w-fit px-4 rounded-full " >Export</CustomButton>
                 </div>
                 <div className=" p-4 " >
-                    <Tabs defaultValue={selected} > 
+                    <Tabs defaultValue={selected} >
                         <TabsList className="grid w-fit grid-cols-6 h-fit ">
-                        <TabsTrigger onClick={()=> {setSelectedDate({startDate: "", endDate: ""}), setSelected("ALL")}} className=" h-[36px] " value={"ALL"} >All Time</TabsTrigger>
+                            <TabsTrigger onClick={() => { setSelectedDate({ startDate: "", endDate: "" }), setSelected("ALL") }} className=" h-[36px] " value={"ALL"} >All Time</TabsTrigger>
                             {dateRangeOptions?.map((item, index) => {
                                 return (
-                                    <TabsTrigger key={index} onClick={()=> clickHandler(item?.value)} className=" h-[36px] " value={item?.value} >{item?.label}</TabsTrigger>
+                                    <TabsTrigger key={index} onClick={() => clickHandler(item?.value)} className=" h-[36px] " value={item?.value} >{item?.label}</TabsTrigger>
                                 )
                             })}
                         </TabsList>
                     </Tabs>
                 </div>
-                <div ref={reportRef} className=" w-full flex flex-col gap-4 p-4  " >
+                <div ref={contentRef} className=" w-full flex flex-col gap-4 p-4  " >
                     {/* <div className=" w-full flex gap-4 " >
                         <SalesGraph />
                         <PropertiesChart />
@@ -112,7 +88,7 @@ export default function ReportPage() {
 
                     <div className=" w-full flex gap-4 " >
                         <div className=" w-[45%] " >
-                            <PropertyStatistics  analytics={data as IReport}  />
+                            <PropertyStatistics analytics={data as IReport} />
                         </div>
                         {/* <div className=" w-full " >
                             <PropertyPerformance />

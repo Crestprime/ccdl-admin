@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import { AppSidebar } from "./app-sidebar"
 // import {
 //   Breadcrumb,
@@ -15,17 +15,13 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from "../ui/breadcrumb";
+import { useLinkStore } from "@/store/linkStore";
 // import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "../ui/breadcrumb"
 
 export default function DashboardLayout() {
 
-
-  const pathname = new URL(window.location.href);
-
-  console.log(pathname?.pathname);
-
-  const pathArray = pathname?.pathname.split("/").filter(Boolean);
-
+  const { linkPath } = useLinkStore((state) => state)
+  const navigate = useNavigate()
 
   return (
     <SidebarProvider className=" p-3 !bg-[#f2f4f7] font-OpenRunde-Regular " >
@@ -48,11 +44,23 @@ export default function DashboardLayout() {
                 <BreadcrumbItem>
                   <BreadcrumbLink href="/dashboard/">back</BreadcrumbLink>
                 </BreadcrumbItem> */}
-                {pathArray?.map((item, index) => {
+                {linkPath?.map((item, index) => {
                   return (
-                    <div key={index} className=" flex gap-2 items-center " > 
+                    <div key={index} className=" flex gap-2 items-center " >
                       <BreadcrumbItem>
-                        <BreadcrumbLink href={index === 0 ? "/dashboard" : ""} >{item}</BreadcrumbLink>
+                        {index === 0 ? (
+                          <BreadcrumbLink href={index === 0 ? "/dashboard" : ""} >{item}</BreadcrumbLink>
+                        ) : index === linkPath?.length - 1 ? (
+                          <>
+                            {item?.includes("deta") ? (
+                              <Breadcrumb onClick={() => navigate(-1)} role="button" className=" text-blue-500 " >{item}</Breadcrumb>
+                            ) : (
+                              <Breadcrumb >{item}</Breadcrumb>
+                            )}
+                          </>
+                        ) : (
+                          <Breadcrumb>{item}</Breadcrumb>
+                        )}
                       </BreadcrumbItem>
                       <BreadcrumbSeparator className="hidden md:block" />
                     </div>
