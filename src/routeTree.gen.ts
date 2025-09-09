@@ -10,581 +10,228 @@
 
 import { createFileRoute } from '@tanstack/react-router'
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as HomeRouteImport } from './routes/home'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settings'
+import { Route as DashboardReportsRouteImport } from './routes/dashboard/reports'
+import { Route as DashboardMaterialsRouteImport } from './routes/dashboard/materials'
+import { Route as DashboardHomeRouteImport } from './routes/dashboard/home'
+import { Route as AuthVerifyRouteImport } from './routes/auth/verify'
+import { Route as AuthLoginRouteImport } from './routes/auth/login'
+import { Route as AuthInviteRouteImport } from './routes/auth/invite'
+import { Route as DashboardWalletAlltransactionRouteImport } from './routes/dashboard/wallet/alltransaction'
+import { Route as DashboardUsersRealtorIndexRouteImport } from './routes/dashboard/users/realtor/index'
+import { Route as DashboardUsersClientsIndexRouteImport } from './routes/dashboard/users/clients/index'
+import { Route as DashboardPropertyScheduleIndexRouteImport } from './routes/dashboard/property/schedule/index'
+import { Route as DashboardPropertySalesIndexRouteImport } from './routes/dashboard/property/sales/index'
+import { Route as DashboardPropertyListingsIndexRouteImport } from './routes/dashboard/property/listings/index'
+import { Route as DashboardPropertyInvestmentsIndexRouteImport } from './routes/dashboard/property/investments/index'
+import { Route as DashboardConstructionsProposalsIndexRouteImport } from './routes/dashboard/constructions/proposals/index'
+import { Route as DashboardUsersRealtorDetailsRouteImport } from './routes/dashboard/users/realtor/details'
+import { Route as DashboardUsersClientsDetailsRouteImport } from './routes/dashboard/users/clients/details'
+import { Route as DashboardPropertySalesDetailsRouteImport } from './routes/dashboard/property/sales/details'
+import { Route as DashboardPropertyListingsTransactionRouteImport } from './routes/dashboard/property/listings/transaction'
+import { Route as DashboardPropertyListingsEditLandRouteImport } from './routes/dashboard/property/listings/edit-land'
+import { Route as DashboardPropertyListingsEditBuildingRouteImport } from './routes/dashboard/property/listings/edit-building'
+import { Route as DashboardPropertyListingsDetailsRouteImport } from './routes/dashboard/property/listings/details'
+import { Route as DashboardPropertyListingsCreateLandRouteImport } from './routes/dashboard/property/listings/create-land'
+import { Route as DashboardPropertyListingsCreateBuildingRouteImport } from './routes/dashboard/property/listings/create-building'
+import { Route as DashboardPropertyInvestmentsDetailsRouteImport } from './routes/dashboard/property/investments/details'
+import { Route as DashboardPropertyInvestmentsDetailPlansRouteImport } from './routes/dashboard/property/investments/detail-plans'
+import { Route as DashboardConstructionsProposalsListingdetailsRouteImport } from './routes/dashboard/constructions/proposals/listingdetails'
+import { Route as DashboardConstructionsProposalsDetailsRouteImport } from './routes/dashboard/constructions/proposals/details'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as HomeImport } from './routes/home'
-import { Route as DashboardImport } from './routes/dashboard'
-import { Route as DashboardIndexImport } from './routes/dashboard/index'
-import { Route as DashboardSettingsImport } from './routes/dashboard/settings'
-import { Route as DashboardReportsImport } from './routes/dashboard/reports'
-import { Route as DashboardMaterialsImport } from './routes/dashboard/materials'
-import { Route as DashboardHomeImport } from './routes/dashboard/home'
-import { Route as AuthVerifyImport } from './routes/auth/verify'
-import { Route as AuthLoginImport } from './routes/auth/login'
-import { Route as AuthInviteImport } from './routes/auth/invite'
-import { Route as DashboardWalletAlltransactionImport } from './routes/dashboard/wallet/alltransaction'
-import { Route as DashboardUsersRealtorIndexImport } from './routes/dashboard/users/realtor/index'
-import { Route as DashboardUsersClientsIndexImport } from './routes/dashboard/users/clients/index'
-import { Route as DashboardPropertyScheduleIndexImport } from './routes/dashboard/property/schedule/index'
-import { Route as DashboardPropertySalesIndexImport } from './routes/dashboard/property/sales/index'
-import { Route as DashboardPropertyListingsIndexImport } from './routes/dashboard/property/listings/index'
-import { Route as DashboardPropertyInvestmentsIndexImport } from './routes/dashboard/property/investments/index'
-import { Route as DashboardConstructionsProposalsIndexImport } from './routes/dashboard/constructions/proposals/index'
-import { Route as DashboardUsersRealtorDetailsImport } from './routes/dashboard/users/realtor/details'
-import { Route as DashboardUsersClientsDetailsImport } from './routes/dashboard/users/clients/details'
-import { Route as DashboardPropertySalesDetailsImport } from './routes/dashboard/property/sales/details'
-import { Route as DashboardPropertyListingsTransactionImport } from './routes/dashboard/property/listings/transaction'
-import { Route as DashboardPropertyListingsEditLandImport } from './routes/dashboard/property/listings/edit-land'
-import { Route as DashboardPropertyListingsEditBuildingImport } from './routes/dashboard/property/listings/edit-building'
-import { Route as DashboardPropertyListingsDetailsImport } from './routes/dashboard/property/listings/details'
-import { Route as DashboardPropertyListingsCreateLandImport } from './routes/dashboard/property/listings/create-land'
-import { Route as DashboardPropertyListingsCreateBuildingImport } from './routes/dashboard/property/listings/create-building'
-import { Route as DashboardPropertyInvestmentsDetailsImport } from './routes/dashboard/property/investments/details'
-import { Route as DashboardPropertyInvestmentsDetailPlansImport } from './routes/dashboard/property/investments/detail-plans'
-import { Route as DashboardConstructionsProposalsListingdetailsImport } from './routes/dashboard/constructions/proposals/listingdetails'
-import { Route as DashboardConstructionsProposalsDetailsImport } from './routes/dashboard/constructions/proposals/details'
+const AboutLazyRouteImport = createFileRoute('/about')()
+const IndexLazyRouteImport = createFileRoute('/')()
 
-// Create Virtual Routes
-
-const AboutLazyImport = createFileRoute('/about')()
-const IndexLazyImport = createFileRoute('/')()
-
-// Create/Update Routes
-
-const AboutLazyRoute = AboutLazyImport.update({
+const AboutLazyRoute = AboutLazyRouteImport.update({
   id: '/about',
   path: '/about',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
-
-const HomeRoute = HomeImport.update({
+const HomeRoute = HomeRouteImport.update({
   id: '/home',
   path: '/home',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const DashboardRoute = DashboardImport.update({
+const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const IndexLazyRoute = IndexLazyImport.update({
+const IndexLazyRoute = IndexLazyRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
-
-const DashboardIndexRoute = DashboardIndexImport.update({
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => DashboardRoute,
 } as any)
-
-const DashboardSettingsRoute = DashboardSettingsImport.update({
+const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
   getParentRoute: () => DashboardRoute,
 } as any)
-
-const DashboardReportsRoute = DashboardReportsImport.update({
+const DashboardReportsRoute = DashboardReportsRouteImport.update({
   id: '/reports',
   path: '/reports',
   getParentRoute: () => DashboardRoute,
 } as any)
-
-const DashboardMaterialsRoute = DashboardMaterialsImport.update({
+const DashboardMaterialsRoute = DashboardMaterialsRouteImport.update({
   id: '/materials',
   path: '/materials',
   getParentRoute: () => DashboardRoute,
 } as any)
-
-const DashboardHomeRoute = DashboardHomeImport.update({
+const DashboardHomeRoute = DashboardHomeRouteImport.update({
   id: '/home',
   path: '/home',
   getParentRoute: () => DashboardRoute,
 } as any)
-
-const AuthVerifyRoute = AuthVerifyImport.update({
+const AuthVerifyRoute = AuthVerifyRouteImport.update({
   id: '/auth/verify',
   path: '/auth/verify',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AuthLoginRoute = AuthLoginImport.update({
+const AuthLoginRoute = AuthLoginRouteImport.update({
   id: '/auth/login',
   path: '/auth/login',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AuthInviteRoute = AuthInviteImport.update({
+const AuthInviteRoute = AuthInviteRouteImport.update({
   id: '/auth/invite',
   path: '/auth/invite',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
 const DashboardWalletAlltransactionRoute =
-  DashboardWalletAlltransactionImport.update({
+  DashboardWalletAlltransactionRouteImport.update({
     id: '/wallet/alltransaction',
     path: '/wallet/alltransaction',
     getParentRoute: () => DashboardRoute,
   } as any)
-
-const DashboardUsersRealtorIndexRoute = DashboardUsersRealtorIndexImport.update(
-  {
+const DashboardUsersRealtorIndexRoute =
+  DashboardUsersRealtorIndexRouteImport.update({
     id: '/users/realtor/',
     path: '/users/realtor/',
     getParentRoute: () => DashboardRoute,
-  } as any,
-)
-
-const DashboardUsersClientsIndexRoute = DashboardUsersClientsIndexImport.update(
-  {
+  } as any)
+const DashboardUsersClientsIndexRoute =
+  DashboardUsersClientsIndexRouteImport.update({
     id: '/users/clients/',
     path: '/users/clients/',
     getParentRoute: () => DashboardRoute,
-  } as any,
-)
-
+  } as any)
 const DashboardPropertyScheduleIndexRoute =
-  DashboardPropertyScheduleIndexImport.update({
+  DashboardPropertyScheduleIndexRouteImport.update({
     id: '/property/schedule/',
     path: '/property/schedule/',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardPropertySalesIndexRoute =
-  DashboardPropertySalesIndexImport.update({
+  DashboardPropertySalesIndexRouteImport.update({
     id: '/property/sales/',
     path: '/property/sales/',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardPropertyListingsIndexRoute =
-  DashboardPropertyListingsIndexImport.update({
+  DashboardPropertyListingsIndexRouteImport.update({
     id: '/property/listings/',
     path: '/property/listings/',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardPropertyInvestmentsIndexRoute =
-  DashboardPropertyInvestmentsIndexImport.update({
+  DashboardPropertyInvestmentsIndexRouteImport.update({
     id: '/property/investments/',
     path: '/property/investments/',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardConstructionsProposalsIndexRoute =
-  DashboardConstructionsProposalsIndexImport.update({
+  DashboardConstructionsProposalsIndexRouteImport.update({
     id: '/constructions/proposals/',
     path: '/constructions/proposals/',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardUsersRealtorDetailsRoute =
-  DashboardUsersRealtorDetailsImport.update({
+  DashboardUsersRealtorDetailsRouteImport.update({
     id: '/users/realtor/details',
     path: '/users/realtor/details',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardUsersClientsDetailsRoute =
-  DashboardUsersClientsDetailsImport.update({
+  DashboardUsersClientsDetailsRouteImport.update({
     id: '/users/clients/details',
     path: '/users/clients/details',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardPropertySalesDetailsRoute =
-  DashboardPropertySalesDetailsImport.update({
+  DashboardPropertySalesDetailsRouteImport.update({
     id: '/property/sales/details',
     path: '/property/sales/details',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardPropertyListingsTransactionRoute =
-  DashboardPropertyListingsTransactionImport.update({
+  DashboardPropertyListingsTransactionRouteImport.update({
     id: '/property/listings/transaction',
     path: '/property/listings/transaction',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardPropertyListingsEditLandRoute =
-  DashboardPropertyListingsEditLandImport.update({
+  DashboardPropertyListingsEditLandRouteImport.update({
     id: '/property/listings/edit-land',
     path: '/property/listings/edit-land',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardPropertyListingsEditBuildingRoute =
-  DashboardPropertyListingsEditBuildingImport.update({
+  DashboardPropertyListingsEditBuildingRouteImport.update({
     id: '/property/listings/edit-building',
     path: '/property/listings/edit-building',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardPropertyListingsDetailsRoute =
-  DashboardPropertyListingsDetailsImport.update({
+  DashboardPropertyListingsDetailsRouteImport.update({
     id: '/property/listings/details',
     path: '/property/listings/details',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardPropertyListingsCreateLandRoute =
-  DashboardPropertyListingsCreateLandImport.update({
+  DashboardPropertyListingsCreateLandRouteImport.update({
     id: '/property/listings/create-land',
     path: '/property/listings/create-land',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardPropertyListingsCreateBuildingRoute =
-  DashboardPropertyListingsCreateBuildingImport.update({
+  DashboardPropertyListingsCreateBuildingRouteImport.update({
     id: '/property/listings/create-building',
     path: '/property/listings/create-building',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardPropertyInvestmentsDetailsRoute =
-  DashboardPropertyInvestmentsDetailsImport.update({
+  DashboardPropertyInvestmentsDetailsRouteImport.update({
     id: '/property/investments/details',
     path: '/property/investments/details',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardPropertyInvestmentsDetailPlansRoute =
-  DashboardPropertyInvestmentsDetailPlansImport.update({
+  DashboardPropertyInvestmentsDetailPlansRouteImport.update({
     id: '/property/investments/detail-plans',
     path: '/property/investments/detail-plans',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardConstructionsProposalsListingdetailsRoute =
-  DashboardConstructionsProposalsListingdetailsImport.update({
+  DashboardConstructionsProposalsListingdetailsRouteImport.update({
     id: '/constructions/proposals/listingdetails',
     path: '/constructions/proposals/listingdetails',
     getParentRoute: () => DashboardRoute,
   } as any)
-
 const DashboardConstructionsProposalsDetailsRoute =
-  DashboardConstructionsProposalsDetailsImport.update({
+  DashboardConstructionsProposalsDetailsRouteImport.update({
     id: '/constructions/proposals/details',
     path: '/constructions/proposals/details',
     getParentRoute: () => DashboardRoute,
   } as any)
-
-// Populate the FileRoutesByPath interface
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardImport
-      parentRoute: typeof rootRoute
-    }
-    '/home': {
-      id: '/home'
-      path: '/home'
-      fullPath: '/home'
-      preLoaderRoute: typeof HomeImport
-      parentRoute: typeof rootRoute
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/invite': {
-      id: '/auth/invite'
-      path: '/auth/invite'
-      fullPath: '/auth/invite'
-      preLoaderRoute: typeof AuthInviteImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/login': {
-      id: '/auth/login'
-      path: '/auth/login'
-      fullPath: '/auth/login'
-      preLoaderRoute: typeof AuthLoginImport
-      parentRoute: typeof rootRoute
-    }
-    '/auth/verify': {
-      id: '/auth/verify'
-      path: '/auth/verify'
-      fullPath: '/auth/verify'
-      preLoaderRoute: typeof AuthVerifyImport
-      parentRoute: typeof rootRoute
-    }
-    '/dashboard/home': {
-      id: '/dashboard/home'
-      path: '/home'
-      fullPath: '/dashboard/home'
-      preLoaderRoute: typeof DashboardHomeImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/materials': {
-      id: '/dashboard/materials'
-      path: '/materials'
-      fullPath: '/dashboard/materials'
-      preLoaderRoute: typeof DashboardMaterialsImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/reports': {
-      id: '/dashboard/reports'
-      path: '/reports'
-      fullPath: '/dashboard/reports'
-      preLoaderRoute: typeof DashboardReportsImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/settings': {
-      id: '/dashboard/settings'
-      path: '/settings'
-      fullPath: '/dashboard/settings'
-      preLoaderRoute: typeof DashboardSettingsImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/': {
-      id: '/dashboard/'
-      path: '/'
-      fullPath: '/dashboard/'
-      preLoaderRoute: typeof DashboardIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/wallet/alltransaction': {
-      id: '/dashboard/wallet/alltransaction'
-      path: '/wallet/alltransaction'
-      fullPath: '/dashboard/wallet/alltransaction'
-      preLoaderRoute: typeof DashboardWalletAlltransactionImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/constructions/proposals/details': {
-      id: '/dashboard/constructions/proposals/details'
-      path: '/constructions/proposals/details'
-      fullPath: '/dashboard/constructions/proposals/details'
-      preLoaderRoute: typeof DashboardConstructionsProposalsDetailsImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/constructions/proposals/listingdetails': {
-      id: '/dashboard/constructions/proposals/listingdetails'
-      path: '/constructions/proposals/listingdetails'
-      fullPath: '/dashboard/constructions/proposals/listingdetails'
-      preLoaderRoute: typeof DashboardConstructionsProposalsListingdetailsImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/property/investments/detail-plans': {
-      id: '/dashboard/property/investments/detail-plans'
-      path: '/property/investments/detail-plans'
-      fullPath: '/dashboard/property/investments/detail-plans'
-      preLoaderRoute: typeof DashboardPropertyInvestmentsDetailPlansImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/property/investments/details': {
-      id: '/dashboard/property/investments/details'
-      path: '/property/investments/details'
-      fullPath: '/dashboard/property/investments/details'
-      preLoaderRoute: typeof DashboardPropertyInvestmentsDetailsImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/property/listings/create-building': {
-      id: '/dashboard/property/listings/create-building'
-      path: '/property/listings/create-building'
-      fullPath: '/dashboard/property/listings/create-building'
-      preLoaderRoute: typeof DashboardPropertyListingsCreateBuildingImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/property/listings/create-land': {
-      id: '/dashboard/property/listings/create-land'
-      path: '/property/listings/create-land'
-      fullPath: '/dashboard/property/listings/create-land'
-      preLoaderRoute: typeof DashboardPropertyListingsCreateLandImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/property/listings/details': {
-      id: '/dashboard/property/listings/details'
-      path: '/property/listings/details'
-      fullPath: '/dashboard/property/listings/details'
-      preLoaderRoute: typeof DashboardPropertyListingsDetailsImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/property/listings/edit-building': {
-      id: '/dashboard/property/listings/edit-building'
-      path: '/property/listings/edit-building'
-      fullPath: '/dashboard/property/listings/edit-building'
-      preLoaderRoute: typeof DashboardPropertyListingsEditBuildingImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/property/listings/edit-land': {
-      id: '/dashboard/property/listings/edit-land'
-      path: '/property/listings/edit-land'
-      fullPath: '/dashboard/property/listings/edit-land'
-      preLoaderRoute: typeof DashboardPropertyListingsEditLandImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/property/listings/transaction': {
-      id: '/dashboard/property/listings/transaction'
-      path: '/property/listings/transaction'
-      fullPath: '/dashboard/property/listings/transaction'
-      preLoaderRoute: typeof DashboardPropertyListingsTransactionImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/property/sales/details': {
-      id: '/dashboard/property/sales/details'
-      path: '/property/sales/details'
-      fullPath: '/dashboard/property/sales/details'
-      preLoaderRoute: typeof DashboardPropertySalesDetailsImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/users/clients/details': {
-      id: '/dashboard/users/clients/details'
-      path: '/users/clients/details'
-      fullPath: '/dashboard/users/clients/details'
-      preLoaderRoute: typeof DashboardUsersClientsDetailsImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/users/realtor/details': {
-      id: '/dashboard/users/realtor/details'
-      path: '/users/realtor/details'
-      fullPath: '/dashboard/users/realtor/details'
-      preLoaderRoute: typeof DashboardUsersRealtorDetailsImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/constructions/proposals/': {
-      id: '/dashboard/constructions/proposals/'
-      path: '/constructions/proposals'
-      fullPath: '/dashboard/constructions/proposals'
-      preLoaderRoute: typeof DashboardConstructionsProposalsIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/property/investments/': {
-      id: '/dashboard/property/investments/'
-      path: '/property/investments'
-      fullPath: '/dashboard/property/investments'
-      preLoaderRoute: typeof DashboardPropertyInvestmentsIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/property/listings/': {
-      id: '/dashboard/property/listings/'
-      path: '/property/listings'
-      fullPath: '/dashboard/property/listings'
-      preLoaderRoute: typeof DashboardPropertyListingsIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/property/sales/': {
-      id: '/dashboard/property/sales/'
-      path: '/property/sales'
-      fullPath: '/dashboard/property/sales'
-      preLoaderRoute: typeof DashboardPropertySalesIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/property/schedule/': {
-      id: '/dashboard/property/schedule/'
-      path: '/property/schedule'
-      fullPath: '/dashboard/property/schedule'
-      preLoaderRoute: typeof DashboardPropertyScheduleIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/users/clients/': {
-      id: '/dashboard/users/clients/'
-      path: '/users/clients'
-      fullPath: '/dashboard/users/clients'
-      preLoaderRoute: typeof DashboardUsersClientsIndexImport
-      parentRoute: typeof DashboardImport
-    }
-    '/dashboard/users/realtor/': {
-      id: '/dashboard/users/realtor/'
-      path: '/users/realtor'
-      fullPath: '/dashboard/users/realtor'
-      preLoaderRoute: typeof DashboardUsersRealtorIndexImport
-      parentRoute: typeof DashboardImport
-    }
-  }
-}
-
-// Create and export the route tree
-
-interface DashboardRouteChildren {
-  DashboardHomeRoute: typeof DashboardHomeRoute
-  DashboardMaterialsRoute: typeof DashboardMaterialsRoute
-  DashboardReportsRoute: typeof DashboardReportsRoute
-  DashboardSettingsRoute: typeof DashboardSettingsRoute
-  DashboardIndexRoute: typeof DashboardIndexRoute
-  DashboardWalletAlltransactionRoute: typeof DashboardWalletAlltransactionRoute
-  DashboardConstructionsProposalsDetailsRoute: typeof DashboardConstructionsProposalsDetailsRoute
-  DashboardConstructionsProposalsListingdetailsRoute: typeof DashboardConstructionsProposalsListingdetailsRoute
-  DashboardPropertyInvestmentsDetailPlansRoute: typeof DashboardPropertyInvestmentsDetailPlansRoute
-  DashboardPropertyInvestmentsDetailsRoute: typeof DashboardPropertyInvestmentsDetailsRoute
-  DashboardPropertyListingsCreateBuildingRoute: typeof DashboardPropertyListingsCreateBuildingRoute
-  DashboardPropertyListingsCreateLandRoute: typeof DashboardPropertyListingsCreateLandRoute
-  DashboardPropertyListingsDetailsRoute: typeof DashboardPropertyListingsDetailsRoute
-  DashboardPropertyListingsEditBuildingRoute: typeof DashboardPropertyListingsEditBuildingRoute
-  DashboardPropertyListingsEditLandRoute: typeof DashboardPropertyListingsEditLandRoute
-  DashboardPropertyListingsTransactionRoute: typeof DashboardPropertyListingsTransactionRoute
-  DashboardPropertySalesDetailsRoute: typeof DashboardPropertySalesDetailsRoute
-  DashboardUsersClientsDetailsRoute: typeof DashboardUsersClientsDetailsRoute
-  DashboardUsersRealtorDetailsRoute: typeof DashboardUsersRealtorDetailsRoute
-  DashboardConstructionsProposalsIndexRoute: typeof DashboardConstructionsProposalsIndexRoute
-  DashboardPropertyInvestmentsIndexRoute: typeof DashboardPropertyInvestmentsIndexRoute
-  DashboardPropertyListingsIndexRoute: typeof DashboardPropertyListingsIndexRoute
-  DashboardPropertySalesIndexRoute: typeof DashboardPropertySalesIndexRoute
-  DashboardPropertyScheduleIndexRoute: typeof DashboardPropertyScheduleIndexRoute
-  DashboardUsersClientsIndexRoute: typeof DashboardUsersClientsIndexRoute
-  DashboardUsersRealtorIndexRoute: typeof DashboardUsersRealtorIndexRoute
-}
-
-const DashboardRouteChildren: DashboardRouteChildren = {
-  DashboardHomeRoute: DashboardHomeRoute,
-  DashboardMaterialsRoute: DashboardMaterialsRoute,
-  DashboardReportsRoute: DashboardReportsRoute,
-  DashboardSettingsRoute: DashboardSettingsRoute,
-  DashboardIndexRoute: DashboardIndexRoute,
-  DashboardWalletAlltransactionRoute: DashboardWalletAlltransactionRoute,
-  DashboardConstructionsProposalsDetailsRoute:
-    DashboardConstructionsProposalsDetailsRoute,
-  DashboardConstructionsProposalsListingdetailsRoute:
-    DashboardConstructionsProposalsListingdetailsRoute,
-  DashboardPropertyInvestmentsDetailPlansRoute:
-    DashboardPropertyInvestmentsDetailPlansRoute,
-  DashboardPropertyInvestmentsDetailsRoute:
-    DashboardPropertyInvestmentsDetailsRoute,
-  DashboardPropertyListingsCreateBuildingRoute:
-    DashboardPropertyListingsCreateBuildingRoute,
-  DashboardPropertyListingsCreateLandRoute:
-    DashboardPropertyListingsCreateLandRoute,
-  DashboardPropertyListingsDetailsRoute: DashboardPropertyListingsDetailsRoute,
-  DashboardPropertyListingsEditBuildingRoute:
-    DashboardPropertyListingsEditBuildingRoute,
-  DashboardPropertyListingsEditLandRoute:
-    DashboardPropertyListingsEditLandRoute,
-  DashboardPropertyListingsTransactionRoute:
-    DashboardPropertyListingsTransactionRoute,
-  DashboardPropertySalesDetailsRoute: DashboardPropertySalesDetailsRoute,
-  DashboardUsersClientsDetailsRoute: DashboardUsersClientsDetailsRoute,
-  DashboardUsersRealtorDetailsRoute: DashboardUsersRealtorDetailsRoute,
-  DashboardConstructionsProposalsIndexRoute:
-    DashboardConstructionsProposalsIndexRoute,
-  DashboardPropertyInvestmentsIndexRoute:
-    DashboardPropertyInvestmentsIndexRoute,
-  DashboardPropertyListingsIndexRoute: DashboardPropertyListingsIndexRoute,
-  DashboardPropertySalesIndexRoute: DashboardPropertySalesIndexRoute,
-  DashboardPropertyScheduleIndexRoute: DashboardPropertyScheduleIndexRoute,
-  DashboardUsersClientsIndexRoute: DashboardUsersClientsIndexRoute,
-  DashboardUsersRealtorIndexRoute: DashboardUsersRealtorIndexRoute,
-}
-
-const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
-  DashboardRouteChildren,
-)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
@@ -621,7 +268,6 @@ export interface FileRoutesByFullPath {
   '/dashboard/users/clients': typeof DashboardUsersClientsIndexRoute
   '/dashboard/users/realtor': typeof DashboardUsersRealtorIndexRoute
 }
-
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/home': typeof HomeRoute
@@ -656,9 +302,8 @@ export interface FileRoutesByTo {
   '/dashboard/users/clients': typeof DashboardUsersClientsIndexRoute
   '/dashboard/users/realtor': typeof DashboardUsersRealtorIndexRoute
 }
-
 export interface FileRoutesById {
-  __root__: typeof rootRoute
+  __root__: typeof rootRouteImport
   '/': typeof IndexLazyRoute
   '/dashboard': typeof DashboardRouteWithChildren
   '/home': typeof HomeRoute
@@ -693,7 +338,6 @@ export interface FileRoutesById {
   '/dashboard/users/clients/': typeof DashboardUsersClientsIndexRoute
   '/dashboard/users/realtor/': typeof DashboardUsersRealtorIndexRoute
 }
-
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
@@ -801,7 +445,6 @@ export interface FileRouteTypes {
     | '/dashboard/users/realtor/'
   fileRoutesById: FileRoutesById
 }
-
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   DashboardRoute: typeof DashboardRouteWithChildren
@@ -812,6 +455,315 @@ export interface RootRouteChildren {
   AuthVerifyRoute: typeof AuthVerifyRoute
 }
 
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/settings': {
+      id: '/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof DashboardSettingsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/reports': {
+      id: '/dashboard/reports'
+      path: '/reports'
+      fullPath: '/dashboard/reports'
+      preLoaderRoute: typeof DashboardReportsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/materials': {
+      id: '/dashboard/materials'
+      path: '/materials'
+      fullPath: '/dashboard/materials'
+      preLoaderRoute: typeof DashboardMaterialsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/home': {
+      id: '/dashboard/home'
+      path: '/home'
+      fullPath: '/dashboard/home'
+      preLoaderRoute: typeof DashboardHomeRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/auth/verify': {
+      id: '/auth/verify'
+      path: '/auth/verify'
+      fullPath: '/auth/verify'
+      preLoaderRoute: typeof AuthVerifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/invite': {
+      id: '/auth/invite'
+      path: '/auth/invite'
+      fullPath: '/auth/invite'
+      preLoaderRoute: typeof AuthInviteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/wallet/alltransaction': {
+      id: '/dashboard/wallet/alltransaction'
+      path: '/wallet/alltransaction'
+      fullPath: '/dashboard/wallet/alltransaction'
+      preLoaderRoute: typeof DashboardWalletAlltransactionRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/users/realtor/': {
+      id: '/dashboard/users/realtor/'
+      path: '/users/realtor'
+      fullPath: '/dashboard/users/realtor'
+      preLoaderRoute: typeof DashboardUsersRealtorIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/users/clients/': {
+      id: '/dashboard/users/clients/'
+      path: '/users/clients'
+      fullPath: '/dashboard/users/clients'
+      preLoaderRoute: typeof DashboardUsersClientsIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/property/schedule/': {
+      id: '/dashboard/property/schedule/'
+      path: '/property/schedule'
+      fullPath: '/dashboard/property/schedule'
+      preLoaderRoute: typeof DashboardPropertyScheduleIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/property/sales/': {
+      id: '/dashboard/property/sales/'
+      path: '/property/sales'
+      fullPath: '/dashboard/property/sales'
+      preLoaderRoute: typeof DashboardPropertySalesIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/property/listings/': {
+      id: '/dashboard/property/listings/'
+      path: '/property/listings'
+      fullPath: '/dashboard/property/listings'
+      preLoaderRoute: typeof DashboardPropertyListingsIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/property/investments/': {
+      id: '/dashboard/property/investments/'
+      path: '/property/investments'
+      fullPath: '/dashboard/property/investments'
+      preLoaderRoute: typeof DashboardPropertyInvestmentsIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/constructions/proposals/': {
+      id: '/dashboard/constructions/proposals/'
+      path: '/constructions/proposals'
+      fullPath: '/dashboard/constructions/proposals'
+      preLoaderRoute: typeof DashboardConstructionsProposalsIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/users/realtor/details': {
+      id: '/dashboard/users/realtor/details'
+      path: '/users/realtor/details'
+      fullPath: '/dashboard/users/realtor/details'
+      preLoaderRoute: typeof DashboardUsersRealtorDetailsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/users/clients/details': {
+      id: '/dashboard/users/clients/details'
+      path: '/users/clients/details'
+      fullPath: '/dashboard/users/clients/details'
+      preLoaderRoute: typeof DashboardUsersClientsDetailsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/property/sales/details': {
+      id: '/dashboard/property/sales/details'
+      path: '/property/sales/details'
+      fullPath: '/dashboard/property/sales/details'
+      preLoaderRoute: typeof DashboardPropertySalesDetailsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/property/listings/transaction': {
+      id: '/dashboard/property/listings/transaction'
+      path: '/property/listings/transaction'
+      fullPath: '/dashboard/property/listings/transaction'
+      preLoaderRoute: typeof DashboardPropertyListingsTransactionRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/property/listings/edit-land': {
+      id: '/dashboard/property/listings/edit-land'
+      path: '/property/listings/edit-land'
+      fullPath: '/dashboard/property/listings/edit-land'
+      preLoaderRoute: typeof DashboardPropertyListingsEditLandRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/property/listings/edit-building': {
+      id: '/dashboard/property/listings/edit-building'
+      path: '/property/listings/edit-building'
+      fullPath: '/dashboard/property/listings/edit-building'
+      preLoaderRoute: typeof DashboardPropertyListingsEditBuildingRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/property/listings/details': {
+      id: '/dashboard/property/listings/details'
+      path: '/property/listings/details'
+      fullPath: '/dashboard/property/listings/details'
+      preLoaderRoute: typeof DashboardPropertyListingsDetailsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/property/listings/create-land': {
+      id: '/dashboard/property/listings/create-land'
+      path: '/property/listings/create-land'
+      fullPath: '/dashboard/property/listings/create-land'
+      preLoaderRoute: typeof DashboardPropertyListingsCreateLandRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/property/listings/create-building': {
+      id: '/dashboard/property/listings/create-building'
+      path: '/property/listings/create-building'
+      fullPath: '/dashboard/property/listings/create-building'
+      preLoaderRoute: typeof DashboardPropertyListingsCreateBuildingRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/property/investments/details': {
+      id: '/dashboard/property/investments/details'
+      path: '/property/investments/details'
+      fullPath: '/dashboard/property/investments/details'
+      preLoaderRoute: typeof DashboardPropertyInvestmentsDetailsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/property/investments/detail-plans': {
+      id: '/dashboard/property/investments/detail-plans'
+      path: '/property/investments/detail-plans'
+      fullPath: '/dashboard/property/investments/detail-plans'
+      preLoaderRoute: typeof DashboardPropertyInvestmentsDetailPlansRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/constructions/proposals/listingdetails': {
+      id: '/dashboard/constructions/proposals/listingdetails'
+      path: '/constructions/proposals/listingdetails'
+      fullPath: '/dashboard/constructions/proposals/listingdetails'
+      preLoaderRoute: typeof DashboardConstructionsProposalsListingdetailsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/constructions/proposals/details': {
+      id: '/dashboard/constructions/proposals/details'
+      path: '/constructions/proposals/details'
+      fullPath: '/dashboard/constructions/proposals/details'
+      preLoaderRoute: typeof DashboardConstructionsProposalsDetailsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+  }
+}
+
+interface DashboardRouteChildren {
+  DashboardHomeRoute: typeof DashboardHomeRoute
+  DashboardMaterialsRoute: typeof DashboardMaterialsRoute
+  DashboardReportsRoute: typeof DashboardReportsRoute
+  DashboardSettingsRoute: typeof DashboardSettingsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardWalletAlltransactionRoute: typeof DashboardWalletAlltransactionRoute
+  DashboardConstructionsProposalsDetailsRoute: typeof DashboardConstructionsProposalsDetailsRoute
+  DashboardConstructionsProposalsListingdetailsRoute: typeof DashboardConstructionsProposalsListingdetailsRoute
+  DashboardPropertyInvestmentsDetailPlansRoute: typeof DashboardPropertyInvestmentsDetailPlansRoute
+  DashboardPropertyInvestmentsDetailsRoute: typeof DashboardPropertyInvestmentsDetailsRoute
+  DashboardPropertyListingsCreateBuildingRoute: typeof DashboardPropertyListingsCreateBuildingRoute
+  DashboardPropertyListingsCreateLandRoute: typeof DashboardPropertyListingsCreateLandRoute
+  DashboardPropertyListingsDetailsRoute: typeof DashboardPropertyListingsDetailsRoute
+  DashboardPropertyListingsEditBuildingRoute: typeof DashboardPropertyListingsEditBuildingRoute
+  DashboardPropertyListingsEditLandRoute: typeof DashboardPropertyListingsEditLandRoute
+  DashboardPropertyListingsTransactionRoute: typeof DashboardPropertyListingsTransactionRoute
+  DashboardPropertySalesDetailsRoute: typeof DashboardPropertySalesDetailsRoute
+  DashboardUsersClientsDetailsRoute: typeof DashboardUsersClientsDetailsRoute
+  DashboardUsersRealtorDetailsRoute: typeof DashboardUsersRealtorDetailsRoute
+  DashboardConstructionsProposalsIndexRoute: typeof DashboardConstructionsProposalsIndexRoute
+  DashboardPropertyInvestmentsIndexRoute: typeof DashboardPropertyInvestmentsIndexRoute
+  DashboardPropertyListingsIndexRoute: typeof DashboardPropertyListingsIndexRoute
+  DashboardPropertySalesIndexRoute: typeof DashboardPropertySalesIndexRoute
+  DashboardPropertyScheduleIndexRoute: typeof DashboardPropertyScheduleIndexRoute
+  DashboardUsersClientsIndexRoute: typeof DashboardUsersClientsIndexRoute
+  DashboardUsersRealtorIndexRoute: typeof DashboardUsersRealtorIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardHomeRoute: DashboardHomeRoute,
+  DashboardMaterialsRoute: DashboardMaterialsRoute,
+  DashboardReportsRoute: DashboardReportsRoute,
+  DashboardSettingsRoute: DashboardSettingsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+  DashboardWalletAlltransactionRoute: DashboardWalletAlltransactionRoute,
+  DashboardConstructionsProposalsDetailsRoute:
+    DashboardConstructionsProposalsDetailsRoute,
+  DashboardConstructionsProposalsListingdetailsRoute:
+    DashboardConstructionsProposalsListingdetailsRoute,
+  DashboardPropertyInvestmentsDetailPlansRoute:
+    DashboardPropertyInvestmentsDetailPlansRoute,
+  DashboardPropertyInvestmentsDetailsRoute:
+    DashboardPropertyInvestmentsDetailsRoute,
+  DashboardPropertyListingsCreateBuildingRoute:
+    DashboardPropertyListingsCreateBuildingRoute,
+  DashboardPropertyListingsCreateLandRoute:
+    DashboardPropertyListingsCreateLandRoute,
+  DashboardPropertyListingsDetailsRoute: DashboardPropertyListingsDetailsRoute,
+  DashboardPropertyListingsEditBuildingRoute:
+    DashboardPropertyListingsEditBuildingRoute,
+  DashboardPropertyListingsEditLandRoute:
+    DashboardPropertyListingsEditLandRoute,
+  DashboardPropertyListingsTransactionRoute:
+    DashboardPropertyListingsTransactionRoute,
+  DashboardPropertySalesDetailsRoute: DashboardPropertySalesDetailsRoute,
+  DashboardUsersClientsDetailsRoute: DashboardUsersClientsDetailsRoute,
+  DashboardUsersRealtorDetailsRoute: DashboardUsersRealtorDetailsRoute,
+  DashboardConstructionsProposalsIndexRoute:
+    DashboardConstructionsProposalsIndexRoute,
+  DashboardPropertyInvestmentsIndexRoute:
+    DashboardPropertyInvestmentsIndexRoute,
+  DashboardPropertyListingsIndexRoute: DashboardPropertyListingsIndexRoute,
+  DashboardPropertySalesIndexRoute: DashboardPropertySalesIndexRoute,
+  DashboardPropertyScheduleIndexRoute: DashboardPropertyScheduleIndexRoute,
+  DashboardUsersClientsIndexRoute: DashboardUsersClientsIndexRoute,
+  DashboardUsersRealtorIndexRoute: DashboardUsersRealtorIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   DashboardRoute: DashboardRouteWithChildren,
@@ -821,179 +773,6 @@ const rootRouteChildren: RootRouteChildren = {
   AuthLoginRoute: AuthLoginRoute,
   AuthVerifyRoute: AuthVerifyRoute,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/dashboard",
-        "/home",
-        "/about",
-        "/auth/invite",
-        "/auth/login",
-        "/auth/verify"
-      ]
-    },
-    "/": {
-      "filePath": "index.lazy.tsx"
-    },
-    "/dashboard": {
-      "filePath": "dashboard.tsx",
-      "children": [
-        "/dashboard/home",
-        "/dashboard/materials",
-        "/dashboard/reports",
-        "/dashboard/settings",
-        "/dashboard/",
-        "/dashboard/wallet/alltransaction",
-        "/dashboard/constructions/proposals/details",
-        "/dashboard/constructions/proposals/listingdetails",
-        "/dashboard/property/investments/detail-plans",
-        "/dashboard/property/investments/details",
-        "/dashboard/property/listings/create-building",
-        "/dashboard/property/listings/create-land",
-        "/dashboard/property/listings/details",
-        "/dashboard/property/listings/edit-building",
-        "/dashboard/property/listings/edit-land",
-        "/dashboard/property/listings/transaction",
-        "/dashboard/property/sales/details",
-        "/dashboard/users/clients/details",
-        "/dashboard/users/realtor/details",
-        "/dashboard/constructions/proposals/",
-        "/dashboard/property/investments/",
-        "/dashboard/property/listings/",
-        "/dashboard/property/sales/",
-        "/dashboard/property/schedule/",
-        "/dashboard/users/clients/",
-        "/dashboard/users/realtor/"
-      ]
-    },
-    "/home": {
-      "filePath": "home.tsx"
-    },
-    "/about": {
-      "filePath": "about.lazy.tsx"
-    },
-    "/auth/invite": {
-      "filePath": "auth/invite.tsx"
-    },
-    "/auth/login": {
-      "filePath": "auth/login.tsx"
-    },
-    "/auth/verify": {
-      "filePath": "auth/verify.tsx"
-    },
-    "/dashboard/home": {
-      "filePath": "dashboard/home.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/materials": {
-      "filePath": "dashboard/materials.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/reports": {
-      "filePath": "dashboard/reports.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/settings": {
-      "filePath": "dashboard/settings.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/": {
-      "filePath": "dashboard/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/wallet/alltransaction": {
-      "filePath": "dashboard/wallet/alltransaction.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/constructions/proposals/details": {
-      "filePath": "dashboard/constructions/proposals/details.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/constructions/proposals/listingdetails": {
-      "filePath": "dashboard/constructions/proposals/listingdetails.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/property/investments/detail-plans": {
-      "filePath": "dashboard/property/investments/detail-plans.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/property/investments/details": {
-      "filePath": "dashboard/property/investments/details.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/property/listings/create-building": {
-      "filePath": "dashboard/property/listings/create-building.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/property/listings/create-land": {
-      "filePath": "dashboard/property/listings/create-land.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/property/listings/details": {
-      "filePath": "dashboard/property/listings/details.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/property/listings/edit-building": {
-      "filePath": "dashboard/property/listings/edit-building.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/property/listings/edit-land": {
-      "filePath": "dashboard/property/listings/edit-land.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/property/listings/transaction": {
-      "filePath": "dashboard/property/listings/transaction.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/property/sales/details": {
-      "filePath": "dashboard/property/sales/details.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/users/clients/details": {
-      "filePath": "dashboard/users/clients/details.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/users/realtor/details": {
-      "filePath": "dashboard/users/realtor/details.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/constructions/proposals/": {
-      "filePath": "dashboard/constructions/proposals/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/property/investments/": {
-      "filePath": "dashboard/property/investments/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/property/listings/": {
-      "filePath": "dashboard/property/listings/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/property/sales/": {
-      "filePath": "dashboard/property/sales/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/property/schedule/": {
-      "filePath": "dashboard/property/schedule/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/users/clients/": {
-      "filePath": "dashboard/users/clients/index.tsx",
-      "parent": "/dashboard"
-    },
-    "/dashboard/users/realtor/": {
-      "filePath": "dashboard/users/realtor/index.tsx",
-      "parent": "/dashboard"
-    }
-  }
-}
-ROUTE_MANIFEST_END */
