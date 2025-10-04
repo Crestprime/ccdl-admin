@@ -50,7 +50,7 @@ export interface IPlots {
 
 export interface IBuildingListingData {
     plots?: Array<IPlots>,
-    property: IProperty;
+    modified: IProperty;
 }
 
 export interface IProperty {
