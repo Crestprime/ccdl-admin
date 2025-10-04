@@ -1,6 +1,5 @@
 import { ListingCheckBox, ListingImage } from "@/components/listingComponents";
 import { FormInput, FormSelect, FormTextArea } from "@/components/shared";
-import { dummyData } from "@/lib/dummydata";
 import { buildingTypes, numberData, featuresData } from "@/models/dummydata";
 import { Switch } from "@radix-ui/react-switch";
 import { RiSearch2Line } from "@remixicon/react"; 
