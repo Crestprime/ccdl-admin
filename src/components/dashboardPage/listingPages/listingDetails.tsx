@@ -1,6 +1,6 @@
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { Switch } from "../../ui/switch";
-import { RiBarChartLine, RiDeleteBin2Line, RiFileCopyLine, RiFireFill, RiFlashlightLine, RiLink, RiPencilLine, RiVipCrown2Line } from "@remixicon/react";
+import { RiBarChartLine, RiFileCopyLine, RiFireFill, RiFlashlightLine, RiLink, RiPencilLine, RiVipCrown2Line } from "@remixicon/react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table";
 import { useFetchData } from "@/hooks/useFetchData";
 import { IBuildingListingData } from "@/models/listing";
