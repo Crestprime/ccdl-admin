@@ -3,10 +3,12 @@ import { TableHeader, TableRow, TableHead, TableBody, TableCell, Table } from "@
 import { useFetchData } from "@/hooks/useFetchData";
 import { IUser } from "@/models/user";
 import { capitalizeFLetter } from "@/utils/capitalLetter";
-import { dateFormat } from "@/utils/dateFormat"; 
+import { dateFormat } from "@/utils/dateFormat";
 import { formatNumber } from "@/utils/numberFormat";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { RiArrowLeftLine } from "@remixicon/react";
 // import { IUserInfo } from "@/models/user"; 
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 // interface IProps {
 //     "id": number,
@@ -25,18 +27,22 @@ export default function ClientDetails() {
 
     const [searchParams] = useSearchParams();
     const id: any = searchParams.get("id");
-    const { data, isLoading } = useFetchData<IUser>(`/admin/details/${id}`, ["admin", id]);
+    const { data, isLoading } = useFetchData<IUser | any>(`/admin/details/${id}`, ["admin", id]);
 
+    const navigate = useNavigate()
 
-    console.log(data);
-    
     return (
         <LoadingAnimation loading={isLoading} >
             <div className=" w-full flex h-auto gap-6 flex-col overflow-x-hidden " >
                 <div className=" w-full p-6 gap-6 flex flex-col border border-gray-200 rounded-xl " >
                     <div className=" flex items-center gap-4 pb-6 border-b " >
-                        <div className=" w-12 h-12 rounded-full bg-gray-300 " >
-                        </div>
+                        <button onClick={() => navigate(-1)} >
+                            <RiArrowLeftLine size={"20px"} />
+                        </button>
+                        <Avatar className=" w-10 " >
+                            <AvatarImage src={data?.user?.profilePicture} alt="@shadcn" />
+                            <AvatarFallback>{data?.user?.firstName?.slice(0, 1) + data?.user?.lastName?.slice(0, 1)}</AvatarFallback>
+                        </Avatar>
                         <div className=" flex flex-col gap-1 " >
                             <div className=" flex gap-2 items-center " >
                                 <p className=" text-xl font-semibold " >{data?.firstName + " " + data?.lastName}</p>
@@ -107,7 +113,7 @@ export default function ClientDetails() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {data?.projects?.map((item, index) => {
+                            {data?.projects?.map((item: any, index: number) => {
                                 return (
                                     <TableRow className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
                                         <TableCell className="">{item?.userId}</TableCell>

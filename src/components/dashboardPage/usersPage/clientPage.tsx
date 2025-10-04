@@ -1,4 +1,4 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"; 
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"; 
 import { ClientTable } from "@/components/userComponents"; 
 
 
@@ -20,15 +20,15 @@ export default function ClientPage() {
                 </div> */}
             </div> 
 
-            <Tabs defaultValue="user" className="w-full ">
+            {/* <Tabs defaultValue="user" className="w-full ">
                 <TabsList className="grid w-fit grid-cols-2 h-fit ">
                     <TabsTrigger className=" h-[36px] " value="user">Active Users</TabsTrigger>
                     <TabsTrigger className=" h-[36px] " disabled value="suspended">Suspended</TabsTrigger> 
                 </TabsList> 
-                <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="user">
+                <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="user"> */}
                     <ClientTable />
-                </TabsContent>
-            </Tabs>
+                {/* </TabsContent> */}
+            {/* </Tabs> */}
         </div>
     )
 }

@@ -3,7 +3,7 @@ import { fetchSecureData, fetchUnsecureData } from "@/services/api";
 
 export const useFetchData = <T>(endpoint: string, name: Array<string>, params?: any, type?: boolean) => {
     return useQuery({
-        queryKey: [...name, endpoint],
+        queryKey: [...name, endpoint, JSON.stringify(params)],
         queryFn: () => fetchSecureData<T>(endpoint, params, type),
     })
 };

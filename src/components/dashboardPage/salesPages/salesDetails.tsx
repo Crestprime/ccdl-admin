@@ -8,6 +8,7 @@ import { IDocument } from "@/models/construction";
 import { ISale } from "@/models/sales";
 import { dateFormat } from "@/utils/dateFormat";
 import { formatNumberWithK } from "@/utils/formatNumberWithK";
+import { RiArrowLeftLine } from "@remixicon/react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 interface IProps {
@@ -46,12 +47,19 @@ export default function SalesDetails() {
     const { data: payment, isLoading: loading } = useFetchData<Array<IProps>>(`/payment/${id}`, ["payment", id], {
         paymentType: "RESERVATION"
     });
- 
+
 
     return (
         <>
             <LoadingAnimation loading={isLoading} >
                 <div className=" w-full flex h-auto gap-4 flex-col  " >
+
+                    <div className=" w-full flex items-center gap-4 pb-4 border-b " >
+                        <button onClick={() => navigate(-1)} >
+                            <RiArrowLeftLine />
+                        </button> 
+                        <h3 className=" font-semibold text-lg " >Sales and Reservation Details</h3>
+                    </div>
                     <div className=" w-full grid grid-cols-4 gap-4 mt-4 " >
                         <div className=" w-full rounded-xl border p-4 " >
                             <p className=" text-gray500 text-sm " >Amount Paid</p>
@@ -195,7 +203,7 @@ export default function SalesDetails() {
                                     <p className=" text-gray900 font-semibold " >Document Status</p>
                                     <UploadDocuments item={data?.id} type="RESERVATION" />
                                 </div>
-                                <LoadingAnimation loading={loadingdata} length={document?.length} > 
+                                <LoadingAnimation loading={loadingdata} length={document?.length} >
                                     <Table>
                                         <TableHeader>
                                             <TableRow>

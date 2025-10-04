@@ -7,8 +7,8 @@ import { capitalizeFLetter } from "@/utils/capitalLetter";
 import { dateFormat } from "@/utils/dateFormat";
 import { formatNumberWithK } from "@/utils/formatNumberWithK";
 import { formatNumber } from "@/utils/numberFormat";
-import { RiCoinsFill, RiUser4Fill } from "@remixicon/react";
-import { useSearchParams } from "react-router-dom";
+import { RiArrowLeftLine, RiArrowLeftSLine, RiCoinsFill, RiUser4Fill } from "@remixicon/react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 
 interface IProps {
@@ -75,20 +75,24 @@ export default function InvestmentDetails() {
 
     const { data, isLoading } = useFetchData<IPropsInvestment>(`/investment/${id}`, ["investment-details", id]);
 
-    console.log(data);
-
+    const navigate = useNavigate()
 
     return (
         <LoadingAnimation loading={isLoading || loading || loadinghistory} >
             <div className=" w-full flex h-auto gap-4 flex-col  " >
-                <div className=" w-full flex items-center pb-4 border-b justify-end " >
+                <div className=" w-full flex items-center gap-4 pb-4 border-b " >
+                    <button onClick={()=> navigate(-1)} >
+                        <RiArrowLeftLine />
+                    </button>
+
+                    <h3 className=" font-semibold text-lg " >Investments Details</h3>
                     {/* <div className=" flex flex-col " >
                     <h3 className=" font-semibold text-lg " >Investments</h3>
                     <p className=" text-gray500 text-sm " >View and manage all investments</p>
                 </div> */}
-                    <Button variant={"destructive"} className=" h-9 rounded-full w-fit text-sm " >
+                    {/* <Button variant={"destructive"} className=" h-9 rounded-full w-fit text-sm " >
                         Cancel plan
-                    </Button>
+                    </Button> */}
                 </div>
                 <div className=" w-full grid grid-cols-4 gap-4 mt-4 " >
                     <div className=" w-full rounded-xl border p-4 " >
