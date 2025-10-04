@@ -5,7 +5,7 @@ import { useFetchData } from "@/hooks/useFetchData";
 import { InvestmentModel } from "@/models/investment";
 import { capitalizeFLetter } from "@/utils/capitalLetter";
 import { dateFormat } from "@/utils/dateFormat";
-import { RiCoinsFill, RiUser4Fill } from "@remixicon/react"; 
+import { RiArrowLeftLine, RiCoinsFill, RiUser4Fill } from "@remixicon/react"; 
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 
@@ -47,21 +47,24 @@ export default function InvestmentDetails() {
 
     const navigate = useNavigate()
     const { data, isLoading } = useFetchData<InvestmentModel & any>(`/investment-plan/${id}`, ["investment-detail-plans", id]);
-
-    console.log(data);
-    
+ 
 
     return (
         <LoadingAnimation loading={isLoading} >
             <div className=" w-full flex h-auto gap-4 flex-col  " >
-                <div className=" w-full flex items-center pb-4 border-b justify-end " >
+                <div className=" w-full flex items-center pb-4 border-b gap-4 " >
+                <button onClick={()=> navigate(-1)} >
+                        <RiArrowLeftLine />
+                    </button>
+
+                    <h3 className=" font-semibold text-lg " >Investment Plans</h3>
                     {/* <div className=" flex flex-col " >
                     <h3 className=" font-semibold text-lg " >Investments</h3>
                     <p className=" text-gray500 text-sm " >View and manage all investments</p>
                 </div> */}
-                    <Button variant={"destructive"} className=" h-9 rounded-full w-fit text-sm " >
+                    {/* <Button variant={"destructive"} className=" h-9 rounded-full w-fit text-sm " >
                         Cancel plan
-                    </Button>
+                    </Button> */}
                 </div>
                 <div className=" w-full grid grid-cols-4 gap-4 mt-4 " >
                     <div className=" w-full rounded-xl border p-4 " >

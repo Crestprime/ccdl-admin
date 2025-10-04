@@ -2,7 +2,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
 import { useFetchData } from "@/hooks/useFetchData"; 
 import { LoadingAnimation } from "@/components/shared";
 import { CreateListingBtn, PropertyListing } from "@/components/listingComponents";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom"; 
+import { usePagintion } from "@/store/usePagination";
+import { useEffect } from "react";
+import CustomPagination from "@/components/shared/customPagination";
 // import { useNavigate } from "@tanstack/react-router";
 
 
@@ -10,15 +13,22 @@ export default function ListingPage()  {
 
   const [searchParams] = useSearchParams();
   const type: any = searchParams.get("type");
+  const { pageSize, page, updatePageSize, updatePage } = usePagintion((state) => state)
 
     const { data, isLoading} = useFetchData<any>(`/admin-property/property-by-category`, ["property", type], {
-        category: type
-    });  
+        category: type,
+        limit: pageSize,
+        page: page
+    }, true);  
+
+    useEffect(() => {
+        updatePage(1)
+        updatePageSize(10)
+    }, [])
 
     const navigate = useNavigate() 
 
-    const clickHandler = (item: string) => { 
-        
+    const clickHandler = (item: string) => {  
         navigate(`/dashboard/property/listings?type=${item}`)
     }
 
@@ -42,13 +52,16 @@ export default function ListingPage()  {
                 </TabsList>
                 <LoadingAnimation loading={isLoading} >
                     <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="BUILDING">
-                        <PropertyListing type="buildings" data={data} />
+                        <PropertyListing type="buildings" data={data?.data} />
                     </TabsContent>
                     <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="LAND">
-                        <PropertyListing type="lands" data={data} />
+                        <PropertyListing type="lands" data={data?.data} />
                     </TabsContent>
                 </LoadingAnimation>
             </Tabs>
+            {data?.total > pageSize && (
+                <CustomPagination totalElement={data?.total} />
+            )}
         </div>
     )
 }

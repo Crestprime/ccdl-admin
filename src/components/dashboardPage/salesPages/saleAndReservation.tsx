@@ -6,13 +6,13 @@ import { useFetchData } from "@/hooks/useFetchData";
 import ReservationTable from "@/components/reservationComponents/reservationTable";
 import { IReservation } from "@/models/analytics";
 import { LoadingAnimation } from "@/components/shared";
-import { formatNumberWithK } from "@/utils/formatNumberWithK";
+import { formatNumberWithK } from "@/utils/formatNumberWithK"; 
 
 
 export default function SaleAndReservation() { 
 
     const { data, isLoading } = useFetchData<IReservation | any>(`/analytics/reservation`, ["analytics/reservation"]);
-  
+    
     return (
         <div className=" w-full flex h-auto gap-6 flex-col  " >
             <div className=" flex flex-col " >
@@ -106,6 +106,7 @@ export default function SaleAndReservation() {
                         </TableBody>
                     </Table> */}
                     <ReservationTable />
+                    
                 </TabsContent>
             </Tabs>
         </div>

@@ -1,10 +1,10 @@
 "use client"
 
-import { Bar, BarChart, CartesianGrid, LabelList, XAxis, YAxis } from "recharts"
+import { Bar, BarChart, XAxis, YAxis } from "recharts"
 
 import {
     Card,
-    CardContent, 
+    CardContent,
 } from "@/components/ui/card"
 import {
     ChartConfig,
@@ -12,39 +12,50 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "@/components/ui/chart"
+import { IReport } from "@/models/analytics"
 
-export const description = "A bar chart with a custom label"
+export const description = "A bar chart with a custom label" 
 
-const chartData = [
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
-]
+export default function PropertyStatistics({ analytics }: { analytics: IReport }) {
 
-const chartConfig = {
-    desktop: {
-        label: "Desktop",
-        color: "var(--chart-2)",
-    },
-    mobile: {
-        label: "Mobile",
-        color: "var(--chart-2)",
-    },
-    label: {
-        color: "var(--background)",
-    },
-} satisfies ChartConfig
+ 
+    const chartData = [
+        { browser: "chrome", visitors: analytics?.totalListings, fill: "#17B26A" },
+        { browser: "safari", visitors: analytics?.totalAvailableListing, fill: "#EAAA08" },
+        { browser: "firefox", visitors: analytics?.totalReserved, fill: "#3170F3" },
+        { browser: "edge", visitors: analytics?.totalSold, fill: "#FF692E" }, 
+    ]
+    
+    const chartConfig = {
+        visitors: {
+            label: "Amount",
+        },
+        chrome: {
+            label: "Total",
+            color: "var(--chart-1)",
+        },
+        safari: {
+            label: "Available",
+            color: "var(--chart-2)",
+        },
+        firefox: {
+            label: "Reserved",
+            color: "var(--chart-3)",
+        },
+        edge: {
+            label: "Sold",
+            color: "var(--chart-4)",
+        }, 
+    } satisfies ChartConfig
 
-export default function PropertyStatistics() {
+
     return (
+
         <div className=" w-full h-full flex-col flex gap-3 p-4 border border-gray200 rounded-2xl " >
             <div className=" w-full flex justify-between " >
                 <p className=" text-gray-800 font-medium " >Property Statistics</p>
             </div>
-            <Card className="border-0 shadow-none h-fit w-full mt-auto " >
+           <Card className="border-0 shadow-none h-fit w-full mt-auto " >
                 <CardContent>
                     <ChartContainer config={chartConfig}>
                         <BarChart
@@ -52,49 +63,30 @@ export default function PropertyStatistics() {
                             data={chartData}
                             layout="vertical"
                             margin={{
-                                right: 30,
-                            }}
+                                left: 0,
+                            }}  
                         >
-                            <CartesianGrid horizontal={false} />
                             <YAxis
-                                dataKey="month"
+                                dataKey="browser"
                                 type="category"
                                 tickLine={false}
-                                tickMargin={10}
+                                tickMargin={0}
                                 axisLine={false}
-                                tickFormatter={(value) => value.slice(0, 3)}
-                                hide
+                                tickFormatter={(value) =>
+                                    chartConfig[value as keyof typeof chartConfig]?.label
+                                }
                             />
-                            <XAxis dataKey="desktop" type="number" hide />
+                            <XAxis dataKey="visitors" type="number" hide />
                             <ChartTooltip
                                 cursor={false}
-                                content={<ChartTooltipContent indicator="line" />}
+                                content={<ChartTooltipContent />}
                             />
-                            <Bar
-                                dataKey="desktop"
-                                layout="vertical"
-                                fill="var(--color-desktop)" 
-                                radius={4}
-                            >
-                                <LabelList
-                                    dataKey="month"
-                                    position="insideLeft"
-                                    offset={8}
-                                    className="fill-(--color-label)"
-                                    fontSize={12}
-                                />
-                                <LabelList
-                                    dataKey="desktop"
-                                    position="right"
-                                    offset={8}
-                                    className="fill-foreground"
-                                    fontSize={12}
-                                />
-                            </Bar>
+                            <Bar dataKey="visitors" layout="vertical" radius={5} />
                         </BarChart>
                     </ChartContainer>
                 </CardContent>
             </Card>
+
         </div>
     )
 }

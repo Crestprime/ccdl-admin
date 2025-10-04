@@ -1,6 +1,6 @@
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { Switch } from "../../ui/switch";
-import { RiBarChartLine, RiDeleteBin2Line, RiFileCopyLine, RiFireFill, RiFlashlightLine, RiLink, RiPencilLine, RiVipCrown2Line } from "@remixicon/react";
+import { RiBarChartLine, RiFileCopyLine, RiFireFill, RiFlashlightLine, RiLink, RiPencilLine, RiVipCrown2Line } from "@remixicon/react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table";
 import { useFetchData } from "@/hooks/useFetchData";
 import { IBuildingListingData } from "@/models/listing";
@@ -39,9 +39,9 @@ export default function ListingDetails() {
                         <div role="button" className=" w-9 h-9 rounded-full border flex justify-center items-center " >
                             <RiBarChartLine size={"17px"} />
                         </div>
-                        <div role="button" className=" w-9 h-9 rounded-full border border-[#FECDCA] text-[#D92D20] bg-[#FEF3F2] flex justify-center items-center " >
+                        {/* <div role="button" className=" w-9 h-9 rounded-full border border-[#FECDCA] text-[#D92D20] bg-[#FEF3F2] flex justify-center items-center " >
                             <RiDeleteBin2Line size={"17px"} />
-                        </div>
+                        </div> */}
                         <div role="button" onClick={() => navigate(
                             type === "buildings" ? `/dashboard/property/listings/edit-building?id=${data?.property?.id}&type=${type}` : `/dashboard/property/listings/edit-land?id=${data?.property?.id}&type=${type}`
                         )} className=" w-9 h-9 rounded-full border flex justify-center bg-[#3170F3] text-white items-center " >
@@ -50,7 +50,7 @@ export default function ListingDetails() {
                     </div>
                 </div>
                 <div className=" w-full rounded-2xl flex h-[373px] gap-3 " >
-                    <div className=" w-full rounded-2xl h-full bg-red-500 " >
+                    <div className=" w-full rounded-2xl h-full bg-gray-200 " >
                         <img src={data?.property?.media[0]} alt={data?.property?.media[0]} className=" w-full h-full object-cover rounded-2xl " />
                     </div>
                     <div className=" w-full grid grid-cols-2 gap-3 h-[373px] relative " >

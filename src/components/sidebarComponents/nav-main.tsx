@@ -17,7 +17,10 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "@/components/ui/sidebar" 
+} from "@/components/ui/sidebar"
+import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useLinkStore } from "@/store/linkStore"
 
 export function NavMain({
   items,
@@ -32,31 +35,43 @@ export function NavMain({
       url: string
     }[]
   }[]
-}) {  
-   
-const pathname: string = new URL(window.location.href).pathname; 
+}) {
 
-console.log(pathname);
+  const pathname = new URL(window.location.href);
 
+  const [linkData, setLinkData] = useState<string>(pathname.pathname)
+  const navigate = useNavigate()
+
+  const pathArray = pathname?.pathname.split("/").filter(Boolean);
+  const { setLinkPath } = useLinkStore((state) => state)
+
+  const clickHandler = (item: string) => {
+    navigate(item) 
+  }
+
+  useEffect(()=> {
+    setLinkData(pathname.pathname)
+    setLinkPath(pathArray) 
+  }, [pathname.pathname])
 
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
-          <Collapsible key={item.title} asChild  defaultOpen={pathname?.includes(item?.url) ? true : false}>
+          <Collapsible key={item.title} asChild defaultOpen={linkData?.includes(item?.url) ? true : false}>
             <SidebarMenuItem>
               <SidebarMenuButton asChild tooltip={item.title}>
                 {item?.items?.length > 0 ? (
-                  <CollapsibleTrigger className={pathname === item?.url ? " text-gray700 " : " text-gray500 "}  >
+                  <CollapsibleTrigger className={linkData === item?.url ? " text-gray700 " : " text-gray500 "}  >
                     <item.icon />
                     <span >{item.title}</span>
                   </CollapsibleTrigger>
                 ) : (
-                  <a href={item.url} className={pathname === item?.url ? " bg-white shadow-lg text-gray700 " : " text-gray500 "} >
+                  <div role="button" onClick={() => clickHandler(item?.url)} className={linkData === item?.url ? " bg-white shadow-lg text-gray700 " : " text-gray500 "} >
                     <item.icon />
                     <span>{item.title}</span>
-                  </a>
+                  </div>
                 )}
               </SidebarMenuButton>
               {item.items?.length ? (
@@ -72,9 +87,9 @@ console.log(pathname);
                       {item.items?.map((subItem) => (
                         <SidebarMenuSubItem key={subItem.title}>
                           <SidebarMenuSubButton asChild>
-                            <a href={subItem.url} className={pathname?.includes(subItem?.url) ? " bg-white shadow-lg text-gray700 " : " text-gray500 "}>
+                            <div role="button" onClick={() => clickHandler(subItem?.url)} className={linkData?.includes(subItem?.url) ? " bg-white shadow-lg text-gray700 " : " text-gray500 "}>
                               <span>{subItem.title}</span>
-                            </a>
+                            </div>
                           </SidebarMenuSubButton>
                         </SidebarMenuSubItem>
                       ))}

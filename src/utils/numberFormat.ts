@@ -1,7 +1,7 @@
 import formatter from "format-number"
 
 
-export const formatNumber = (number: any, prefix = "£") => {
+export const formatNumber = (number: any, prefix = "₦") => {
   if(number === "***") {
     return prefix+" ****"
   } else {

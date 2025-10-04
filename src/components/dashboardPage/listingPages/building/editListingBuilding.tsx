@@ -37,7 +37,7 @@ export default function EditListingBuilding() {
             formik?.setFieldValue("floors", data?.property?.floors)
             formik?.setFieldValue("features", data?.property?.features)
             formik?.setFieldValue("parkingSpace", data?.property?.parkingSpace)
-            formik?.setFieldValue("outdorSpace", data?.property?.outdoorSpace)
+            formik?.setFieldValue("outdoorSpace", data?.property?.outdoorSpace)
             formik?.setFieldValue("heatingAndCooling", data?.property?.heatingAndCooling)
             formik?.setFieldValue("energyEfficiency", data?.property?.energyEfficiency)
             formik?.setFieldValue("security", data?.property?.security)

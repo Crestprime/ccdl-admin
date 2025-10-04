@@ -2,7 +2,7 @@ import { RiCalendarCheckFill, RiCoinsFill, RiKeyFill, RiSearch2Line } from "@rem
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
 import { Input } from "../../ui/input";
 // import { Button } from "../../ui/button";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table"; 
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table";
 import CreateInvestmentBtn from "./createInvestmentBtn";
 import { useFetchData } from "@/hooks/useFetchData";
 import { InvestmentModel, InvestmentPlan } from "@/models/investment";
@@ -12,17 +12,34 @@ import { formatNumberWithK, numberFormatNaire } from "@/utils/formatNumberWithK"
 import { capitalizeFLetter } from "@/utils/capitalLetter";
 import { useNavigate } from "react-router-dom";
 import { IAInvestment } from "@/models/analytics";
+import { usePagintion } from "@/store/usePagination";
+import { useEffect } from "react";
+import CustomPagination from "@/components/shared/customPagination";
 
 
 export default function Investment() {
 
-    const navigate = useNavigate() 
-
-    const { data, isLoading } = useFetchData<Array<InvestmentPlan>>(`/investment`, ["investment"]);
-    const { data: plans, isLoading: loadingPlans } = useFetchData<Array<InvestmentModel>>(`/investment-plan/admin`, ["investment-plans"]);
+    const navigate = useNavigate()
+    const { pageSize, page, updatePageSize, updatePage } = usePagintion((state) => state)
 
 
-    const { data: analytics, isLoading: loading } = useFetchData<IAInvestment>(`/admin/investments/analytics`, ["analytics"],  {} , true);
+    const { data, isLoading } = useFetchData<any>(`/investment`, ["investment"], {
+        limit: pageSize,
+        page: page
+    }, true);
+
+    const { data: plans, isLoading: loadingPlans } = useFetchData<any>(`/investment-plan/admin`, ["investment-plans"], {
+        limit: pageSize,
+        page: page
+    }, true);
+
+
+    const { data: analytics, isLoading: loading } = useFetchData<IAInvestment>(`/admin/investments/analytics`, ["analytics"], {}, true);
+
+    useEffect(() => {
+        updatePage(1)
+        updatePageSize(10)
+    }, [])
 
     return (
         <div className=" w-full flex h-auto gap-6 flex-col  " >
@@ -35,36 +52,36 @@ export default function Investment() {
             </div>
             <LoadingAnimation loading={loading} >
 
-            <div className=" w-full grid grid-cols-4 gap-4 " >
-                <div className=" w-full rounded-xl border p-4 " >
-                    <div className=" w-10 h-10 text-gray500 rounded-full border flex justify-center items-center " >
-                        <RiCoinsFill size={"24px"} />
+                <div className=" w-full grid grid-cols-4 gap-4 " >
+                    <div className=" w-full rounded-xl border p-4 " >
+                        <div className=" w-10 h-10 text-gray500 rounded-full border flex justify-center items-center " >
+                            <RiCoinsFill size={"24px"} />
+                        </div>
+                        <p className=" text-gray500 text-sm mt-6 " >Total Investment</p>
+                        <p className=" text-[30px] font-semibold text-gray900 " >{formatNumberWithK(analytics?.totalInvestmentsAmount, true)}</p>
                     </div>
-                    <p className=" text-gray500 text-sm mt-6 " >Total Investment</p>
-                    <p className=" text-[30px] font-semibold text-gray900 " >{formatNumberWithK(analytics?.totalInvestmentsAmount, true)}</p>
-                </div>
-                <div className=" w-full rounded-xl border p-4 " >
-                    <div className=" w-10 h-10 text-gray500 rounded-full border flex justify-center items-center " >
-                        <RiCoinsFill size={"24px"} />
+                    <div className=" w-full rounded-xl border p-4 " >
+                        <div className=" w-10 h-10 text-gray500 rounded-full border flex justify-center items-center " >
+                            <RiCoinsFill size={"24px"} />
+                        </div>
+                        <p className=" text-gray500 text-sm mt-6 " >Total Profit Paid Out</p>
+                        <p className=" text-[30px] font-semibold text-gray900 " >{formatNumberWithK(analytics?.totalMaturedAmount, true)}</p>
                     </div>
-                    <p className=" text-gray500 text-sm mt-6 " >Total Profit Paid Out</p>
-                    <p className=" text-[30px] font-semibold text-gray900 " >{formatNumberWithK(analytics?.totalMaturedAmount, true)}</p>
-                </div>
-                <div className=" w-full rounded-xl border p-4 " >
-                    <div className=" w-10 h-10 text-gray500 rounded-full border flex justify-center items-center " >
-                        <RiKeyFill size={"24px"} />
+                    <div className=" w-full rounded-xl border p-4 " >
+                        <div className=" w-10 h-10 text-gray500 rounded-full border flex justify-center items-center " >
+                            <RiKeyFill size={"24px"} />
+                        </div>
+                        <p className=" text-gray500 text-sm mt-6 " >Total Investors</p>
+                        <p className=" text-[30px] font-semibold text-gray900 " >{formatNumberWithK(analytics?.uniqueInvestorsCount)}</p>
                     </div>
-                    <p className=" text-gray500 text-sm mt-6 " >Total Investors</p>
-                    <p className=" text-[30px] font-semibold text-gray900 " >{formatNumberWithK(analytics?.uniqueInvestorsCount)}</p>
-                </div>
-                <div className=" w-full rounded-xl border p-4 " >
-                    <div className=" w-10 h-10 text-gray500 rounded-full border flex justify-center items-center " >
-                        <RiCalendarCheckFill size={"24px"} />
+                    <div className=" w-full rounded-xl border p-4 " >
+                        <div className=" w-10 h-10 text-gray500 rounded-full border flex justify-center items-center " >
+                            <RiCalendarCheckFill size={"24px"} />
+                        </div>
+                        <p className=" text-gray500 text-sm mt-6 " >Pending Payout</p>
+                        <p className=" text-[30px] font-semibold text-gray900 " >{formatNumberWithK(analytics?.pendingPayoutsCount, true)}</p>
                     </div>
-                    <p className=" text-gray500 text-sm mt-6 " >Pending Payout</p>
-                    <p className=" text-[30px] font-semibold text-gray900 " >{formatNumberWithK(analytics?.pendingPayoutsCount, true)}</p>
                 </div>
-            </div>
             </LoadingAnimation>
 
             <Tabs defaultValue="investments" className="w-full flex flex-col gap-4 ">
@@ -100,7 +117,7 @@ export default function Investment() {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {data?.map((item, index) => {
+                                {data?.data?.map((item: InvestmentPlan, index: number) => {
                                     return (
                                         <TableRow role="button" onClick={() => navigate(`/dashboard/property/investments/details?id=${item?.id}`
                                         )} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
@@ -122,6 +139,9 @@ export default function Investment() {
                             </TableBody>
                         </Table>
                     </LoadingAnimation>
+                    {data?.total > pageSize && (
+                        <CustomPagination totalElement={data?.total} />
+                    )}
                 </TabsContent>
 
                 <TabsContent className=" w-full flex flex-col gap-5 " value="plans">
@@ -138,7 +158,7 @@ export default function Investment() {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {plans?.map((item, index) => {
+                                {plans?.data?.map((item: InvestmentModel, index: number) => {
                                     return (
                                         <TableRow role="button" onClick={() => navigate(`/dashboard/property/investments/details-plans?id=${item?.id}`
                                         )} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
@@ -160,6 +180,9 @@ export default function Investment() {
                             </TableBody>
                         </Table>
                     </LoadingAnimation>
+                    {plans?.total > pageSize && (
+                        <CustomPagination totalElement={plans?.total} />
+                    )}
                 </TabsContent>
             </Tabs>
         </div>
