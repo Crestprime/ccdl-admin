@@ -9,16 +9,19 @@ import { usePagintion } from "@/store/usePagination";
 import { useEffect } from "react";
 import CustomPagination from "../shared/customPagination";
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
+import { useFilterStore } from "@/store/filterStore";
 
 
 export default function RealtorTable() {
 
     const navigate = useNavigate()
 
+    const { search } = useFilterStore((state) => state);
     const { pageSize, page, updatePageSize, updatePage } = usePagintion((state) => state)
     const { data, isLoading } = useFetchData<any>(`/admin/users/agents`, ["agent"], {
         limit: pageSize,
-        page: page
+        page: page,
+        search: search
     }, true);
 
 

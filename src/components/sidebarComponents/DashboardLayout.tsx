@@ -16,12 +16,19 @@ import {
 } from "@/components/ui/sidebar"
 import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator } from "../ui/breadcrumb";
 import { useLinkStore } from "@/store/linkStore";
+import { useFilterStore } from "@/store/filterStore";
+import { useEffect } from "react";
 // import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "../ui/breadcrumb"
 
 export default function DashboardLayout() {
 
   const { linkPath } = useLinkStore((state) => state)
+  const { setSearch } = useFilterStore((state) => state);
   const navigate = useNavigate()
+
+  useEffect(()=> {
+    setSearch("")
+  }, [linkPath])
 
   return (
     <SidebarProvider className=" p-3 !bg-[#f2f4f7] font-OpenRunde-Regular " >

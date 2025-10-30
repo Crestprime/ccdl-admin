@@ -8,6 +8,8 @@ interface FilterState {
     setType: (type: string) => void;
     status: string | any;
     setStatus: (status: string) => void;
+    categories: string | any;
+    setCategories: (categories: string) => void;
     currency: string | any;
     setCurrency: (currency: string) => void;
     datePicked: {
@@ -32,6 +34,8 @@ export const useFilterStore = create<FilterState>((set) => ({
         startDate: "null",
         endDate: "null"
     },
+    categories: "",
+    setCategories: (categories: string) => set({ categories }),
     setSearch: (search: string) => set({ search }),
     setCurrency: (currency: string) => set({ currency }),
     setType: (type: string) => set({ type }),

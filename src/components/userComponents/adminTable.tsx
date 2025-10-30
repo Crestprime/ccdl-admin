@@ -8,15 +8,18 @@ import { usePagintion } from "@/store/usePagination";
 import { useEffect } from "react";
 import CustomPagination from "../shared/customPagination";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { useFilterStore } from "@/store/filterStore";
 
 export default function AdminTable() {
 
     const navigate = useNavigate()
     const { pageSize, page, updatePageSize, updatePage } = usePagintion((state) => state)
+    const { search } = useFilterStore((state) => state);
 
     const { data, isLoading } = useFetchData<any>(`/admin`, ["admin"], {
         limit: pageSize,
-        page: page
+        page: page,
+        search: search
     }, true);
 
 

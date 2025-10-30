@@ -7,7 +7,7 @@ import CreateInvestmentBtn from "./createInvestmentBtn";
 import { useFetchData } from "@/hooks/useFetchData";
 import { InvestmentModel, InvestmentPlan } from "@/models/investment";
 import { dateFormat } from "@/utils/dateFormat";
-import { LoadingAnimation } from "@/components/shared";
+import { CustomButton, LoadingAnimation, SearchBar } from "@/components/shared";
 import { formatNumberWithK, numberFormatNaire } from "@/utils/formatNumberWithK";
 import { capitalizeFLetter } from "@/utils/capitalLetter";
 import { useNavigate } from "react-router-dom";
@@ -15,22 +15,41 @@ import { IAInvestment } from "@/models/analytics";
 import { usePagintion } from "@/store/usePagination";
 import { useEffect } from "react";
 import CustomPagination from "@/components/shared/customPagination";
+import { useFilterStore } from "@/store/filterStore";
+import Filter from "@/components/shared/filter";
+import React from "react";
+import { useReactToPrint } from "react-to-print";
 
 
 export default function Investment() {
 
     const navigate = useNavigate()
     const { pageSize, page, updatePageSize, updatePage } = usePagintion((state) => state)
+    const { search, status } = useFilterStore((state) => state);
 
+    const contentRef = React.useRef<HTMLDivElement | any>(null);
+
+    const reactToPrintFn = useReactToPrint({
+        contentRef,
+        documentTitle: "report " + dateFormat(new Date()),
+        pageStyle: `
+          @page {
+            size: Legal landscape
+          }   
+        `,
+    });
 
     const { data, isLoading } = useFetchData<any>(`/investment`, ["investment"], {
         limit: pageSize,
-        page: page
+        page: page,
+        search: search,
+        status: status
     }, true);
 
     const { data: plans, isLoading: loadingPlans } = useFetchData<any>(`/investment-plan/admin`, ["investment-plans"], {
         limit: pageSize,
-        page: page
+        page: page,
+        search: search
     }, true);
 
 
@@ -85,25 +104,19 @@ export default function Investment() {
             </LoadingAnimation>
 
             <Tabs defaultValue="investments" className="w-full flex flex-col gap-4 ">
-                <div className=" w-full justify-between flex items-center " >
+                <div className=" w-full flex items-center justify-between " >
                     <TabsList className="grid w-fit grid-cols-2 h-fit ">
                         <TabsTrigger className=" h-[36px] " value="investments">Investments</TabsTrigger>
                         <TabsTrigger className=" h-[36px] " value="plans">Plans</TabsTrigger>
                     </TabsList>
-                    <div className=" w-[354px] relative h-[42px] " >
-                        <div className=" w-fit px-2 absolute top-0 h-full flex justify-center items-center " >
-                            <RiSearch2Line size={"20px"} />
-                        </div>
-                        <Input className=" h-[42px] w-full pl-8 " placeholder="Search for client name" />
-                    </div>
+                    <SearchBar />
+                </div>
+                <div className=" flex gap-4 items-center " >
+                    <Filter type="investment" />
+                    <CustomButton variant={"main"} onClick={reactToPrintFn} className=" w-fit px-4 rounded-full " >Export</CustomButton>
                 </div>
 
-                {/* <Button variant={"outline"} className=" w-fit h-11 " >
-                    <RiAddCircleLine size={"15px"} />
-                    Add filter
-                </Button> */}
-
-                <TabsContent className=" w-full flex flex-col gap-5 " value="investments">
+                <TabsContent ref={contentRef} className=" w-full flex flex-col gap-5 " value="investments">
                     <LoadingAnimation loading={isLoading} length={data?.length} >
                         <Table>
                             <TableHeader>
@@ -122,7 +135,7 @@ export default function Investment() {
                                         <TableRow role="button" onClick={() => navigate(`/dashboard/property/investments/details?id=${item?.id}`
                                         )} className={` h-[72px] px-3 ${(index % 2 === 0) ? "bg-gray25" : ""} `} key={index}>
                                             <TableCell className="">{item?.plan?.property?.name}</TableCell>
-                                            <TableCell className="">{"---"}</TableCell>
+                                            <TableCell className="">{item?.user?.firstName + " " + item?.user?.lastName}</TableCell>
                                             <TableCell className="">{item?.plan?.duration} Months</TableCell>
                                             <TableCell>
                                                 <div className=" flex gap-2 items-center " >
