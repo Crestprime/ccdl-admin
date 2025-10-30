@@ -21,7 +21,7 @@ export function AdminBtn(
         page: 1,
     }, true);
 
-    const options = convertDataForSelect(data?.data ?? [], ["name", "id"]);
+    const options = convertDataForSelect(data?.data ?? [], ["name", "name"]);
 
     console.log(options);
     console.log(data);
