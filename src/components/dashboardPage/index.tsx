@@ -45,3 +45,6 @@ export { default as AllTransaction } from './walletPages/alltransaction';
 
 // Wallet Page
 export { default as ReportPages } from './reportPages/report';
+
+// Wallet Page
+export { default as RolePage } from './roleManagementPage/rolePage';

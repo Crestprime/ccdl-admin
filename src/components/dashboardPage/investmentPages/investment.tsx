@@ -1,7 +1,5 @@
-import { RiCalendarCheckFill, RiCoinsFill, RiKeyFill, RiSearch2Line } from "@remixicon/react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs";
-import { Input } from "../../ui/input";
-// import { Button } from "../../ui/button";
+import { RiCalendarCheckFill, RiCoinsFill, RiKeyFill } from "@remixicon/react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../ui/tabs"; 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table";
 import CreateInvestmentBtn from "./createInvestmentBtn";
 import { useFetchData } from "@/hooks/useFetchData";

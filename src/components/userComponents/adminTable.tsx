@@ -22,7 +22,6 @@ export default function AdminTable() {
         search: search
     }, true);
 
-
     useEffect(() => {
         updatePage(1)
         updatePageSize(10)
