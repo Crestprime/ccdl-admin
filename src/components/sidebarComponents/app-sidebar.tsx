@@ -16,7 +16,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { RiAccountCircleFill, RiBuilding2Fill, RiFolderOpenFill, RiHome4Fill, RiPieChartFill, RiWalletFill } from "@remixicon/react"
+import { RiAccountCircleFill, RiBuilding2Fill, RiFolderOpenFill, RiHome4Fill, RiLock2Fill, RiPieChartFill, RiWalletFill } from "@remixicon/react"
 import { useFetchData } from "@/hooks/useFetchData"
 import Cookies from "js-cookie";
 
@@ -87,6 +87,12 @@ const data: any = {
       title: "Reports & Analytics",
       url: "/dashboard/analytics",
       icon: RiPieChartFill,
+      items: []
+    },
+    {
+      title: "Role Management",
+      url: "/dashboard/role",
+      icon: RiLock2Fill,
       items: []
     },
   ],
