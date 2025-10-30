@@ -9,14 +9,17 @@ import { useNavigate } from "react-router-dom";
 import CustomPagination from "../shared/customPagination";
 import { usePagintion } from "@/store/usePagination";
 import { useEffect } from "react";
+import { useFilterStore } from "@/store/filterStore";
 
 export default function ReservationTable() {
 
     const { pageSize, page, updatePageSize, updatePage } = usePagintion((state) => state)
+    const { search } = useFilterStore((state) => state);
     const navigate = useNavigate()
     const { data, isLoading } = useFetchData<any>(`/admin-property/reservations`, ["reservations"], {
         limit: pageSize,
-        page: page
+        page: page,
+        search: search
     }, true);
 
     useEffect(() => {

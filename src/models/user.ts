@@ -28,6 +28,17 @@ export interface IUserInfo {
     }
 }
 
+export interface IRole {
+    "id": string,
+    "permissions": string[],
+    "name": string,
+    "isActive": boolean,
+    "createdAt": string,
+    "updatedAt": string,
+    "isDeleted": boolean,
+    "deletedAt": string
+}
+
 export interface IUser {
     "id": number,
     "firstName": string,

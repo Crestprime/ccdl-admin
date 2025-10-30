@@ -1,8 +1,24 @@
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"; 
-import { ClientTable } from "@/components/userComponents"; 
+import { CustomButton, SearchBar } from "@/components/shared";
+import { ClientTable } from "@/components/userComponents";
+import { dateFormat } from "@/utils/dateFormat";
+import React from "react";
+import { useReactToPrint } from "react-to-print";
 
 
-export default function ClientPage() { 
+export default function ClientPage() {
+
+    const contentRef = React.useRef<HTMLDivElement | any>(null);
+
+    const reactToPrintFn = useReactToPrint({
+        contentRef,
+        documentTitle: "report " + dateFormat(new Date()),
+        pageStyle: `
+          @page {
+            size: Legal landscape
+          }   
+        `,
+    });
 
     return (
         <div className=" w-full flex h-auto gap-6 flex-col  " >
@@ -18,7 +34,7 @@ export default function ClientPage() {
                         New event
                     </Button>
                 </div> */}
-            </div> 
+            </div>
 
             {/* <Tabs defaultValue="user" className="w-full ">
                 <TabsList className="grid w-fit grid-cols-2 h-fit ">
@@ -26,8 +42,13 @@ export default function ClientPage() {
                     <TabsTrigger className=" h-[36px] " disabled value="suspended">Suspended</TabsTrigger> 
                 </TabsList> 
                 <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="user"> */}
-                    <ClientTable />
-                {/* </TabsContent> */}
+
+            <SearchBar />
+            <CustomButton variant={"main"} onClick={reactToPrintFn} className=" w-fit px-4 rounded-full " >Export</CustomButton>
+            <div ref={contentRef} className=" w-full " >
+                <ClientTable />
+            </div>
+            {/* </TabsContent> */}
             {/* </Tabs> */}
         </div>
     )
