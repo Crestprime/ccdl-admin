@@ -61,21 +61,13 @@ export default function RealtorTable() {
                                             </Avatar>
                                             <p>{item?.firstName + " " + item?.lastName}</p>
                                         </div>
-                                    </TableCell>
-                                    {/* <TableCell >
-                        {numberFormatNaire(item?.reservations)}
-                    </TableCell> */}
+                                    </TableCell> 
                                     <TableCell>
                                         {numberFormat(item?.statistics?.soldProperties)}
                                     </TableCell>
                                     <TableCell>
                                         {numberFormat(item?.statistics?.totalEarnings)}
-                                    </TableCell>
-                                    {/* <TableCell>
-                        <div className={` ${item?.status?.includes("Not") ? " text-error800 bg-error100 " : item?.status?.includes("Verified") ? " text-success800  bg-success100 " : " text-warning800 bg-warning100 "} px-2 py-[2px] rounded-2xl w-fit text-xs font-medium `} >
-                            {item?.status}
-                        </div>
-                    </TableCell> */}
+                                    </TableCell> 
                                     <TableCell>
                                         {dateFormat(item?.createdAt)}
                                     </TableCell>

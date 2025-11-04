@@ -1,7 +1,7 @@
 import { LoadingAnimation } from "@/components/shared";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ClientConstruction, ClientSaleTable, ClientWalletTable, ClientInvestmentTable } from "@/components/userComponents";
+import { ClientConstruction, ClientSaleTable, ClientWalletTable, ClientInvestmentTable, ProfileTable } from "@/components/userComponents";
 import { useFetchData } from "@/hooks/useFetchData";
 import { IUserInfo } from "@/models/user";
 import { dateFormat } from "@/utils/dateFormat";
@@ -109,6 +109,7 @@ export default function ClientDetails() {
                             <TabsTrigger className=" h-[36px] " value="sales">Sales & Reservations</TabsTrigger>
                             <TabsTrigger className=" h-[36px] " value="wallet">Wallet</TabsTrigger>
                             <TabsTrigger className=" h-[36px] " value="construction">Construction</TabsTrigger>
+                            <TabsTrigger className=" h-[36px] " value="profile">Profile</TabsTrigger>
                         </TabsList>
                         <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="investments">
                             <ClientInvestmentTable id={data?.user?.id + ""} />
@@ -121,6 +122,9 @@ export default function ClientDetails() {
                         </TabsContent>
                         <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="construction">
                             <ClientConstruction id={data?.user?.id + ""} />
+                        </TabsContent>
+                        <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="profile">
+                            <ProfileTable id={data?.user?.id + ""} />
                         </TabsContent>
                     </Tabs>
                 </div>

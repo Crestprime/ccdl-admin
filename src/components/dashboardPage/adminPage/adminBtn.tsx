@@ -23,13 +23,6 @@ export function AdminBtn(
 
     const options = convertDataForSelect(data?.data ?? [], ["name", "name"]);
 
-    console.log(options);
-    console.log(data);
-
-    console.log(formik.values);
-    
-    
-
     return (
         <>
             <Button onClick={()=> setIsOpen(true)} variant={variant ?? "main"} className=" h-[40px] text-sm font-medium rounded-full " >
