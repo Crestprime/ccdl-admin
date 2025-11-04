@@ -40,8 +40,14 @@ export default function Filter(
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56" align="start">
                 <DropdownMenuGroup>
-                    {type === "investment" && ( 
+                    {type === "investment" && (
                         <RadioGroup defaultValue={status} >
+                            <DropdownMenuItem>
+                                <div onClick={() => setStatus("")} className="flex items-center gap-3">
+                                    <RadioGroupItem value="" id="r1" />
+                                    <Label htmlFor="r0">All</Label>
+                                </div>
+                            </DropdownMenuItem>
                             <DropdownMenuItem>
                                 <div onClick={() => setStatus("ACTIVE")} className="flex items-center gap-3">
                                     <RadioGroupItem value="ACTIVE" id="r1" />

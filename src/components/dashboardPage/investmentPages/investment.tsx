@@ -41,7 +41,7 @@ export default function Investment() {
         limit: pageSize,
         page: page,
         search: search,
-        status: status
+        status: status 
     }, true);
 
     const { data: plans, isLoading: loadingPlans } = useFetchData<any>(`/investment-plan/admin`, ["investment-plans"], {

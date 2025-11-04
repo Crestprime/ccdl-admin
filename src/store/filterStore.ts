@@ -25,14 +25,14 @@ interface FilterState {
 }
 
 export const useFilterStore = create<FilterState>((set) => ({
-    search: null,
-    type: "null",
-    userDetails: null,
-    status: "null",
-    currency: "null",
+    search: "",
+    type: "",
+    userDetails: "",
+    status: "",
+    currency: "",
     datePicked: {
-        startDate: "null",
-        endDate: "null"
+        startDate: "",
+        endDate: ""
     },
     categories: "",
     setCategories: (categories: string) => set({ categories }),

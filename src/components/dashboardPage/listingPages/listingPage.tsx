@@ -21,7 +21,7 @@ export default function ListingPage() {
         category: type,
         limit: pageSize,
         page: page,
-        searchText: search
+        search: search
     }, true);
 
     useEffect(() => {
