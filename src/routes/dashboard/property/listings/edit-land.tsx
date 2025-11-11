@@ -1,5 +1,5 @@
 import { EditListingLand } from '@/components/dashboardPage'
-import { createFileRoute, getRouteApi } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/dashboard/property/listings/edit-land')({
     component: RouteComponent,
@@ -9,12 +9,12 @@ export const Route = createFileRoute('/dashboard/property/listings/edit-land')({
     })
 })
 
-const routeApi = getRouteApi('/dashboard/property/listings/edit-land')
+// const routeApi = getRouteApi('/dashboard/property/listings/edit-land')
 
 function RouteComponent() {
-    const routeSearch = routeApi.useSearch()
+    // const routeSearch = routeApi.useSearch()
 
     return (
-        <EditListingLand id={routeSearch?.id} type={routeSearch?.type} />
+        <EditListingLand  />
     )
 }

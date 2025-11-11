@@ -1,49 +1,51 @@
 import { LoadingAnimation } from "@/components/shared";
-import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ClientConstruction, ClientSaleTable, ClientWalletTable, ClientInvestmentTable } from "@/components/userComponents"; 
+import { ClientConstruction, ClientSaleTable, ClientWalletTable, ClientInvestmentTable, ProfileTable } from "@/components/userComponents";
 import { useFetchData } from "@/hooks/useFetchData";
 import { IUserInfo } from "@/models/user";
 import { dateFormat } from "@/utils/dateFormat";
-import { numberFormatNaire } from "@/utils/formatNumberWithK";
-import { RiBuilding2Fill, RiCoinsFill, RiMoneyDollarCircleFill, RiMore2Fill, RiWalletFill } from "@remixicon/react";
-import { useSearchParams } from "react-router-dom";
+import { numberFormatNaire } from "@/utils/formatNumberWithK"; 
+import { RiArrowLeftLine, RiBuilding2Fill, RiCoinsFill, RiMoneyDollarCircleFill, RiWalletFill } from "@remixicon/react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 
 export default function ClientDetails() {
 
 
-    const [searchParams] = useSearchParams(); 
+    const [searchParams] = useSearchParams();
+
+    const navigate = useNavigate()
     const id: any = searchParams.get("id");
-    const { data, isLoading } = useFetchData<IUserInfo>(`/admin/users/${id}`, "user"); 
+    const { data, isLoading } = useFetchData<IUserInfo | any>(`/admin/users/${id}`, ["user"]);
 
     return (
         <LoadingAnimation loading={isLoading} >
 
             <div className=" w-full flex h-auto gap-6 flex-col overflow-x-hidden " >
                 <div className=" w-full flex justify-end pb-4 border-b items-center " >
-                    <div className=" flex gap-4  " >
+                    {/* <div className=" flex gap-4  " >
                         <Button variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >
                             Edit
                         </Button>
                         <Button variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >
                             <RiMore2Fill size={"25px"} />
                         </Button>
-                    </div>
+                    </div> */}
                 </div>
                 <div className=" w-full p-6 gap-6 flex flex-col border border-gray-200 rounded-xl " >
                     <div className=" flex items-center gap-4 pb-6 border-b " >
-                        <div className=" w-12 h-12 rounded-full bg-yellow-300 " >
-
-                        </div>
+                        <button onClick={() => navigate(-1)} >
+                            <RiArrowLeftLine size={"20px"} />
+                        </button>
+                        <Avatar className=" w-10 " >
+                            <AvatarImage src={data?.user?.profilePicture} alt="@shadcn" />
+                            <AvatarFallback>{data?.user?.firstName?.slice(0, 1) + data?.user?.lastName?.slice(0, 1)}</AvatarFallback>
+                        </Avatar>
                         <div className=" flex flex-col gap-1 " >
                             <div className=" flex gap-2 items-center " >
-                                <p className=" text-xl font-semibold " >{data?.user?.firstName+" "+data?.user?.lastName}</p>
-                                <div className=" px-2 py-[2px] rounded-2xl bg-warning100 text-warning800 ">
-                                    <p className=" text-xs font-medium " >Pending</p>
-                                </div>
+                                <p className=" text-xl font-semibold " >{data?.user?.firstName + " " + data?.user?.lastName}</p>
                             </div>
-                            <p className=" text-sm " >Online</p>
                         </div>
                     </div>
                     <div className=" w-full grid grid-cols-2 " >
@@ -104,21 +106,25 @@ export default function ClientDetails() {
                     <Tabs defaultValue="investments" className="w-full ">
                         <TabsList className="grid w-fit grid-cols-5 gap-4 h-fit ">
                             <TabsTrigger className=" h-[36px] " value="investments">Investments</TabsTrigger>
-                            <TabsTrigger className=" h-[36px] " value="sales">Sales & Reservations</TabsTrigger> 
+                            <TabsTrigger className=" h-[36px] " value="sales">Sales & Reservations</TabsTrigger>
                             <TabsTrigger className=" h-[36px] " value="wallet">Wallet</TabsTrigger>
                             <TabsTrigger className=" h-[36px] " value="construction">Construction</TabsTrigger>
+                            <TabsTrigger className=" h-[36px] " value="profile">Profile</TabsTrigger>
                         </TabsList>
                         <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="investments">
-                            <ClientInvestmentTable id={data?.user?.id+""} />
+                            <ClientInvestmentTable id={data?.user?.id + ""} />
                         </TabsContent>
                         <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="sales">
-                            <ClientSaleTable id={data?.user?.id+""} />
+                            <ClientSaleTable id={data?.user?.id + ""} />
                         </TabsContent>
                         <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="wallet">
-                            <ClientWalletTable id={data?.user?.id+""} />
-                        </TabsContent> 
+                            <ClientWalletTable id={data?.user?.id + ""} />
+                        </TabsContent>
                         <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="construction">
-                            <ClientConstruction id={data?.user?.id+""} />
+                            <ClientConstruction id={data?.user?.id + ""} />
+                        </TabsContent>
+                        <TabsContent className=" w-full pt-3 flex flex-col gap-5 " value="profile">
+                            <ProfileTable id={data?.user?.id + ""} />
                         </TabsContent>
                     </Tabs>
                 </div>

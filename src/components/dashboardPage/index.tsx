@@ -16,6 +16,7 @@ export { default as SaleDetails } from './salesPages/salesDetails';
 
 // Sales and Reservetion Page
 export { default as InvestmentPage } from './investmentPages/investment';
+export { default as InvestmentDetailPagePlans } from './investmentPages/investmentDetailsPlans';
 export { default as InvestmentDetailPage } from './investmentPages/investmentDetails';
 
 // Schedule Page
@@ -29,10 +30,21 @@ export { default as ClientDetailsPage } from './usersPage/clientDetails';
 export { default as RealtorPage } from './realtorPage/realtorPage';
 export { default as RealtorDetailsPage } from './realtorPage/realtorDetails';
 
+// admin Page
+export { default as AdminPage } from './adminPage/adminPage';
+export { default as AdminDetailsPage } from './adminPage/adminDetails';
+
 // Client Page
 export { default as ProposalPage } from './constructionPages/proposalPage';
 export { default as ProposalDetailsPage } from './constructionPages/proposalDetailsPage';
 export { default as ProposalListingDetailPage } from './constructionPages/proposalListingDetailPage';
+export { default as ProposalCreateTaskPage } from './constructionPages/createTask';
 
 // Wallet Page
 export { default as AllTransaction } from './walletPages/alltransaction';
+
+// Wallet Page
+export { default as ReportPages } from './reportPages/report';
+
+// Wallet Page
+export { default as RolePage } from './roleManagementPage/rolePage';

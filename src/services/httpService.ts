@@ -29,17 +29,8 @@ httpService.interceptors.request.use(
     }
     return config;
   },
-  function (error: any) {
-    // if (error.response.status === 500) {
-    //   error.response.data.message = "Something wrong has happened. Try again later."
-    // }
-    return Promise.reject(error);
-  }
-);
-
-httpService.interceptors.response.use(
-  (response) => {
-    return response;
+  function (error: any) { 
+    return Promise.reject(error)
   },
   (error) => {
     if (error.response.status === 401) {

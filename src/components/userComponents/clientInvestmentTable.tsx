@@ -9,7 +9,7 @@ import { dateFormat } from "@/utils/dateFormat";
 
 export default function ClientInvestmentTable({ id }: { id: string }) {
 
-    const { data, isLoading } = useFetchData<Array<IinvestmentData>>(`/investment/user/${id}`, "investmentuser"+id);
+    const { data, isLoading } = useFetchData<Array<IinvestmentData>>(`/investment/user/${id}`, ["investmentuser", id+""]);
   
     return (
         <LoadingAnimation length={data?.length} loading={isLoading} >

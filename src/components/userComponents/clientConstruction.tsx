@@ -15,7 +15,7 @@ export default function ClientConstruction({ id }: { id: string }) {
 
     const navigate = useNavigate()
 
-    const { data, isLoading } = useFetchData<Array<any>>(`/admin/users/${id}/proposals`, "proposals"+id); 
+    const { data, isLoading } = useFetchData<Array<any>>(`/admin/users/${id}/proposals`, ["proposals", id+""]); 
 
     return (
         <LoadingAnimation loading={isLoading} length={data?.length} >

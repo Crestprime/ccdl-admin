@@ -25,3 +25,13 @@ export interface InviteData {
     updatedAt: string;
     workspaces: Array<string>
 }
+
+
+export interface IAdminData { 
+    email: string;
+    firstName: string;  
+    lastName: string;
+    position: string; 
+    workspaces: Array<string>;
+    profilePicture?: string
+}

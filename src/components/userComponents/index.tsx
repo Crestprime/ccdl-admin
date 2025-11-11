@@ -6,3 +6,5 @@ export { default as ClientConstruction } from './clientConstruction';
 export { default as ClientSaleTable } from './clientSaleTable';
 export { default as ClientRefferalTable } from './clientRefferalTable';
 export { default as ClientWalletTable } from './clientWalletTable';
+export { default as RoleTable } from './roleTable';
+export { default as ProfileTable } from './profileTable';

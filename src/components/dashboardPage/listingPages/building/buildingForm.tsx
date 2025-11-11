@@ -1,6 +1,5 @@
 import { ListingCheckBox, ListingImage } from "@/components/listingComponents";
 import { FormInput, FormSelect, FormTextArea } from "@/components/shared";
-import { dummyData } from "@/lib/dummydata";
 import { buildingTypes, numberData, featuresData } from "@/models/dummydata";
 import { Switch } from "@radix-ui/react-switch";
 import { RiSearch2Line } from "@remixicon/react"; 
@@ -32,9 +31,9 @@ export default function BuildingForm ({ formik, type } : { formik: any, type?: s
                     <div className=" flex flex-col gap-3 pb-6 border-b " >
                         <p className=" font-semibold " >Property Size</p>
                         <div className=" w-full grid grid-cols-2 gap-4 " >
-                            <FormSelect setValue={formik?.setFieldValue} errors={formik?.errors} touched={formik?.touched} value={formik?.values} label="Square Footage" optionData={numberData} name="squareFoot" />
-                            <FormSelect setValue={formik?.setFieldValue} errors={formik?.errors} touched={formik?.touched} value={formik?.values} label="Lot Size" optionData={numberData} name="lotSize" />
-                            <FormSelect setValue={formik?.setFieldValue} errors={formik?.errors} touched={formik?.touched} value={formik?.values} label="Number of Floors" optionData={numberData} name="floors" />
+                            <FormInput setValue={formik?.setFieldValue} errors={formik?.errors} touched={formik?.touched} value={formik?.values} label="Square Footage" type="number" name="squareFoot" />
+                            <FormInput setValue={formik?.setFieldValue} errors={formik?.errors} touched={formik?.touched} value={formik?.values} label="Lot Size" type="number" name="lotSize" />
+                            <FormInput setValue={formik?.setFieldValue} errors={formik?.errors} touched={formik?.touched} value={formik?.values} label="Number of Floors" type="number" name="floors" />
                         </div>
                     </div>
                     <div className=" flex flex-col gap-3 pb-6 border-b " >
@@ -65,8 +64,8 @@ export default function BuildingForm ({ formik, type } : { formik: any, type?: s
                     <div className=" flex flex-col gap-3 pb-6 border-b " >
                         <p className=" font-semibold " >Year Built and Condition</p>
                         <div className=" w-full grid grid-cols-2 gap-4 " > 
-                            <FormSelect  setValue={formik?.setFieldValue} errors={formik?.errors} touched={formik?.touched} value={formik?.values} label="Year of Construction" optionData={dummyData} name="yearOfConstruction" />
-                            <FormSelect  setValue={formik?.setFieldValue} errors={formik?.errors} touched={formik?.touched} value={formik?.values} label="Conditions" optionData={dummyData} name="condition" />
+                            <FormInput  setValue={formik?.setFieldValue} errors={formik?.errors} touched={formik?.touched} value={formik?.values} label="Year of Construction" name="yearOfConstruction" />
+                            <FormInput  setValue={formik?.setFieldValue} errors={formik?.errors} touched={formik?.touched} value={formik?.values} label="Conditions" name="condition" />
                         </div>
                         {/* <FormInput label="Renovations" name="floors" /> */}
                     </div>

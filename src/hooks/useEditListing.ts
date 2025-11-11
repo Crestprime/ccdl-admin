@@ -3,13 +3,13 @@ import { useFormik } from 'formik';
 import { useMutation } from '@tanstack/react-query';
 import httpService from '@/services/httpService';
 import { toast } from 'react-hot-toast';
-import { CreateBuildingListing, CreateLandListing } from '@/models/listing';
-import { useNavigate } from '@tanstack/react-router';
+import { CreateBuildingListing, CreateLandListing } from '@/models/listing'; 
 import { useState } from 'react';
 import { useImage } from '@/components/global-state/useImageData';
 // import { transformTextToNumbers } from '@/utils/transformNumber';
 import Cookies from "js-cookie";
 import { transformTextToNumbers } from '@/utils/transformNumber';
+import { useNavigate } from 'react-router-dom';
 
 const useEditListing = (id?: string) => {
     const userId = Cookies.get("userid")
@@ -40,9 +40,9 @@ const useEditListing = (id?: string) => {
         },
         onSuccess: (data: any) => {
             toast.success(data?.data?.message)
-            navigate({
-                to: "/dashboard/property/listings?type=BUILDING"
-            })
+            navigate(
+                "/dashboard/property/listings?type=BUILDING"
+            )
         },
     });
 
@@ -53,9 +53,9 @@ const useEditListing = (id?: string) => {
         },
         onSuccess: (data: any) => {
             toast.success(data?.data?.message)
-            navigate({
-                to: "/dashboard/property/listings?type=LAND"
-            })
+            navigate(
+                "/dashboard/property/listings?type=LAND"
+            )
         },
     });
 

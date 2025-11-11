@@ -1,6 +1,6 @@
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { Switch } from "../../ui/switch";
-import { RiBarChartLine, RiDeleteBin2Line, RiFileCopyLine, RiFireFill, RiFlashlightLine, RiLink, RiPencilLine, RiVipCrown2Line } from "@remixicon/react";
+import { RiBarChartLine, RiFileCopyLine, RiFireFill, RiFlashlightLine, RiLink, RiPencilLine, RiVipCrown2Line } from "@remixicon/react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../ui/table";
 import { useFetchData } from "@/hooks/useFetchData";
 import { IBuildingListingData } from "@/models/listing";
@@ -17,7 +17,7 @@ export default function ListingDetails() {
     const type: any = searchParams.get("type");
     const id: any = searchParams.get("id");
 
-    const { data, isLoading } = useFetchData<IBuildingListingData>(`/admin-property/property/${id}`, "property" + id);
+    const { data, isLoading } = useFetchData<IBuildingListingData>(`/admin-property/property/${id}`, ["property", id+""]);
 
     const navigate = useNavigate()
 
@@ -39,22 +39,22 @@ export default function ListingDetails() {
                         <div role="button" className=" w-9 h-9 rounded-full border flex justify-center items-center " >
                             <RiBarChartLine size={"17px"} />
                         </div>
-                        <div role="button" className=" w-9 h-9 rounded-full border border-[#FECDCA] text-[#D92D20] bg-[#FEF3F2] flex justify-center items-center " >
+                        {/* <div role="button" className=" w-9 h-9 rounded-full border border-[#FECDCA] text-[#D92D20] bg-[#FEF3F2] flex justify-center items-center " >
                             <RiDeleteBin2Line size={"17px"} />
-                        </div>
+                        </div> */}
                         <div role="button" onClick={() => navigate(
-                            type === "buildings" ? `/dashboard/property/listings/edit-building?id=${data?.property?.id}&type=${type}` : `/dashboard/property/listings/edit-land?id=${data?.property?.id}&type=${type}`
+                            type === "buildings" ? `/dashboard/property/listings/edit-building?id=${data?.modified?.id}&type=${type}` : `/dashboard/property/listings/edit-land?id=${data?.modified?.id}&type=${type}`
                         )} className=" w-9 h-9 rounded-full border flex justify-center bg-[#3170F3] text-white items-center " >
                             <RiPencilLine size={"17px"} />
                         </div>
                     </div>
                 </div>
                 <div className=" w-full rounded-2xl flex h-[373px] gap-3 " >
-                    <div className=" w-full rounded-2xl h-full bg-red-500 " >
-                        <img src={data?.property?.media[0]} alt={data?.property?.media[0]} className=" w-full h-full object-cover rounded-2xl " />
+                    <div className=" w-full rounded-2xl h-full bg-gray-200 " >
+                        <img src={data?.modified?.media[0]} alt={data?.modified?.media[0]} className=" w-full h-full object-cover rounded-2xl " />
                     </div>
                     <div className=" w-full grid grid-cols-2 gap-3 h-[373px] relative " >
-                        {data?.property?.media?.map((item: string, index: number) => {
+                        {data?.modified?.media?.map((item: string, index: number) => {
                             if (index !== 0 && index <= 4) {
                                 return (
                                     <div key={index} className=" w-full h-[180px] rounded-2xl bg-gray-600 " >
@@ -68,8 +68,8 @@ export default function ListingDetails() {
                 <div className=" w-full flex gap-6 " >
                     <div className=" w-full flex flex-col p-4 gap-6 border rounded-2xl " >
                         <div className=" w-full flex flex-col gap-2 pb-6 border-b " >
-                            <h3 className=" text-2xl font-semibold " >{data?.property?.name}</h3>
-                            <p className=" text-sm text-bodyTextColor " >{data?.property?.address}</p>
+                            <h3 className=" text-2xl font-semibold " >{data?.modified?.name}</h3>
+                            <p className=" text-sm text-bodyTextColor " >{data?.modified?.address}</p>
                             <div className={` text-[#7A5AF8]  rounded-2xl top-4 left-4 flex gap-[2px] items-center `} >
                                 <RiFireFill size={"20px"} />
                                 <p className=" font-semibold text-sm " > Hot</p>
@@ -93,22 +93,22 @@ export default function ListingDetails() {
                         </div>
                         <div className=" w-full flex flex-col gap-2 pb-5 border-b " >
                             <p className=" font-semibold " >Description</p>
-                            <p>{data?.property?.description}</p>
+                            <p>{data?.modified?.description}</p>
                         </div>
                         <div className=" w-full flex gap-2 pb-5 border-b " >
                             <div className=" w-full " >
-                                <p className=" font-medium " >Category: <span className=" font-normal " >{data?.property?.category}</span></p>
+                                <p className=" font-medium " >Category: <span className=" font-normal " >{data?.modified?.category}</span></p>
                             </div>
-                            {data?.property?.category === "BUILDING" ?
+                            {data?.modified?.category === "BUILDING" ?
                                 <div className=" w-full " >
-                                    <p className=" font-medium " >Building Type: <span className=" font-normal " >{data?.property?.buildingType}</span></p>
+                                    <p className=" font-medium " >Building Type: <span className=" font-normal " >{data?.modified?.buildingType}</span></p>
                                 </div> :
                                 <div className=" w-full " >
-                                    <p className=" font-medium " >Topography: <span className=" font-normal " >{data?.property?.topography}</span></p>
+                                    <p className=" font-medium " >Topography: <span className=" font-normal " >{data?.modified?.topography}</span></p>
                                 </div>
                             }
                         </div>
-                        {data?.property?.category === "BUILDING" ? (
+                        {data?.modified?.category === "BUILDING" ? (
                             <div className=" w-full flex gap-2 flex-col pb-5 border-b " >
                                 <p className=" font-semibold " >Units & Price</p>
                                 <Table>
@@ -124,17 +124,17 @@ export default function ListingDetails() {
                                     <TableBody>
                                         <TableRow className={` h-[72px] px-3 `} >
                                             <TableCell className="">Shell Finished</TableCell>
-                                            <TableCell>{numberFormatNaire(data?.property?.shellFinishedPrice)}</TableCell>
-                                            <TableCell>{numberFormatNaire(Number(data?.property?.shellFinishedPrice) / 3)}</TableCell>
-                                            <TableCell>{numberFormatNaire(Number(data?.property?.shellFinishedPrice) / 6)}</TableCell>
-                                            <TableCell>{numberFormatNaire(Number(data?.property?.shellFinishedPrice) / 12)}</TableCell>
+                                            <TableCell>{numberFormatNaire(data?.modified?.shellFinishedPrice)}</TableCell>
+                                            <TableCell>{numberFormatNaire(Number(data?.modified?.shellFinishedPrice) / 3)}</TableCell>
+                                            <TableCell>{numberFormatNaire(Number(data?.modified?.shellFinishedPrice) / 6)}</TableCell>
+                                            <TableCell>{numberFormatNaire(Number(data?.modified?.shellFinishedPrice) / 12)}</TableCell>
                                         </TableRow>
                                         <TableRow className={` h-[72px] px-3 `} >
                                             <TableCell className="">Finished</TableCell>
-                                            <TableCell>{numberFormatNaire(data?.property?.finishedPrice)}</TableCell>
-                                            <TableCell>{numberFormatNaire(Number(data?.property?.finishedPrice) / 3)}</TableCell>
-                                            <TableCell>{numberFormatNaire(Number(data?.property?.finishedPrice) / 6)}</TableCell>
-                                            <TableCell>{numberFormatNaire(Number(data?.property?.finishedPrice) / 12)}</TableCell>
+                                            <TableCell>{numberFormatNaire(data?.modified?.finishedPrice)}</TableCell>
+                                            <TableCell>{numberFormatNaire(Number(data?.modified?.finishedPrice) / 3)}</TableCell>
+                                            <TableCell>{numberFormatNaire(Number(data?.modified?.finishedPrice) / 6)}</TableCell>
+                                            <TableCell>{numberFormatNaire(Number(data?.modified?.finishedPrice) / 12)}</TableCell>
                                         </TableRow>
                                     </TableBody>
                                 </Table>
@@ -175,44 +175,44 @@ export default function ListingDetails() {
                                 </Table>
                             </div>
                         )}
-                        {data?.property?.category === "BUILDING" && (
+                        {data?.modified?.category === "BUILDING" && (
                             <div className=" w-full flex gap-2 flex-col pb-5 border-b " >
                                 <p className=" font-semibold " >Rooms and Layout</p>
                                 <div className=" w-full grid grid-cols-4 " >
                                     <div className=" flex gap-3 items-center " >
                                         <BedroomIcon />
-                                        <p className="  " >{data?.property?.bedrooms} Bedrooms</p>
+                                        <p className="  " >{data?.modified?.bedrooms} Bedrooms</p>
                                     </div>
                                     <div className=" flex gap-3 items-center " >
                                         <BathroomIcon />
-                                        <p className="  " >{data?.property?.bedrooms} Bathrooms</p>
+                                        <p className="  " >{data?.modified?.bedrooms} Bathrooms</p>
                                     </div>
                                     <div className=" flex gap-3 items-center " >
                                         <KitchenIcon />
-                                        <p className="  " >{data?.property?.kitchen} Kitchen</p>
+                                        <p className="  " >{data?.modified?.kitchen} Kitchen</p>
                                     </div>
                                     <div className=" flex gap-3 items-center " >
                                         <LivingroomIcon />
-                                        <p className="  " >{data?.property?.livingSpace} Living rooms</p>
+                                        <p className="  " >{data?.modified?.livingSpace} Living rooms</p>
                                     </div>
                                 </div>
                             </div>
                         )}
-                        {data?.property?.category === "BUILDING" && (
+                        {data?.modified?.category === "BUILDING" && (
                             <div className=" w-full flex gap-2 flex-col pb-5 border-b " >
                                 <p className=" font-semibold " >Property Size</p>
                                 <div className=" w-full grid grid-cols-4 " >
                                     <div className=" flex gap-3 items-center " >
                                         <PlotIcon />
-                                        <p className="  " >{data?.property?.squareFoot}sqm Plot</p>
+                                        <p className="  " >{data?.modified?.squareFoot}sqm Plot</p>
                                     </div>
                                     <div className=" flex gap-3 items-center " >
                                         <HouseIcon />
-                                        <p className="  " >{data?.property?.lotSize}sqm house</p>
+                                        <p className="  " >{data?.modified?.lotSize}sqm house</p>
                                     </div>
                                     <div className=" flex gap-3 items-center " >
                                         <FloorIcon />
-                                        <p className="  " >{data?.property?.floors} floors</p>
+                                        <p className="  " >{data?.modified?.floors} floors</p>
                                     </div>
                                 </div>
                             </div>
@@ -220,8 +220,8 @@ export default function ListingDetails() {
                         <div className=" w-full flex gap-2 flex-col pb-5 border-b " >
                             <p className=" font-semibold " >Key Features</p>
                             <p>
-                                {data?.property?.features?.map((item: string, index: number) => {
-                                    if (data?.property?.features?.length === index + 1) {
+                                {data?.modified?.features?.map((item: string, index: number) => {
+                                    if (data?.modified?.features?.length === index + 1) {
                                         return (
                                             <span key={index} >{item}</span>
                                         )
@@ -232,12 +232,12 @@ export default function ListingDetails() {
                                     }
                                 })}
                             </p>
-                            {data?.property?.category === "BUILDING" && (
+                            {data?.modified?.category === "BUILDING" && (
                                 <div className=" w-full flex-col flex gap-2 mt-3 " >
                                     <div className=" flex items-center gap-1 " >
                                         <p className=" font-medium " >Parking space:</p>
-                                        <p>{data?.property?.parkingSpace?.map((item: string, index: number) => {
-                                            if (data?.property?.parkingSpace?.length === index + 1) {
+                                        <p>{data?.modified?.parkingSpace?.map((item: string, index: number) => {
+                                            if (data?.modified?.parkingSpace?.length === index + 1) {
                                                 return (
                                                     <span key={index} >{item}</span>
                                                 )
@@ -251,8 +251,8 @@ export default function ListingDetails() {
                                     <div className=" flex items-center gap-1 " >
                                         <p className=" font-medium " >Outdoor Space:</p>
                                         <p>
-                                            {data?.property?.parkingSpace?.map((item: string, index: number) => {
-                                                if (data?.property?.parkingSpace?.length === index + 1) {
+                                            {data?.modified?.parkingSpace?.map((item: string, index: number) => {
+                                                if (data?.modified?.parkingSpace?.length === index + 1) {
                                                     return (
                                                         <span key={index} >{item}</span>
                                                     )
@@ -267,8 +267,8 @@ export default function ListingDetails() {
                                     <div className=" flex items-center gap-1 " >
                                         <p className=" font-medium " >Heating and Cooling:</p>
                                         <p>
-                                            {data?.property?.heatingAndCooling?.map((item: string, index: number) => {
-                                                if (data?.property?.heatingAndCooling?.length === index + 1) {
+                                            {data?.modified?.heatingAndCooling?.map((item: string, index: number) => {
+                                                if (data?.modified?.heatingAndCooling?.length === index + 1) {
                                                     return (
                                                         <span key={index} >{item}</span>
                                                     )
@@ -283,8 +283,8 @@ export default function ListingDetails() {
                                     <div className=" flex items-center gap-1 " >
                                         <p className=" font-medium " >Energy Efficiency:</p>
                                         <p>
-                                            {data?.property?.energyEfficiency?.map((item: string, index: number) => {
-                                                if (data?.property?.energyEfficiency?.length === index + 1) {
+                                            {data?.modified?.energyEfficiency?.map((item: string, index: number) => {
+                                                if (data?.modified?.energyEfficiency?.length === index + 1) {
                                                     return (
                                                         <span key={index} >{item}</span>
                                                     )
@@ -299,8 +299,8 @@ export default function ListingDetails() {
                                     <div className=" flex items-center gap-1 " >
                                         <p className=" font-medium " >Security:</p>
                                         <p>
-                                            {data?.property?.security?.map((item: string, index: number) => {
-                                                if (data?.property?.security?.length === index + 1) {
+                                            {data?.modified?.security?.map((item: string, index: number) => {
+                                                if (data?.modified?.security?.length === index + 1) {
                                                     return (
                                                         <span key={index} >{item}</span>
                                                     )
@@ -321,8 +321,8 @@ export default function ListingDetails() {
                                 <div className=" flex items-center gap-1 " >
                                     <p className=" font-medium " >Community Amenities:</p>
                                     <p>
-                                        {data?.property?.communityAmenities?.map((item: string, index: number) => {
-                                            if (data?.property?.communityAmenities?.length === index + 1) {
+                                        {data?.modified?.communityAmenities?.map((item: string, index: number) => {
+                                            if (data?.modified?.communityAmenities?.length === index + 1) {
                                                 return (
                                                     <span key={index} >{item}</span>
                                                 )
@@ -337,8 +337,8 @@ export default function ListingDetails() {
                                 <div className=" flex items-center gap-1 " >
                                     <p className=" font-medium " >Nearby Public Transport:</p>
                                     <p>
-                                        {data?.property?.publicTransport?.map((item: string, index: number) => {
-                                            if (data?.property?.publicTransport?.length === index + 1) {
+                                        {data?.modified?.publicTransport?.map((item: string, index: number) => {
+                                            if (data?.modified?.publicTransport?.length === index + 1) {
                                                 return (
                                                     <span key={index} >{item}</span>
                                                 )
@@ -358,8 +358,8 @@ export default function ListingDetails() {
                                 <div className=" flex items-center gap-1 " >
                                     <p className=" font-medium " >Development:</p>
                                     <p>
-                                        {data?.property?.developmentRestriction?.map((item: string, index: number) => {
-                                            if (data?.property?.developmentRestriction?.length === index + 1) {
+                                        {data?.modified?.developmentRestriction?.map((item: string, index: number) => {
+                                            if (data?.modified?.developmentRestriction?.length === index + 1) {
                                                 return (
                                                     <span key={index} >{item}</span>
                                                 )
@@ -374,7 +374,7 @@ export default function ListingDetails() {
                                 <div className=" flex items-center gap-1 " >
                                     <p className=" font-medium " >Restrictions:</p>
                                     <p>
-                                        {data?.property?.buildingRestrictions}
+                                        {data?.modified?.buildingRestrictions}
                                     </p>
                                 </div>
                             </div>
@@ -391,7 +391,7 @@ export default function ListingDetails() {
                                         <p className=" font-semibold " >Sold by Capital City</p>
                                         <p className=" text-sm text-bodyTextColor " >12 year leading as a Real Estate Company</p>
                                     </div>
-                                    <p className=" text-sm font-normal text-bodyTextColor ">Created {dateFormat(data?.property?.createdAt)} by Stephen Jude</p>
+                                    <p className=" text-sm font-normal text-bodyTextColor ">Created {dateFormat(data?.modified?.createdAt)} by Stephen Jude</p>
                                 </div>
                             </div>
                             {/* <div className=" w-full border rounded-2xl flex flex-col p-4 gap-3 " >

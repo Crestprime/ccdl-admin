@@ -9,7 +9,7 @@ import { numberFormatNaire } from "@/utils/formatNumberWithK";
 export default function ClientRefferalTable({ id }: { id: string }) {
 
     // const navigate = useNavigate()
-    const { data, isLoading } = useFetchData<Array<IRefferal>>(`/admin/users/agents/${id}/referrals`, "referrals"+id);
+    const { data, isLoading } = useFetchData<Array<IRefferal>>(`/admin/users/agents/${id}/referrals`, ["referrals", id]);
     
 
     return (

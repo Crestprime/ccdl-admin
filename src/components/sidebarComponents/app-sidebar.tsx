@@ -16,7 +16,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { RiAccountCircleFill, RiBuilding2Fill, RiFolderOpenFill, RiHome4Fill, RiWalletFill } from "@remixicon/react"
+import { RiAccountCircleFill, RiBuilding2Fill, RiFolderOpenFill, RiHome4Fill, RiLock2Fill, RiPieChartFill, RiWalletFill } from "@remixicon/react"
+import { useFetchData } from "@/hooks/useFetchData"
+import Cookies from "js-cookie";
 
 const data: any = {
   user: {
@@ -61,39 +63,45 @@ const data: any = {
           url: "/dashboard/users/clients",
         },
         {
-          title: "Realtors",
+          title: "ESP Realtors",
           url: "/dashboard/users/realtor",
         },
         {
           title: "Staff",
-          url: "#",
-        }
-      ],
-    }, 
-    {
-      title: "Construction",
-      url: "construction",
-      icon: RiFolderOpenFill,
-      items: [
-        {
-          title: "Proposals",
-          url: "/dashboard/constructions/proposals",
-        },
-        {
-          title: "Projects",
-          url: "/dashboard/constructions/projects",
+          url: "/dashboard/users/admin",
         }
       ],
     },
     {
+      title: "Construction",
+      url: "/dashboard/constructions/proposals",
+      icon: RiFolderOpenFill,
+      items: [],
+    },
+    {
       title: "Wallet",
       url: "/dashboard/wallet/alltransaction",
-      icon: RiWalletFill, 
-    }
+      icon: RiWalletFill,
+    },
+    {
+      title: "Reports & Analytics",
+      url: "/dashboard/analytics",
+      icon: RiPieChartFill,
+      items: []
+    },
+    {
+      title: "Role Management",
+      url: "/dashboard/role",
+      icon: RiLock2Fill,
+      items: []
+    },
   ],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+
+  const id = Cookies.get("userid")
+  const { data: userData, isLoading } = useFetchData<any>(`/admin/details/${id}`, ["userData"]);
 
   return (
     <Sidebar className=" !bg-[#f2f4f7] " variant="inset" {...props}>
@@ -117,9 +125,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={data?.navMain} />
       </SidebarContent>
-      <SidebarFooter className="mt-auto" >
-        <NavUser user={data.user} />
-      </SidebarFooter>
+      {!isLoading && (
+        <SidebarFooter className="mt-auto" >
+          <NavUser user={userData} />
+        </SidebarFooter>
+      )}
     </Sidebar>
   )
 }

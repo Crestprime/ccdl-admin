@@ -1,4 +1,5 @@
 import { CreateBuildingListing, IProperty } from "./listing"
+import { IUser } from "./user";
 
 export interface Iinvestment {
     "duration": number | any,
@@ -57,6 +58,7 @@ export interface InvestmentPlan {
     "id": number,
     "planId": number,
     "userId": number,
+    "user": IUser,
     "status": string,
     "amount": number,
     "isDeleted": boolean,

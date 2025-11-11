@@ -37,11 +37,7 @@ export default function FormSelect(
         } else {
             setValue(item, value) 
         }
-    }
-
-    console.log(value[name]);
-    
- 
+    }  
 
     return (
         <div className=' w-full flex gap-2 flex-col ' >

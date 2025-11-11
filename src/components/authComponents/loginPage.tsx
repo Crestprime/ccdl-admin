@@ -28,7 +28,7 @@ export default function LoginPage() {
                 <div className=" flex flex-col w-full gap-2 items-start mt-4 " >
                     <p className=" text-sm font-medium text-bodyTextColor " >Email</p>
                     <Input onChange={(e)=> setEmail(e.target.value)} className=" h-[42px] border border-gray200 outline-none " height={"42px"} width={"100%"} placeholder="example@domain.com" /> 
-                    <CustomButton variant={"main"} type="submit" isLoading={signInPending} className="w-full rounded-full mt-4 h-[44px] " >
+                    <CustomButton variant={"main"} disabled={!email} type="submit" isLoading={signInPending} className="w-full disabled:cursor-not-allowed rounded-full mt-4 h-[44px] " >
                         Continue 
                     </CustomButton>
                 </div>

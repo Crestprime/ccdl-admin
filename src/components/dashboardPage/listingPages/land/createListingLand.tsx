@@ -1,12 +1,13 @@
 import { Button } from "../../../ui/button"; 
-import { CustomButton } from "@/components/shared"; 
-import { useNavigate } from "@tanstack/react-router";  
+import { CustomButton } from "@/components/shared";  
 import useCreateListing from "@/hooks/useCreateListing";
 import LandForm from "./landForm";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
-export default function CreateListingLand(
-    { type }: { type: string }
-) { 
+export default function CreateListingLand() { 
+
+    const [searchParams] = useSearchParams();
+    const type: any = searchParams.get("type"); 
 
     const { formikLand: formik, isPendingland, uploading } = useCreateListing()
     const navigate = useNavigate()  
@@ -15,9 +16,9 @@ export default function CreateListingLand(
         <div className=" w-full flex h-auto gap-6 flex-col  " >
             <div className=" w-full flex justify-end items-center " >
                 <div className=" flex gap-4  " >
-                    <Button type="button" onClick={() => navigate({
-                        to: "/dashboard/property/listings?type=BUILDING"
-                    })} variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >
+                    <Button type="button" onClick={() => navigate(
+                         "/dashboard/property/listings?type=BUILDING"
+                    )} variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >
                         Cancel
                     </Button>
                     <Button variant={"outline"} className=" h-[40px] text-sm font-medium rounded-full " >

@@ -81,31 +81,19 @@
   }
 } 
 
-.font-bold {
-  font-family: OpenRunde-Bold !important;
-}
-
-.font-medium {
-  font-family: OpenRunde-Medium !important;
-}
-
-.font-semibold {
-  font-family: OpenRunde-SemiBold !important;
-}
-
 @font-face {
     font-family: 'OpenRunde-Bold';
     src: url(./assets/fonts/OpenRunde-Bold.woff);
 }
 
 @font-face {
-    font-family: 'OpenRunde-Medium';
-    src: url(./assets/fonts/OpenRunde-Medium.woff);
+    font-family: 'OpenRunde-Regular';
+    src: url(./assets/fonts/OpenRunde-Regular.woff);
 }
 
 @font-face {
-    font-family: 'OpenRunde-Regular';
-    src: url(./assets/fonts/OpenRunde-Regular.woff);
+    font-family: 'OpenRunde-Medium';
+    src: url(./assets/fonts/OpenRunde-Medium.woff);
 }
 
 @font-face {
@@ -117,6 +105,22 @@ html, body {
   background-color: #f2f4f7 !important;
   font-family: "OpenRunde-Regular" !important;
 }
+
+.font-bold {
+  font-family: 'OpenRunde-Bold' !important;
+}
+
+.font-semibold {
+  font-family: 'OpenRunde-SemiBold' !important;
+}
+
+.font-medium {
+  font-family: 'OpenRunde-Medium' !important;
+} 
+
+.font-regular {
+  font-family: 'OpenRunde-Regular' !important;
+} 
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {

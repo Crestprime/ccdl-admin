@@ -1,3 +1,5 @@
+import { IUser } from "./user";
+
 export interface ITransaction {
     "id": number,
     "paymentId": any,
@@ -14,5 +16,6 @@ export interface ITransaction {
     "type": string,
     "createdAt": string,
     "updatedAt": string,
-    "WithdrawalRequest": Array<any>
+    "WithdrawalRequest": Array<any>,
+    user: Array<IUser>
 }

@@ -1,13 +1,21 @@
+import { IHome } from "@/models/analytics";
+import { formatNumberWithK } from "@/utils/formatNumberWithK"; 
 import { RiSafe2Fill, RiBuilding2Fill, RiCoinFill } from "@remixicon/react";
 
 
-export default function HeaderCards() {
+export default function HeaderCards(
+    {
+        data
+    } : {
+        data: IHome
+    }
+) {
     return ( 
         <div className=" w-full h-fit flex flex-col " >
             <div className=" w-full flex gap-4 " >
                 <div className=" w-full h-[178px] flex flex-col p-4 border rounded-2xl " >
                     <p className=" text-bodyTextColor text-sm leading-5 " >Available Balance</p>
-                    <p className=" text-[30px] font-medium leading-9 " >₦200,480,000.24</p>
+                    <p className=" text-[30px] font-medium leading-9 " >{formatNumberWithK(data?.balance, true)}</p>
                 </div>
                 <div className=" w-full h-[178px] flex flex-col p-4 border rounded-2xl " >
                     <div className=" w-10 h-10 rounded-full border flex justify-center items-center " >
@@ -15,7 +23,7 @@ export default function HeaderCards() {
                     </div>
                     <div className=" mt-auto  " >
                         <p className=" text-bodyTextColor text-sm leading-5 " >Total Investments</p>
-                        <p className=" text-[30px] font-medium leading-9 " >₦60,000,000.01</p>
+                        <p className=" text-[30px] font-medium leading-9 " >{formatNumberWithK(data?.investments, true)}</p>
                     </div>
                 </div>
                 <div className=" w-fit flex gap-4 " >
@@ -25,7 +33,7 @@ export default function HeaderCards() {
                         </div>
                         <div className=" mt-auto  " >
                             <p className=" text-bodyTextColor text-sm leading-5 " >Ongoing Projects</p>
-                            <p className=" text-[30px] font-medium leading-9 " >02</p>
+                            <p className=" text-[30px] font-medium leading-9 " >{formatNumberWithK(data?.ongoingProjects)}</p>
                         </div>
                     </div>
                     <div className=" border flex flex-col rounded-2xl w-[202px] h-[178px] p-4 " >
@@ -34,7 +42,7 @@ export default function HeaderCards() {
                         </div>
                         <div className=" mt-auto  " >
                             <p className=" text-bodyTextColor text-sm leading-5 " >Reservations & Sales</p>
-                            <p className=" text-[30px] font-medium leading-9 " >10</p>
+                            <p className=" text-[30px] font-medium leading-9 " >{formatNumberWithK(data?.reservations)}</p>
                         </div>
                     </div>
                 </div>

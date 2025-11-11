@@ -20,7 +20,7 @@ export default function SelectProperty(
         type
     }: IProps) {
 
-    const { data, isLoading } = useFetchData<Array<CreateBuildingListing & CreateLandListing & any>>(`/admin-property/property-by-category`, "property " + type, {
+    const { data, isLoading } = useFetchData<Array<CreateBuildingListing & CreateLandListing & any>>(`/admin-property/property-by-category`, ["property ", type], {
         category: type
     });
 

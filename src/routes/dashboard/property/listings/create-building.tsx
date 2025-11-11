@@ -1,5 +1,5 @@
 import { CreateListingBuilding } from '@/components/dashboardPage'
-import { createFileRoute, getRouteApi } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute(
   '/dashboard/property/listings/create-building',
@@ -9,11 +9,9 @@ export const Route = createFileRoute(
     type: search.type ?? "",
   })
 })
-
-const routeApi = getRouteApi('/dashboard/property/listings/create-building')
+ 
 
 function RouteComponent() {
-
-  const routeSearch = routeApi.useSearch() 
-  return <CreateListingBuilding type={routeSearch?.type} />
+ 
+  return <CreateListingBuilding />
 }
